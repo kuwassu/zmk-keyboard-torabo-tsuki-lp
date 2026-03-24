@@ -65,11 +65,11 @@
 
         layer_2 {
             bindings = <
-&none  &none       &none       &none              &none          &none                          &none             &none          &none     &none      &none       &none
-&none  &kp LS(N1)  &trans      &kp F7             &kp F2         &kp LS(EQUAL)                  &kp LEFT_BRACKET  &kp LS(MINUS)  &kp UP    &kp MINUS  &kp LS(N5)  &none
-&none  &kp LS(N6)  &kp LS(N7)  &kp LS(N2)         &kp BSPC       &kp ESC        &none   &none   &kp S             &kp LEFT       &kp DOWN  &kp RIGHT  &kp F10     &none
-&none  &kp LSHFT   &trans      &kp RIGHT_BRACKET  &kp BACKSLASH  &kp BSLH       &trans  &trans  &kp LS(N3)        &kp LS(N4)     &kp APOS  &kp SEMI   &kp EQUAL   &none
-&none  &trans      &trans      &trans             &trans         &trans         &trans  &trans  &trans            &none          &none     &trans     &trans      &none
+&none  &none       &none       &none              &none          &none                          &none             &none              &none     &none      &none                  &none
+&none  &kp LS(N1)  &trans      &kp F7             &kp F2         &kp LS(EQUAL)                  &kp LEFT_BRACKET  &kp JP_UNDERSCORE  &kp UP    &kp MINUS  &kp LS(N5)             &none
+&none  &kp LS(N6)  &kp LS(N7)  &kp LS(N2)         &kp BSPC       &kp ESC        &none   &none   &kp S             &kp LEFT           &kp DOWN  &kp RIGHT  &kp F10                &none
+&none  &kp LSHFT   &trans      &kp RIGHT_BRACKET  &kp BACKSLASH  &kp JP_YEN     &trans  &trans  &kp LS(N3)        &kp LS(N4)         &kp APOS  &kp SEMI   &mt RIGHT_SHIFT EQUAL  &none
+&none  &trans      &trans      &trans             &trans         &trans         &trans  &trans  &trans            &none              &none     &trans     &trans                 &none
             >;
         };
 
