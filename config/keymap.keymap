@@ -40,11 +40,11 @@
 
         layer_2 {
             bindings = <
-&none  &trans            &trans            &trans      &trans      &trans                      &trans          &trans         &trans            &trans             &trans         &none
-&none  &kp LS(NUMBER_1)  &kp LS(NUMBER_2)  &kp LS(N3)  &kp LS(N4)  &kp LS(N5)                  &kp LS(N6)      &kp LS(N7)     &kp LS(N8)        &kp LS(N9)         &kp LS(N0)     &none
-&none  &kp N1            &kp N2            &kp N3      &kp N4      &kp N5      &trans  &trans  &kp LEFT_BRACE  &kp MINUS      &kp EQUAL         &kp RIGHT_BRACE    &kp COLON      &none
-&none  &kp N6            &kp N7            &kp N8      &kp N9      &kp N0      &trans  &trans  &kp LS(MINUS)   &kp LS(EQUAL)  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp BACKSLASH  &none
-&none  &trans            &trans            &trans      &trans      &trans      &trans  &trans  &kp TAB         &kp DEL        &trans            &trans             &trans         &none
+&none  &trans      &trans      &trans      &trans    &trans                         &trans      &trans        &trans     &trans     &trans      &none
+&none  &kp LS(N1)  &trans      &kp F7      &kp F2    &kp RS(CARET)                  &kp AT      &kp LS(BSLH)  &kp UP     &kp MINUS  &kp LS(N5)  &none
+&none  &kp LS(N6)  &kp LS(N7)  &kp LS(N2)  &kp BSPC  &kp ESC        &trans  &trans  &kp S       &kp LEFT      &kp DOWN   &kp RIGHT  &kp F10     &none
+&none  &kp LSHFT   &trans      &kp LBKT    &kp RBKT  &kp BSLH       &trans  &trans  &kp LS(N3)  &kp LS(N4)    &kp COLON  &kp SEMI   &kp CARET   &none
+&none  &trans      &trans      &trans      &trans    &trans         &trans  &trans  &trans      &trans        &trans     &trans     &trans      &none
             >;
         };
 
