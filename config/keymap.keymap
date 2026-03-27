@@ -47,7 +47,7 @@
 &none  &kp Q              &kp W     &kp E     &kp R       &kp T                                 &kp Y       &kp U  &kp I      &kp O     &kp P                 &none
 &none  &kp A              &kp S     &kp D     &kp F       &kp G        &none        &none       &kp H       &kp J  &kp K      &kp L     &lt 5 ENTER           &none
 &none  &mt RIGHT_SHIFT Z  &kp X     &kp C     &kp V       &kp B        &kp ESC      &kp DELETE  &kp N       &kp M  &kp COMMA  &kp DOT   &mt RIGHT_SHIFT FSLH  &none
-&none  &kp LCTRL          &kp LGUI  &kp LALT  &lt 1 BSPC  &lt 3 SPACE  &lt 4 GRAVE  &lt 6 TAB   &lt 2 BSPC  &none  &none      &kp HOME  &kp END               &none
+&none  &kp LCTRL          &kp LGUI  &kp LALT  &lt 7 BSPC  &lt 3 SPACE  &lt 4 GRAVE  &lt 6 TAB   &lt 2 BSPC  &none  &none      &kp HOME  &kp END               &none
             >;
         };
 
@@ -63,11 +63,11 @@
 
         layer_2 {
             bindings = <
-&none  &none       &none       &none              &none          &none                          &none             &none              &none     &none      &none                  &none
-&none  &kp LS(N1)  &trans      &kp F7             &kp F2         &kp LS(EQUAL)                  &kp LEFT_BRACKET  &kp JP_UNDERSCORE  &kp UP    &kp MINUS  &kp LS(N5)             &none
-&none  &kp LS(N6)  &kp LS(N7)  &kp LS(N2)         &kp BSPC       &kp ESC        &none   &none   &kp LC(S)         &kp LEFT           &kp DOWN  &kp RIGHT  &kp F10                &none
-&none  &kp LSHFT   &trans      &kp RIGHT_BRACKET  &kp BACKSLASH  &kp JP_YEN     &trans  &trans  &kp LS(N3)        &kp LS(N4)         &kp APOS  &kp SEMI   &mt RIGHT_SHIFT EQUAL  &none
-&none  &trans      &trans      &trans             &trans         &trans         &trans  &trans  &trans            &none              &none     &trans     &trans                 &none
+&none  &none       &none       &none              &none          &none                             &none             &none              &none     &none      &none                  &none
+&none  &kp LS(N1)  &trans      &kp F7             &kp F2         &kp LS(EQUAL)                     &kp LEFT_BRACKET  &kp JP_UNDERSCORE  &kp UP    &kp MINUS  &kp LS(N5)             &none
+&none  &kp LS(N6)  &kp LS(N7)  &kp LS(N2)         &kp BSPC       &kp ESC        &none      &none   &kp LC(S)         &kp LEFT           &kp DOWN  &kp RIGHT  &kp F10                &none
+&none  &kp LSHFT   &trans      &kp RIGHT_BRACKET  &kp BACKSLASH  &kp JP_YEN     &trans     &trans  &kp LS(N3)        &kp LS(N4)         &kp APOS  &kp SEMI   &mt RIGHT_SHIFT EQUAL  &none
+&none  &trans      &trans      &trans             &trans         &kp LS(8)      &kp LS(9)  &trans  &trans            &none              &none     &trans     &trans                 &none
             >;
         };
 
@@ -103,11 +103,11 @@
 
         layer_6 {
             bindings = <
-&none  &none   &none   &none   &none   &none                   &none   &none   &none   &none   &none   &none
-&none  &trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans  &none
-&none  &trans  &trans  &trans  &trans  &trans  &none   &none   &trans  &trans  &trans  &trans  &trans  &none
-&none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none
-&none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none   &none   &trans  &trans  &none
+&none  &none      &none      &none      &none      &none                   &none      &none   &none   &none   &none   &none
+&none  &trans     &kp lc(w)  &trans     &trans     &trans                  &trans     &trans  &trans  &trans  &trans  &none
+&none  &trans     &kp lc(s)  &trans     &kp lc(f)  &trans  &none   &none   &trans     &trans  &trans  &trans  &trans  &none
+&none  &kp lc(z)  &kp lc(x)  &kp lc(c)  &kp lc(v)  &trans  &trans  &trans  &kp lc(n)  &trans  &kp lc(COMMA)  &trans  &trans  &none
+&none  &trans     &trans     &trans     &trans     &trans  &trans  &trans  &trans     &none   &none   &trans  &trans  &none
             >;
         };
 
@@ -123,36 +123,36 @@
 
         layer_8 {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&none  &none   &none   &none   &none   &none                   &none   &none   &none   &none   &none   &none
+&none  &trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans  &none
+&none  &trans  &trans  &trans  &trans  &trans  &none   &none   &trans  &trans  &trans  &trans  &trans  &none
+&none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none
+&none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none   &none   &trans  &trans  &none
             >;
         };
 
         layer_9 {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&none  &none   &none   &none   &none   &none                   &none   &none   &none   &none   &none   &none
+&none  &trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans  &none
+&none  &trans  &trans  &trans  &trans  &trans  &none   &none   &trans  &trans  &trans  &trans  &trans  &none
+&none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none
+&none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none   &none   &trans  &trans  &none
             >;
         };
 
         layer_10 {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&none  &none   &none   &none   &none   &none                   &none   &none   &none   &none   &none   &none
+&none  &trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans  &none
+&none  &trans  &trans  &trans  &trans  &trans  &none   &none   &trans  &trans  &trans  &trans  &trans  &none
+&none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none
+&none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none   &none   &trans  &trans  &none
             >;
         };
     };
 };
 
-&mt { tapping-term-ms = <250>; };
+&mt { tapping-term-ms = <220>; };
 
-&lt { tapping-term-ms = <250>; };
+&lt { tapping-term-ms = <220>; };
