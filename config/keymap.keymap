@@ -104,9 +104,9 @@
         layer_6 {
             bindings = <
 &none  &none      &none      &none      &none      &none                   &none      &none   &none   &none   &none   &none
-&none  &trans     &kp lc(w)  &trans     &trans     &trans                  &trans     &trans  &trans  &trans  &trans  &none
-&none  &kp lc(a)  &kp lc(s)  &trans     &kp lc(f)  &trans  &none   &none   &trans     &trans  &trans  &trans  &trans  &none
-&none  &kp lc(z)  &kp lc(x)  &kp lc(c)  &kp lc(v)  &trans  &trans  &trans  &kp lc(n)  &trans  &kp lc(COMMA)  &trans  &trans  &none
+&none  &trans     &kp LC(W)  &trans     &trans     &trans                  &trans     &trans  &trans  &trans  &trans  &none
+&none  &kp LC(A)  &kp LC(S)  &trans     &kp LC(F)  &trans  &none   &none   &trans     &trans  &trans  &trans  &trans  &none
+&none  &kp LC(Z)  &kp LC(X)  &kp LC(C)  &kp LC(V)  &trans  &trans  &trans  &kp LC(N)  &trans  &kp LC(COMMA)  &trans  &trans  &none
 &none  &trans     &trans     &trans     &trans     &trans  &trans  &trans  &trans     &none   &none   &trans  &trans  &none
             >;
         };
