@@ -123,6 +123,6 @@
     };
 };
 
-&mt { tapping-term-ms = <180>; };
+&mt { tapping-term-ms = <250>; };
 
-&lt { tapping-term-ms = <180>; };
+&lt { tapping-term-ms = <250>; };
