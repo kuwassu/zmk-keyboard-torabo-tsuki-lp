@@ -153,6 +153,6 @@
     };
 };
 
-&mt { tapping-term-ms = <250>; };
+&mt { tapping-term-ms = <200>; };
 
-&lt { tapping-term-ms = <250>; };
+&lt { tapping-term-ms = <200>; };
