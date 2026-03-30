@@ -44,7 +44,7 @@
         };
 
         WinLayout {
-            bindings = <&none>;
+            bindings = <&to 0>;
             key-positions = <59 13 22>;
             layers = <10>;
         };
