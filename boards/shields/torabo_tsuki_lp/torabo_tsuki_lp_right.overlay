@@ -16,7 +16,7 @@
     };
 
     mac-scroller {
-        layers = <10>;
+        layers = <15>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
             <&zip_xy_to_scroll_mapper>,
