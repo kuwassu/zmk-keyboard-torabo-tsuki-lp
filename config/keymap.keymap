@@ -204,5 +204,5 @@
 };
 
 flavor = "balanced";};
-
-&lt { tapping-term-ms = <200>; };
+ 
+         flavor = "balanced";};
