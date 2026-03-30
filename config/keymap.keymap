@@ -39,14 +39,14 @@
 
         MacLayout {
             bindings = <&to 10>;
-            key-positions = <13 22 59>;
-            layers = <0>;
+            key-positions = <53 54>;
+            layers = <3>;
         };
 
         WinLayout {
             bindings = <&to 0>;
-            key-positions = <59 13 22>;
-            layers = <10>;
+            key-positions = <53 54>;
+            layers = <13>;
         };
     };
 
