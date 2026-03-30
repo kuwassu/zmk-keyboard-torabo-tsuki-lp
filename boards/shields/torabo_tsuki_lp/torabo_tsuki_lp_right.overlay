@@ -3,10 +3,6 @@
 #include <dt-bindings/zmk/input_transform.h>
 
 &pointing_listener {
-    input-processors =
-        <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
-        <&zip_temp_layer 1 200>;
-
     scroller {
         layers = <5>;
         input-processors =
@@ -21,6 +17,13 @@
             <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_scaler 1 10>;
+    };
+
+    auto_mouse_layer {
+        layers = <0>;
+        input-processors =
+            <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
+            <&zip_temp_layer 1 200>;
     };
 };
 
