@@ -10,26 +10,27 @@
         bt_clear {
             bindings = <&bt BT_CLR>;
             key-positions = <13 14>;
-            layers = <5>;
+            layers = <7 8>;
         };
 
         mac_layout {
-            bindings = <&to 10>;
-            key-positions = <53 54>;
-            layers = <3>;
+            bindings = <&to 1>;
+            key-positions = <13 14>;
+            layers = <0>;
         };
 
         win_layout {
             bindings = <&to 0>;
-            key-positions = <53 54>;
-            layers = <11>;
+            key-positions = <13 14>;
+            layers = <1>;
         };
     };
 
     keymap {
         compatible = "zmk,keymap";
 
-//　Windowsのレイヤー設定
+        //　Windowsのレイヤー設定
+
         layer_0 {
             bindings = <
 &none  &none              &none     &none     &none       &none                                   &none       &none  &none      &none     &none                 &none
@@ -40,12 +41,13 @@
             >;
         };
 
-// Macの配列設定
-        layer_1{
+        // Macの配列設定
+
+        layer_1 {
             bindings = <
 &none  &none              &none     &none      &none       &none                                  &none       &none  &none      &none     &none                 &none
 &none  &kp Q              &kp W     &kp E      &kp R       &kp T                                  &kp Y       &kp U  &kp I      &kp O     &kp P                 &none
-&none  &kp A              &kp S     &kp D      &kp F       &kp G        &none       &none         &kp H       &kp J  &kp K      &kp L     &lt 8 ENTER          &none
+&none  &kp A              &kp S     &kp D      &kp F       &kp G        &none       &none         &kp H       &kp J  &kp K      &kp L     &lt 8 ENTER           &none
 &none  &mt RIGHT_SHIFT Z  &kp X     &kp C      &kp V       &kp B        &kp ESC     &kp DELETE    &kp N       &kp M  &kp COMMA  &kp DOT   &mt RIGHT_SHIFT FSLH  &none
 &none  &kp LGUI           &kp LALT  &kp LCTRL  &lt 3 BSPC  &lt 5 SPACE  &lt 6 CAPS  &mt RGUI TAB  &lt 3 BSPC  &none  &none      &kp HOME  &kp END               &none
             >;
@@ -101,7 +103,8 @@
             >;
         };
 
-// WINDOWS スクロールレイヤー
+        // WINDOWS スクロールレイヤー
+
         layer_7 {
             bindings = <
 &none  &none         &none         &none         &none         &none                         &none   &none         &none       &none         &none   &none
@@ -112,7 +115,8 @@
             >;
         };
 
-// MAC スクロールレイヤー
+        // MAC スクロールレイヤー
+
         layer_8 {
             bindings = <
 &none  &none         &none         &none         &none         &none                         &none   &none         &none       &none         &none   &none
