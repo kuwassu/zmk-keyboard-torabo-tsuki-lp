@@ -40,21 +40,25 @@
         left_namikakko {
             bindings = <&kp LS(RIGHT_BRACKET)>;
             key-positions = <33 34>;
+            layers = <0 1>;
         };
 
         right_namikakko {
             bindings = <&kp LS(BSLH)>;
             key-positions = <34 35>;
+            layers = <0 1>;
         };
 
         left_kakukakko {
             bindings = <&kp RIGHT_BRACKET>;
             key-positions = <47 48>;
+            layers = <0 1>;
         };
 
         right_kakukako {
             bindings = <&kp BSLH>;
             key-positions = <49 48>;
+            layers = <0 1>;
         };
     };
 
@@ -85,6 +89,7 @@
             >;
         };
 
+// オートマウスレイヤー
         layer_2 {
             bindings = <
 &none  &none   &none   &none   &none   &none                   &none   &none      &none      &none      &none   &none

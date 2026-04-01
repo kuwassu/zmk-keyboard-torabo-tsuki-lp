@@ -5,7 +5,14 @@
 &pointing_listener {
     input-processors =
         <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
-        <&zip_temp_layer 2 200>;
+        <&zip_temp_layer 2 150>;
+
+    smaller_dpi {
+        layers = <9>;
+        input-processors =
+            <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
+            <&zip_xy_scaler 1 5>;
+    };
 
     win-scroller {
         layers = <7>;
