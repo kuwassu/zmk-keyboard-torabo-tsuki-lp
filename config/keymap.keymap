@@ -97,7 +97,7 @@
 &none  &trans  &trans  &trans  &trans  &trans                  &trans  &trans     &trans     &trans     &trans  &none
 &none  &mo 9   &trans  &trans  &trans  &trans  &none   &none   &trans  &mkp LCLK  &mkp MCLK  &mkp RCLK  &trans  &none
 &none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &mkp MB4   &trans     &mkp MB5   &trans  &none
-&none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none      &none      &trans     &trans  &none
+&none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none      &none      &trans     &mo 9   &none
             >;
         };
 
@@ -181,7 +181,7 @@
 &none  &trans  &trans  &trans  &trans  &trans                  &trans  &trans     &trans     &trans     &trans  &none
 &none  &mo 9   &trans  &trans  &trans  &trans  &none   &none   &trans  &mkp LCLK  &mkp MCLK  &mkp RCLK  &trans  &none
 &none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &mkp MB4   &trans     &mkp MB5   &trans  &none
-&none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none      &none      &trans     &trans  &none
+&none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none      &none      &trans     &mo 9   &none
             >;
         };
 
