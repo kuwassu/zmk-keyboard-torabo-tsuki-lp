@@ -68,7 +68,7 @@
         };
 
         colon {
-            bindings = <&kp GRAVE>;
+            bindings = <&kp APOS>;
             key-positions = <34 33>;
             layers = <0 1>;
         };
