@@ -27,26 +27,26 @@
 
         left_kakko {
             bindings = <&kp LS(N8)>;
-            key-positions = <34 33>;
+            key-positions = <20 19>;
             layers = <0 1>;
         };
 
         right_kakko {
             bindings = <&kp LS(N9)>;
-            key-positions = <35 34>;
+            key-positions = <20 21>;
             layers = <0 1>;
         };
 
         left_namikakko {
             bindings = <&kp LS(RIGHT_BRACKET)>;
             key-positions = <19 20>;
-            layers = <0 1>;
+            layers = <3>;
         };
 
         right_namikakko {
             bindings = <&kp LS(BSLH)>;
-            key-positions = <21 20>;
-            layers = <0 1>;
+            key-positions = <20 21>;
+            layers = <3>;
         };
 
         left_kakukakko {
@@ -58,6 +58,18 @@
         right_kakukako {
             bindings = <&kp BSLH>;
             key-positions = <49 48>;
+            layers = <0 1>;
+        };
+
+        semicolon {
+            bindings = <&kp SEMI>;
+            key-positions = <34 35>;
+            layers = <0 1>;
+        };
+
+        colon {
+            bindings = <&kp GRAVE>;
+            key-positions = <34 33>;
             layers = <0 1>;
         };
     };
