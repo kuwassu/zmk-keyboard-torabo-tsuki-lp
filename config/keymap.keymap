@@ -14,51 +14,51 @@
         };
 
         mac_layout {
-            bindings = <&to 2>;
+            bindings = <&to 1>;
             key-positions = <16 17>;
-            layers = <1>;
+            layers = <0>;
         };
 
         win_layout {
-            bindings = <&to 1>;
+            bindings = <&to 0>;
             key-positions = <13 14>;
-            layers = <2>;
+            layers = <1>;
         };
 
         left_kakko {
             bindings = <&kp LS(N8)>;
             key-positions = <33 34>;
-            layers = <1 2>;
+            layers = <0 1>;
         };
 
         right_kakko {
             bindings = <&kp LS(N9)>;
             key-positions = <34 35>;
-            layers = <1 2>;
+            layers = <0 1>;
         };
 
         left_namikakko {
             bindings = <&kp LS(RIGHT_BRACKET)>;
             key-positions = <19 20>;
-            layers = <1 2>;
+            layers = <0 1>;
         };
 
         right_namikakko {
             bindings = <&kp LS(BSLH)>;
             key-positions = <20 21>;
-            layers = <1 2>;
+            layers = <0 1>;
         };
 
         left_kakukakko {
             bindings = <&kp RIGHT_BRACKET>;
             key-positions = <47 48>;
-            layers = <1 2>;
+            layers = <0 1>;
         };
 
         right_kakukako {
             bindings = <&kp BSLH>;
             key-positions = <49 48>;
-            layers = <1 2>;
+            layers = <0 1>;
         };
 
         semicolon {
