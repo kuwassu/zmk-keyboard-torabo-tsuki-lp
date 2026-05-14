@@ -15,7 +15,7 @@
 
         mac_layout {
             bindings = <&to 1>;
-            key-positions = <13 14>;
+            key-positions = <16 17>;
             layers = <0>;
         };
 
@@ -27,13 +27,13 @@
 
         left_kakko {
             bindings = <&kp LS(N8)>;
-            key-positions = <20 19>;
+            key-positions = <33 34>;
             layers = <0 1>;
         };
 
         right_kakko {
             bindings = <&kp LS(N9)>;
-            key-positions = <20 21>;
+            key-positions = <34 35>;
             layers = <0 1>;
         };
 
@@ -63,13 +63,13 @@
 
         semicolon {
             bindings = <&kp SEMI>;
-            key-positions = <34 35>;
+            key-positions = <35 36>;
             layers = <0 1>;
         };
 
         colon {
             bindings = <&kp APOS>;
-            key-positions = <34 33>;
+            key-positions = <36 35 51>;
             layers = <0 1>;
         };
     };
