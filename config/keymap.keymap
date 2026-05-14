@@ -79,7 +79,7 @@
 
         //　Windowsのレイヤー設定
 
-        0_win_default {
+        layer_0 {
             bindings = <
 &none  &none              &none     &none     &none        &none                                   &none       &none  &none      &none     &none                 &none
 &none  &kp Q              &kp W     &kp E     &kp R        &kp T                                   &kp Y       &kp U  &kp I      &kp O     &kp P                 &none
@@ -91,7 +91,7 @@
 
         // Macの配列設定
 
-        1_mac_default {
+        layer_1 {
             bindings = <
 &none  &none              &none     &none              &none        &none                                      &none       &none  &none      &none     &none                 &none
 &none  &kp Q              &kp W     &kp E              &kp R        &kp T                                      &kp Y       &kp U  &kp I      &kp O     &kp P                 &none
@@ -103,7 +103,7 @@
 
         // オートマウスレイヤー
 
-        2_auto_mouse {
+        layer_2 {
             bindings = <
 &none  &none   &none   &none   &none   &none                   &none   &none      &none      &none      &none   &none
 &none  &trans  &trans  &trans  &trans  &trans                  &trans  &trans     &trans     &trans     &trans  &none
