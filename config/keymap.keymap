@@ -63,13 +63,13 @@
 
         semicolon {
             bindings = <&kp SEMI>;
-            key-positions = <34 33>;
+            key-positions = <34 35>;
             layers = <4 5>;
         };
 
         colon {
             bindings = <&kp APOS>;
-            key-positions = <36 35>;
+            key-positions = <34 33>;
             layers = <4 5>;
         };
     };
