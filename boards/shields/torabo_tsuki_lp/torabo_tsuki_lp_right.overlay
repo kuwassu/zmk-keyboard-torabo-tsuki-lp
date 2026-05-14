@@ -15,7 +15,7 @@
     };
 
     win-scroller {
-        layers = <7>;
+        layers = <9>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
             <&zip_xy_to_scroll_mapper>,
@@ -23,7 +23,7 @@
     };
 
     mac-scroller {
-        layers = <8>;
+        layers = <10>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
             <&zip_xy_to_scroll_mapper>,
