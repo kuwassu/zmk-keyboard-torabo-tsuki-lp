@@ -77,8 +77,6 @@
     keymap {
         compatible = "zmk,keymap";
 
-        //　Windowsのレイヤー設定
-
         L0_win_default {
             bindings = <
 &none  &none              &none     &none     &none        &none                                   &none       &none  &none      &none     &none                 &none
@@ -89,8 +87,6 @@
             >;
         };
 
-        // Macの配列設定
-
         L1_mac_default {
             bindings = <
 &none  &none              &none     &none              &none        &none                                      &none       &none  &none      &none     &none                 &none
@@ -100,8 +96,6 @@
 &none  &kp LGUI           &kp LALT  &kp RIGHT_CONTROL  &lt 10 BSPC  &lt 5 SPACE  &lt 6 CAPS  &mt LEFT_GUI TAB  &lt 3 BSPC  &none  &none      &kp HOME  &kp END               &none
             >;
         };
-
-        // オートマウスレイヤー
 
         L2_mac_default {
             bindings = <
