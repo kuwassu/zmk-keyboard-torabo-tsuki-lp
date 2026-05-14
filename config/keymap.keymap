@@ -83,7 +83,7 @@
 &none  &kp Q              &kp W     &kp E     &kp R        &kp T                                   &kp Y       &kp U  &kp I      &kp O     &kp P                 &none
 &none  &kp A              &kp S     &kp D     &kp F        &kp G        &none       &none          &kp H       &kp J  &kp K      &kp L     &lt 9 ENTER           &none
 &none  &mt RIGHT_SHIFT Z  &kp X     &kp C     &kp V        &kp B        &kp ESC     &kp DELETE     &kp N       &kp M  &kp COMMA  &kp DOT   &mt RIGHT_SHIFT FSLH  &none
-&none  &kp LCTRL          &kp LGUI  &kp LALT  &lt 11 BSPC  &lt 6 SPACE  &lt 8 CAPS  &mt RCTRL TAB  &lt 4 BSPC  &none  &none      &kp HOME  &kp END               &none
+&none  &kp LCTRL          &kp LGUI  &kp LALT  &lt 11 BSPC  &lt 7 SPACE  &lt 8 CAPS  &mt RCTRL TAB  &lt 4 BSPC  &none  &none      &kp HOME  &kp END               &none
             >;
         };
 
@@ -93,7 +93,7 @@
 &none  &kp Q              &kp W     &kp E              &kp R        &kp T                                      &kp Y       &kp U  &kp I      &kp O     &kp P                 &none
 &none  &kp A              &kp S     &kp D              &kp F        &kp G        &none       &none             &kp H       &kp J  &kp K      &kp L     &lt 10 ENTER          &none
 &none  &mt RIGHT_SHIFT Z  &kp X     &kp C              &kp V        &kp B        &kp ESC     &kp DELETE        &kp N       &kp M  &kp COMMA  &kp DOT   &mt RIGHT_SHIFT FSLH  &none
-&none  &kp LGUI           &kp LALT  &kp RIGHT_CONTROL  &lt 11 BSPC  &lt 7 SPACE  &lt 8 CAPS  &mt LEFT_GUI TAB  &lt 5 BSPC  &none  &none      &kp HOME  &kp END               &none
+&none  &kp LGUI           &kp LALT  &kp RIGHT_CONTROL  &lt 11 BSPC  &lt 8 SPACE  &lt 8 CAPS  &mt LEFT_GUI TAB  &lt 5 BSPC  &none  &none      &kp HOME  &kp END               &none
             >;
         };
 
@@ -119,21 +119,21 @@
 
         L4_win_right_thumb {
             bindings = <
-&none  &none                 &none          &none       &none      &none                          &none             &none         &none     &none      &none            &none
-&none  &kp LS(N1)            &kp LS(EQUAL)  &kp F7      &kp F2     &kp LS(EQUAL)                  &kp LEFT_BRACKET  &kp LS(INT1)  &kp UP    &kp MINUS  &kp LS(N5)       &none
-&none  &kp LS(N6)            &kp LS(N7)     &kp LS(N2)  &kp BSPC   &trans         &none   &none   &kp EQUAL         &kp LEFT      &kp DOWN  &kp RIGHT  &kp F10          &none
-&none  &mt LEFT_SHIFT LC(Z)  &kp LC(X)      &kp LC(C)   &kp LC(V)  &kp INT3       &trans  &trans  &kp LS(N3)        &kp LS(N4)    &kp APOS  &kp SEMI   &kp RIGHT_SHIFT  &none
-&none  &trans                &trans         &trans      &trans     &trans         &trans  &trans  &trans            &none         &none     &trans     &trans           &none
+&none  &none                 &none          &none       &none      &none                          &none       &none         &none     &none      &none            &none
+&none  &kp LS(N1)            &kp LS(EQUAL)  &kp F7      &kp F2     &kp LS(EQUAL)                  &kp LC(Y)   &kp LS(INT1)  &kp UP    &kp MINUS  &kp LS(N5)       &none
+&none  &kp LS(N6)            &kp LS(N7)     &kp LS(N2)  &kp BSPC   &kp LBKT       &none   &none   &kp EQUAL   &kp LEFT      &kp DOWN  &kp RIGHT  &kp F10          &none
+&none  &mt LEFT_SHIFT LC(Z)  &kp LC(X)      &kp LC(C)   &kp LC(V)  &kp INT3       &trans  &trans  &kp LS(N3)  &kp LS(N4)    &kp APOS  &kp SEMI   &kp RIGHT_SHIFT  &none
+&none  &trans                &trans         &trans      &trans     &trans         &trans  &trans  &trans      &none         &none     &trans     &trans           &none
             >;
         };
 
         L5_mac_right_thumb {
             bindings = <
-&none  &none                 &none          &none       &none      &none                          &none             &none         &none     &none      &none            &none
-&none  &kp LS(N1)            &kp LS(EQUAL)  &kp F7      &kp F2     &kp LS(EQUAL)                  &kp LEFT_BRACKET  &kp LS(INT1)  &kp UP    &kp MINUS  &kp LS(N5)       &none
-&none  &kp LS(N6)            &kp LS(N7)     &kp LS(N2)  &kp BSPC   &trans         &none   &none   &kp EQUAL         &kp LEFT      &kp DOWN  &kp RIGHT  &kp F10          &none
-&none  &mt LEFT_SHIFT LG(Z)  &kp LG(X)      &kp LG(C)   &kp LG(V)  &kp INT3       &trans  &trans  &kp LS(N3)        &kp LS(N4)    &kp APOS  &kp SEMI   &kp RIGHT_SHIFT  &none
-&none  &trans                &trans         &trans      &trans     &trans         &trans  &trans  &trans            &none         &none     &trans     &trans           &none
+&none  &none                 &none          &none       &none      &none                          &none       &none         &none     &none      &none            &none
+&none  &kp LS(N1)            &kp LS(EQUAL)  &kp F7      &kp F2     &kp LS(EQUAL)                  &kp LG(Y)   &kp LS(INT1)  &kp UP    &kp MINUS  &kp LS(N5)       &none
+&none  &kp LS(N6)            &kp LS(N7)     &kp LS(N2)  &kp BSPC   &kp LBKT       &none   &none   &kp EQUAL   &kp LEFT      &kp DOWN  &kp RIGHT  &kp F10          &none
+&none  &mt LEFT_SHIFT LG(Z)  &kp LG(X)      &kp LG(C)   &kp LG(V)  &kp INT3       &trans  &trans  &kp LS(N3)  &kp LS(N4)    &kp APOS  &kp SEMI   &kp RIGHT_SHIFT  &none
+&none  &trans                &trans         &trans      &trans     &trans         &trans  &trans  &trans      &none         &none     &trans     &trans           &none
             >;
         };
 
