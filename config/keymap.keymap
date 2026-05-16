@@ -57,7 +57,7 @@
 
         left_kakukakko {
             bindings = <&kp RIGHT_BRACKET>;
-            key-positions = <34 33>;
+            key-positions = <48 47>;
             layers = <4 5>;
         };
 
