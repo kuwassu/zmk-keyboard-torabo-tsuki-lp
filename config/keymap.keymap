@@ -79,34 +79,40 @@
             layers = <4 5>;
         };
 
-        LeftClick {
+        left_click {
             bindings = <&mkp LCLK>;
             key-positions = <34 33>;
             layers = <0 1 2 3 11>;
         };
 
-        RIghtClick {
+        right_click {
             bindings = <&mkp RCLK>;
             key-positions = <35 34>;
             layers = <0 1 2 3 11>;
         };
 
-        MiddleClick {
+        middle_click {
             bindings = <&mkp MCLK>;
             key-positions = <33 34 35>;
             layers = <0 1 2 3 11>;
         };
 
-        UndoClick {
+        undo_click {
             bindings = <&mkp MB4>;
             key-positions = <47 48>;
             layers = <0 1 2 3 11>;
         };
 
-        RedoClick {
+        redo_click {
             bindings = <&mkp MB5>;
             key-positions = <48 49>;
             layers = <0 1 2 3 11>;
+        };
+
+        slow_mouse_layer {
+            bindings = <&mo 3>;
+            key-positions = <47 48 49>;
+            layers = <0 1>;
         };
     };
 
