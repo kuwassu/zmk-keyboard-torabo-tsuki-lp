@@ -7,6 +7,12 @@
     combos {
         compatible = "zmk,combos";
 
+        bt_clear {
+            bindings = <&bt BT_CLR>;
+            key-positions = <53 54 55>;
+            layers = <9 10>;
+        };
+
         bt_clear_all {
             bindings = <&bt BT_CLR_ALL>;
             key-positions = <13 14 15 16>;
@@ -22,7 +28,7 @@
         win_layout {
             bindings = <&to 0>;
             key-positions = <13 14>;
-            layers = <1 0>;
+            layers = <0 1>;
         };
 
         left_kakko {
@@ -100,11 +106,7 @@
         RedoClick {
             bindings = <&mkp MB5>;
             key-positions = <48 49>;
-        };
-
-        bt_clear {
-            bindings = <&bt BT_CLR>;
-            key-positions = <53 53 54 54 55>;
+            layers = <0 1 2 3 11>;
         };
     };
 
