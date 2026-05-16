@@ -51,14 +51,14 @@
 
         left_kakukakko {
             bindings = <&kp RIGHT_BRACKET>;
-            key-positions = <47 48>;
-            layers = <4 5>;
+            key-positions = <22 21>;
+            layers = <0 1>;
         };
 
         right_kakukako {
             bindings = <&kp BSLH>;
-            key-positions = <49 48>;
-            layers = <4 5>;
+            key-positions = <36 35>;
+            layers = <0 1>;
         };
 
         semicolon {
