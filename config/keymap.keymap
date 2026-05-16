@@ -7,8 +7,8 @@
     combos {
         compatible = "zmk,combos";
 
-        bt_clear {
-            bindings = <&bt BT_CLR>;
+        bt_clear_all {
+            bindings = <&bt BT_CLR_ALL>;
             key-positions = <13 14 15 16>;
             layers = <9 10>;
         };
@@ -100,6 +100,11 @@
         RedoClick {
             bindings = <&mkp MB5>;
             key-positions = <48 49>;
+        };
+
+        bt_clear {
+            bindings = <&bt BT_CLR>;
+            key-positions = <53 53 54 54 55>;
         };
     };
 
@@ -202,7 +207,7 @@
 &none  &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4                   &trans      &trans        &trans      &trans        &trans  &none
 &none  &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &bt BT_DISC 4  &none   &none   &trans      &trans        &trans      &trans        &trans  &none
 &none  &trans         &trans         &trans         &trans         &trans         &trans  &trans  &trans      &kp C_VOL_DN  &kp C_MUTE  &kp C_VOL_UP  &trans  &none
-&none  &bt BT_CLR     &trans         &trans         &trans         &trans         &trans  &trans  &kp C_PLAY  &none         &none       &trans        &trans  &none
+&none  &trans         &trans         &trans         &trans         &trans         &trans  &trans  &kp C_PLAY  &none         &none       &trans        &trans  &none
             >;
         };
 
@@ -212,7 +217,7 @@
 &none  &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4                   &trans      &trans        &trans      &trans        &trans  &none
 &none  &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &bt BT_DISC 4  &none   &none   &trans      &trans        &trans      &trans        &trans  &none
 &none  &trans         &trans         &trans         &trans         &trans         &trans  &trans  &trans      &kp C_VOL_DN  &kp C_MUTE  &kp C_VOL_UP  &trans  &none
-&none  &bt BT_CLR     &trans         &trans         &trans         &trans         &trans  &trans  &kp C_PLAY  &none         &none       &trans        &trans  &none
+&none  &trans         &trans         &trans         &trans         &trans         &trans  &trans  &kp C_PLAY  &none         &none       &trans        &trans  &none
             >;
         };
 
