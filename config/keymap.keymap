@@ -63,13 +63,13 @@
 
         semicolon {
             bindings = <&kp SEMI>;
-            key-positions = <34 35>;
+            key-positions = <34 33>;
             layers = <4 5>;
         };
 
         colon {
             bindings = <&kp APOS>;
-            key-positions = <34 33>;
+            key-positions = <34 35>;
             layers = <4 5>;
         };
 
@@ -151,7 +151,7 @@
 &none  &none                 &none          &none       &none      &none                          &none       &none         &none     &none      &none            &none
 &none  &kp LS(N1)            &kp LS(EQUAL)  &kp F7      &kp F2     &kp LS(EQUAL)                  &kp LC(Y)   &kp LS(INT1)  &kp UP    &kp MINUS  &kp LS(N5)       &none
 &none  &kp LS(N6)            &kp LS(N7)     &kp LS(N2)  &kp BSPC   &kp LBKT       &none   &none   &kp EQUAL   &kp LEFT      &kp DOWN  &kp RIGHT  &kp F10          &none
-&none  &mt LEFT_SHIFT LC(Z)  &kp LC(X)      &kp LC(C)   &kp LC(V)  &kp INT3       &trans  &trans  &kp LS(N3)  &kp LS(N4)    &kp APOS  &kp SEMI   &kp RIGHT_SHIFT  &none
+&none  &mt LEFT_SHIFT LC(Z)  &kp LC(X)      &kp LC(C)   &kp LC(V)  &kp INT3       &trans  &trans  &kp LS(N3)  &kp LS(N4)    &kp SEMI  &kp APOS   &kp RIGHT_SHIFT  &none
 &none  &trans                &trans         &trans      &trans     &trans         &trans  &trans  &trans      &none         &none     &trans     &trans           &none
             >;
         };
