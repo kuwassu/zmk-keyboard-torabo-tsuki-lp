@@ -181,11 +181,11 @@
 
         L6_win_left_thumb2 {
             bindings = <
-&none  &none         &none             &none         &none              &none                   &none   &none   &none   &none   &none      &none
-&none  &kp N1        &kp N2            &kp N3        &kp N4             &kp N5                  &kp N6  &kp N7  &kp N8  &kp N9  &kp N0     &none
-&none  &kp LC(LBKT)  &kp LS(TAB)       &kp LEFT_ALT  &kp TAB            &trans  &none   &none   &trans  &kp N4  &kp N5  &kp N6  &kp MINUS  &none
-&none  &trans        &kp LG(LC(LEFT))  &kp LG(TAB)   &kp LG(LC(RIGHT))  &trans  &trans  &trans  &kp N0  &kp N1  &kp N2  &kp N3  &kp DOT    &none
-&none  &trans        &trans            &trans        &trans             &trans  &trans  &trans  &trans  &none   &none   &trans  &trans     &none
+&none  &none         &none             &none         &none              &none                   &none            &none            &none   &none   &none      &none
+&none  &kp N1        &kp N2            &kp N3        &kp N4             &kp N5                  &kp N6           &kp N7           &kp N8  &kp N9  &kp N0     &none
+&none  &kp LC(LBKT)  &kp LS(TAB)       &kp LEFT_ALT  &kp TAB            &trans  &none   &none   &trans           &kp N4           &kp N5  &kp N6  &kp MINUS  &none
+&none  &trans        &kp LG(LC(LEFT))  &kp LG(TAB)   &kp LG(LC(RIGHT))  &trans  &trans  &trans  &trans           &kp KP_NUMBER_1  &kp N2  &kp N3  &kp DOT    &none
+&none  &trans        &trans            &trans        &trans             &trans  &trans  &trans  &kp KP_NUMBER_0  &none            &none   &trans  &trans     &none
             >;
         };
 
