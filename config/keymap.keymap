@@ -185,7 +185,7 @@
 &none  &kp N1        &kp N2            &kp N3        &kp N4             &kp N5                      &kp N6        &kp N7        &kp N8  &kp N9  &kp N0     &none
 &none  &kp LC(LBKT)  &kp LS(TAB)       &kp LEFT_ALT  &kp TAB            &trans  &none   &none       &kp LS(SEMI)  &kp N4        &kp N5  &kp N6  &kp MINUS  &none
 &none  &trans        &kp LG(LC(LEFT))  &kp LG(TAB)   &kp LG(LC(RIGHT))  &trans  &trans  &kp PERIOD  &kp LS(APOS)  &kp NUMBER_1  &kp N2  &kp N3  &kp SLASH  &none
-&none  &trans        &trans            &trans        &trans             &trans  &trans  &trans      &kp N0        &none         &none   &trans  &trans     &none
+&none  &trans        &trans            &trans        &trans             &trans  &trans  &trans      &trans        &none         &none   &kp N0  &trans     &none
             >;
         };
 
