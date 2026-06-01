@@ -70,13 +70,13 @@
         semicolon {
             bindings = <&kp SEMI>;
             key-positions = <33 34>;
-            layers = <>;
+            layers = <9 10>;
         };
 
         colon {
             bindings = <&kp APOS>;
             key-positions = <34 35>;
-            layers = <>;
+            layers = <9 10>;
         };
 
         plus {
