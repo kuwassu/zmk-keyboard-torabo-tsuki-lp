@@ -68,12 +68,24 @@
         };
 
         semicolon {
+            bindings = <&kp SEMI>;
+            key-positions = <33 34>;
+            layers = <>;
+        };
+
+        colon {
+            bindings = <&kp APOS>;
+            key-positions = <34 35>;
+            layers = <>;
+        };
+
+        plus {
             bindings = <&kp LS(SEMI)>;
             key-positions = <33 34>;
             layers = <4 5>;
         };
 
-        colon {
+        asterisk {
             bindings = <&kp LS(APOS)>;
             key-positions = <34 35>;
             layers = <4 5>;
