@@ -213,11 +213,11 @@
 
         L8_left_thub3 {
             bindings = <
-&none  &none       &none    &none       &none   &none                   &none   &none   &none   &none   &none    &none
-&none  &kp F1      &kp F2   &kp F3      &kp F4  &kp F5                  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &none
-&none  &kp F11     &kp F12  &trans      &trans  &trans  &none   &none   &trans  &trans  &trans  &trans  &trans   &none
-&none  &trans      &trans   &trans      &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans   &none
-&none  &bt BT_PRV  &trans   &bt BT_NXT  &trans  &trans  &trans  &trans  &trans  &none   &none   &trans  &trans   &none
+&none  &none    &none    &none   &none   &none                   &none   &none   &none   &none   &none    &none
+&none  &kp F1   &kp F2   &kp F3  &kp F4  &kp F5                  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &none
+&none  &kp F11  &kp F12  &trans  &trans  &trans  &none   &none   &trans  &trans  &trans  &trans  &trans   &none
+&none  &trans   &trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans   &none
+&none  &trans   &trans   &trans  &trans  &trans  &trans  &trans  &trans  &none   &none   &trans  &trans   &none
             >;
         };
 
@@ -237,7 +237,7 @@
 &none  &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4                   &trans      &trans        &trans      &trans        &trans  &none
 &none  &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &bt BT_DISC 4  &none   &none   &trans      &trans        &trans      &trans        &trans  &none
 &none  &trans         &trans         &trans         &trans         &trans         &trans  &trans  &trans      &kp C_VOL_DN  &kp C_MUTE  &kp C_VOL_UP  &trans  &none
-&none  &trans         &trans         &trans         &trans         &trans         &trans  &trans  &kp C_PLAY  &none         &none       &trans        &trans  &none
+&none  &bt BT_PRV     &trans         &bt BT_NXT     &trans         &trans         &trans  &trans  &kp C_PLAY  &none         &none       &trans        &trans  &none
             >;
         };
 
