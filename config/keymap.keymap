@@ -126,6 +126,29 @@
             key-positions = <47 48 49>;
             layers = <0 1 2 3 11>;
         };
+
+        kana {
+            bindings = <&kp LANGUAGE_1>;
+            key-positions = <27 28>;
+            layers = <0 1>;
+        };
+
+        eisu {
+            bindings = <&kp LANG2>;
+            key-positions = <26 27>;
+            layers = <0 1>;
+        };
+
+        win_ime {
+            bindings = <&kp GRAVE>;
+            key-positions = <27 26 28>;
+            layers = <0>;
+        };
+
+        mac_ime {
+            bindings = <&kp RC(SPACE)>;
+            key-positions = <28 27 26>;
+        };
     };
 
     keymap {
