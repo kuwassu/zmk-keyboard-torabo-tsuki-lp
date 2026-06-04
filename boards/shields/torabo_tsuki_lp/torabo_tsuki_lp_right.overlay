@@ -5,14 +5,18 @@
 &pointing_listener {
     input-processors =
         <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
-        <&zip_temp_layer 2 150>,
-        <&zip_mouse_gesture>;
-
+        <&zip_temp_layer 2 150>;
     slow-mouse {
         layers = <3>;
         input-processors =
             <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
             <&zip_xy_scaler 1 5>;
+    };
+
+    gesture-mouse {
+        layers = <8>;
+        input-processors =
+            <&zip_mouse_gesture>;
     };
 
     win-scroller {
