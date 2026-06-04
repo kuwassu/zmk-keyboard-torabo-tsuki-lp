@@ -161,23 +161,24 @@
     };
 
     behaviors {
-        l4_bs: l4_bs {
-            compatible = "zmk,behavior-tap-dance";
-            label = "L4_BS";
-            #binding-cells = <0>;
-            bindings = <&kp BSPC>, <&kp BSPC>;
-
-            tapping-term-ms = <200>;
-        };
 
         hold_tap: hold_tap {
             compatible = "zmk,behavior-hold-tap";
             label = "HOLD_TAP";
-            bindings = <&none>, <&none>;
+            bindings = <&mo>, <&kp>;
 
             #binding-cells = <2>;
             tapping-term-ms = <200>;
             flavor = "balanced";
+        };
+
+        l4_bs: l4_bs {
+            compatible = "zmk,behavior-tap-dance";
+            label = "L4_BS";
+            #binding-cells = <0>;
+            bindings = <&hold_tap 4 BSPC>, <&kp BSPC>;
+
+            tapping-term-ms = <200>;
         };
     };
 
