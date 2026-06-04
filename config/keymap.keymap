@@ -177,11 +177,32 @@
     };
 
     macros {
-        mac_windows_full: mac_windows_full {
+        mac_windows_large: mac_windows_large {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp RCTRL &kp GLOBE &kp F>;
-            label = "MAC_WINDOWS_FULL";
+            label = "MAC_WINDOWS_large";
+        };
+
+        mac_windows_left: mac_windows_left {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp RCTRL &kp GLOBE &kp LEFT>;
+            label = "MAC_WINDOWS_LEFT";
+        };
+
+        mac_windows_right: mac_windows_right {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp RCTRL &kp GLOBE &kp RIGHT>;
+            label = "MAC_WINDOWS_RIGHT";
+        };
+
+        mac_windows_small: mac_windows_small {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp RCTRL &kp GLOBE &kp DOWN>;
+            label = "MAC_WINDOWS_SMALL";
         };
     };
 
@@ -345,22 +366,22 @@
 
     window_left {
         pattern = <GESTURE_LEFT>;
-        bindings = <&kp (RCTRL | FUNC | LEFT)>;
+        bindings = <&mac_windows_left>;
     };
 
     window_right {
         pattern = <GESTURE_RIGHT>;
-        bindings = <&kp (RCTRL | FUNC | RIGHT)>;
+        bindings = <&mac_windows_right>;
     };
 
     window_small {
         pattern = <GESTURE_DOWN>;
-        bindings = <&kp (RCTRL | FUNC | DOWN)>;
+        bindings = <&mac_windows_small>;
     };
 
     window_large {
         pattern = <GESTURE_UP>;
-        bindings = <&kp (RCTRL | FUNC | F)>;
+        bindings = <&mac_windows_large>;
     };
 };
 
