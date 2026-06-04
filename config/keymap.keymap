@@ -176,26 +176,35 @@
         };
     };
 
+    macros {
+        mac_windows_full: mac_windows_full {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp RCTRL &kp GLOBE &kp F>;
+            label = "MAC_WINDOWS_FULL";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         L0_win_default {
             bindings = <
-&none  &none              &none     &none     &none        &none                                    &none   &none  &none      &none     &none                 &none
-&none  &kp Q              &kp W     &kp E     &kp R        &kp T                                    &kp Y   &kp U  &kp I      &kp O     &kp P                 &none
-&none  &kp A              &kp S     &kp D     &kp F        &kp G        &none        &none          &kp H   &kp J  &kp K      &kp L     &lt 9 ENTER           &none
-&none  &mt RIGHT_SHIFT Z  &kp X     &kp C     &kp V        &kp B        &kp ESC      &kp DELETE     &kp N   &kp M  &kp COMMA  &kp DOT   &mt RIGHT_SHIFT FSLH  &none
-&none  &kp LCTRL          &kp LGUI  &kp LALT  &lt 11 BSPC  &lt 6 SPACE  &lt 8 GRAVE  &mt RCTRL TAB  &l4_bs  &none  &none      &kp HOME  &kp END               &none
+&none  &none              &none     &none     &none        &none                                    &none       &none  &none      &none     &none                 &none
+&none  &kp Q              &kp W     &kp E     &kp R        &kp T                                    &kp Y       &kp U  &kp I      &kp O     &kp P                 &none
+&none  &kp A              &kp S     &kp D     &kp F        &kp G        &none        &none          &kp H       &kp J  &kp K      &kp L     &lt 9 ENTER           &none
+&none  &mt RIGHT_SHIFT Z  &kp X     &kp C     &kp V        &kp B        &kp ESC      &kp DELETE     &kp N       &kp M  &kp COMMA  &kp DOT   &mt RIGHT_SHIFT FSLH  &none
+&none  &kp LCTRL          &kp LGUI  &kp LALT  &lt 11 BSPC  &lt 6 SPACE  &lt 8 GRAVE  &mt RCTRL TAB  &lt 4 BSPC  &none  &none      &kp HOME  &kp END               &none
             >;
         };
 
         L1_mac_default {
             bindings = <
-&none  &none              &none     &none              &none        &none                                           &none   &none  &none      &none     &none                 &none
-&none  &kp Q              &kp W     &kp E              &kp R        &kp T                                           &kp Y   &kp U  &kp I      &kp O     &kp P                 &none
-&none  &kp A              &kp S     &kp D              &kp F        &kp G        &none            &none             &kp H   &kp J  &kp K      &kp L     &lt 10 ENTER          &none
-&none  &mt RIGHT_SHIFT Z  &kp X     &kp C              &kp V        &kp B        &kp ESC          &kp DELETE        &kp N   &kp M  &kp COMMA  &kp DOT   &mt RIGHT_SHIFT FSLH  &none
-&none  &kp LGUI           &kp LALT  &kp RIGHT_CONTROL  &lt 11 BSPC  &lt 7 SPACE  &lt 8 RC(SPACE)  &mt LEFT_GUI TAB  &l5_bs  &none  &none      &kp HOME  &kp END               &none
+&none  &none              &none     &none              &none        &none                                           &none       &none  &none      &none     &none                 &none
+&none  &kp Q              &kp W     &kp E              &kp R        &kp T                                           &kp Y       &kp U  &kp I      &kp O     &kp P                 &none
+&none  &kp A              &kp S     &kp D              &kp F        &kp G        &none            &none             &kp H       &kp J  &kp K      &kp L     &lt 10 ENTER          &none
+&none  &mt RIGHT_SHIFT Z  &kp X     &kp C              &kp V        &kp B        &kp ESC          &kp DELETE        &kp N       &kp M  &kp COMMA  &kp DOT   &mt RIGHT_SHIFT FSLH  &none
+&none  &kp LGUI           &kp LALT  &kp RIGHT_CONTROL  &lt 11 BSPC  &lt 7 SPACE  &lt 8 RC(SPACE)  &mt LEFT_GUI TAB  &lt 5 BSPC  &none  &none      &kp HOME  &kp END               &none
             >;
         };
 
