@@ -5,6 +5,8 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
+#define FUNC         0x36  // Function
+
 / {
     combos {
         compatible = "zmk,combos";
@@ -305,7 +307,7 @@
     };
 };
 
-&zip_mouse_gesture {
+&zip_win_mouse_gesture {
     stroke-size = <100>;
     enable-eager-mode;
     always-active;
@@ -329,6 +331,33 @@
     window_large {
         pattern = <GESTURE_UP>;
         bindings = <&kp LG(UP)>;
+    };
+};
+
+&zip_mac_mouse_gesture {
+    stroke-size = <100>;
+    enable-eager-mode;
+    always-active;
+    gesture-cooldown-ms = <100>;
+
+    window_left {
+        pattern = <GESTURE_LEFT>;
+        bindings = <&kp LC(FUNC(LEFT))>;
+    };
+
+    window_right {
+        pattern = <GESTURE_RIGHT>;
+        bindings = <&kp LC(FUNC(RIGHT))>;
+    };
+
+    window_small {
+        pattern = <GESTURE_DOWN>;
+        bindings = <&kp LC(FUNC(DOWN))>;
+    };
+
+    window_large {
+        pattern = <GESTURE_UP>;
+        bindings = <&kp LC(FUNC(F))>;
     };
 };
 
