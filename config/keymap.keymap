@@ -47,12 +47,6 @@
             layers = <0 1>;
         };
 
-        gesture_layer {
-            bindings = <&mouse_gesture>;
-            key-positions = <19 20 21>;
-            layers = <0 1 2 3 11>;
-        };
-
         left_namikakko {
             bindings = <&kp LS(RIGHT_BRACKET)>;
             key-positions = <19 20>;
@@ -342,17 +336,17 @@
 
     window_left {
         pattern = <GESTURE_LEFT>;
-        bindings = <&kp LC(FUNC(LEFT))>;
+        bindings = <&kp LC(FUNC | LEFT)>;
     };
 
     window_right {
         pattern = <GESTURE_RIGHT>;
-        bindings = <&kp LC(FUNC(RIGHT))>;
+        bindings = <&kp LC(FUNC | RIGHT)>;
     };
 
     window_small {
         pattern = <GESTURE_DOWN>;
-        bindings = <&kp LC(FUNC(DOWN))>;
+        bindings = <&kp LC(FUNC | DOWN)>;
     };
 
     window_large {
