@@ -290,22 +290,22 @@
     enable-eager-mode;
     always-active;
 
-    history_back {
+    window_left {
         pattern = <GESTURE_LEFT>;
         bindings = <&kp LG(LEFT)>;
     };
 
-    history_forward {
+    window_right {
         pattern = <GESTURE_RIGHT>;
         bindings = <&kp LG(RIGHT)>;
     };
 
-    small_screen {
+    window_small {
         pattern = <GESTURE_DOWN>;
         bindings = <&kp LG(DOWN)>;
     };
 
-    full_screen {
+    window_large {
         pattern = <GESTURE_UP>;
         bindings = <&kp LG(UP)>;
     };
