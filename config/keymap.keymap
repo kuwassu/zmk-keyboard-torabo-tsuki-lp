@@ -161,22 +161,20 @@
     };
 
     behaviors {
-
-        hold_tap: hold_tap {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HOLD_TAP";
-            bindings = <&mo>, <&kp>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            flavor = "balanced";
-        };
-
         l4_bs: l4_bs {
             compatible = "zmk,behavior-tap-dance";
             label = "L4_BS";
             #binding-cells = <0>;
-            bindings = <&hold_tap 4 BSPC>, <&kp BSPC>;
+            bindings = <&lt 4 BSPC>, <&kp BSPC>;
+
+            tapping-term-ms = <200>;
+        };
+
+        l5_bs: l5_bs {
+            compatible = "zmk,behavior-tap-dance";
+            label = "L5_BS";
+            #binding-cells = <0>;
+            bindings = <&lt 5 BSPC>, <&kp BSPC>;
 
             tapping-term-ms = <200>;
         };
@@ -187,21 +185,21 @@
 
         L0_win_default {
             bindings = <
-&none  &none              &none     &none     &none        &none                                    &none       &none  &none      &none     &none                 &none
-&none  &kp Q              &kp W     &kp E     &kp R        &kp T                                    &kp Y       &kp U  &kp I      &kp O     &kp P                 &none
-&none  &kp A              &kp S     &kp D     &kp F        &kp G        &none        &none          &kp H       &kp J  &kp K      &kp L     &lt 9 ENTER           &none
-&none  &mt RIGHT_SHIFT Z  &kp X     &kp C     &kp V        &kp B        &kp ESC      &kp DELETE     &kp N       &kp M  &kp COMMA  &kp DOT   &mt RIGHT_SHIFT FSLH  &none
-&none  &kp LCTRL          &kp LGUI  &kp LALT  &lt 11 BSPC  &lt 6 SPACE  &lt 8 GRAVE  &mt RCTRL TAB  &lt 4 BSPC  &none  &none      &kp HOME  &kp END               &none
+&none  &none              &none     &none     &none        &none                                    &none   &none  &none      &none     &none                 &none
+&none  &kp Q              &kp W     &kp E     &kp R        &kp T                                    &kp Y   &kp U  &kp I      &kp O     &kp P                 &none
+&none  &kp A              &kp S     &kp D     &kp F        &kp G        &none        &none          &kp H   &kp J  &kp K      &kp L     &lt 9 ENTER           &none
+&none  &mt RIGHT_SHIFT Z  &kp X     &kp C     &kp V        &kp B        &kp ESC      &kp DELETE     &kp N   &kp M  &kp COMMA  &kp DOT   &mt RIGHT_SHIFT FSLH  &none
+&none  &kp LCTRL          &kp LGUI  &kp LALT  &lt 11 BSPC  &lt 6 SPACE  &lt 8 GRAVE  &mt RCTRL TAB  &l4_bs  &none  &none      &kp HOME  &kp END               &none
             >;
         };
 
         L1_mac_default {
             bindings = <
-&none  &none              &none     &none              &none        &none                                           &none       &none  &none      &none     &none                 &none
-&none  &kp Q              &kp W     &kp E              &kp R        &kp T                                           &kp Y       &kp U  &kp I      &kp O     &kp P                 &none
-&none  &kp A              &kp S     &kp D              &kp F        &kp G        &none            &none             &kp H       &kp J  &kp K      &kp L     &lt 10 ENTER          &none
-&none  &mt RIGHT_SHIFT Z  &kp X     &kp C              &kp V        &kp B        &kp ESC          &kp DELETE        &kp N       &kp M  &kp COMMA  &kp DOT   &mt RIGHT_SHIFT FSLH  &none
-&none  &kp LGUI           &kp LALT  &kp RIGHT_CONTROL  &lt 11 BSPC  &lt 7 SPACE  &lt 8 RC(SPACE)  &mt LEFT_GUI TAB  &lt 5 BSPC  &none  &none      &kp HOME  &kp END               &none
+&none  &none              &none     &none              &none        &none                                           &none   &none  &none      &none     &none                 &none
+&none  &kp Q              &kp W     &kp E              &kp R        &kp T                                           &kp Y   &kp U  &kp I      &kp O     &kp P                 &none
+&none  &kp A              &kp S     &kp D              &kp F        &kp G        &none            &none             &kp H   &kp J  &kp K      &kp L     &lt 10 ENTER          &none
+&none  &mt RIGHT_SHIFT Z  &kp X     &kp C              &kp V        &kp B        &kp ESC          &kp DELETE        &kp N   &kp M  &kp COMMA  &kp DOT   &mt RIGHT_SHIFT FSLH  &none
+&none  &kp LGUI           &kp LALT  &kp RIGHT_CONTROL  &lt 11 BSPC  &lt 7 SPACE  &lt 8 RC(SPACE)  &mt LEFT_GUI TAB  &l5_bs  &none  &none      &kp HOME  &kp END               &none
             >;
         };
 
