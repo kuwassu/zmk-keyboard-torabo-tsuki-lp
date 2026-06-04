@@ -180,28 +180,28 @@
         mac_windows_large: mac_windows_large {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp RCTRL &kp GLOBE &kp F>;
+            bindings = <&kp RCTRL &kp FUNC &kp F>;
             label = "MAC_WINDOWS_large";
         };
 
         mac_windows_left: mac_windows_left {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp RCTRL &kp GLOBE &kp LEFT>;
+            bindings = <&kp RCTRL &kp FUNC &kp LEFT>;
             label = "MAC_WINDOWS_LEFT";
         };
 
         mac_windows_right: mac_windows_right {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp RCTRL &kp GLOBE &kp RIGHT>;
+            bindings = <&kp RCTRL &kp FUNC &kp RIGHT>;
             label = "MAC_WINDOWS_RIGHT";
         };
 
         mac_windows_small: mac_windows_small {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp RCTRL &kp GLOBE &kp DOWN>;
+            bindings = <&kp RCTRL &kp FUNC &kp DOWN>;
             label = "MAC_WINDOWS_SMALL";
         };
     };
