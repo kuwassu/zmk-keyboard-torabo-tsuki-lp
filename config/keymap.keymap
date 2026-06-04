@@ -163,7 +163,7 @@
             #binding-cells = <0>;
             bindings = <&lt 4 BSPC>, <&kp BSPC>;
 
-            tapping-term-ms = <200>;
+            tapping-term-ms = <100>;
         };
 
         l5_bs: l5_bs {
@@ -172,7 +172,7 @@
             #binding-cells = <0>;
             bindings = <&lt 5 BSPC>, <&kp BSPC>;
 
-            tapping-term-ms = <200>;
+            tapping-term-ms = <100>;
         };
     };
 
@@ -336,22 +336,22 @@
 
     window_left {
         pattern = <GESTURE_LEFT>;
-        bindings = <&kp LC(FUNC | LEFT)>;
+        bindings = <&kp (RCTRL | FUNC | LEFT)>;
     };
 
     window_right {
         pattern = <GESTURE_RIGHT>;
-        bindings = <&kp LC(FUNC | RIGHT)>;
+        bindings = <&kp (RCTRL | FUNC | RIGHT)>;
     };
 
     window_small {
         pattern = <GESTURE_DOWN>;
-        bindings = <&kp LC(FUNC | DOWN)>;
+        bindings = <&kp (RCTRL | FUNC | DOWN)>;
     };
 
     window_large {
         pattern = <GESTURE_UP>;
-        bindings = <&kp LC(FUNC | UP)>;
+        bindings = <&kp (RCTRL | FUNC | F)>;
     };
 };
 
