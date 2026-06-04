@@ -351,7 +351,7 @@
 
     window_large {
         pattern = <GESTURE_UP>;
-        bindings = <&kp LC(FUNC(F))>;
+        bindings = <&kp LC(FUNC | UP)>;
     };
 };
 
