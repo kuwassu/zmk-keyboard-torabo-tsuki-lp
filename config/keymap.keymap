@@ -181,34 +181,40 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
-                <&macro_press>,
-                <&kp RCTRL &kp GLOBE>,
-                <&macro_tap>,
-                <&kp F>,
-                <&macro_release>,
-                <&kp RCTRL &kp GLOBE>;
+                <&macro_press &kp RCTRL &kp GLOBE>,
+                <&macro_tap &kp F>,
+                <&macro_release &kp RCTRL &kp GLOBE>;
 
-            label = "MAC_WINDOWS_large";
+            label = "MAC_WINDOWS_LARGE";
         };
 
         mac_windows_left: mac_windows_left {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp RCTRL &kp FUNC &kp LEFT>;
+            bindings =
+                <&macro_press &kp RCTRL &kp FUNC>,
+                <&macro_tap &kp LEFT>,
+                <&macro_release &kp RCTRL &kp FUNC>;
             label = "MAC_WINDOWS_LEFT";
         };
 
         mac_windows_right: mac_windows_right {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp RCTRL &kp FUNC &kp RIGHT>;
+            bindings =
+                <&macro_press &kp RCTRL &kp FUNC>,
+                <&macro_tap &kp RIGHT>,
+                <&macro_release &kp RCTRL &kp FUNC>;
             label = "MAC_WINDOWS_RIGHT";
         };
 
         mac_windows_small: mac_windows_small {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp RCTRL &kp FUNC &kp DOWN>;
+            bindings =
+                <&macro_press &kp RCTRL &kp FUNC>,
+                <&macro_tap &kp DOWN>,
+                <&macro_release &kp RCTRL &kp FUNC>;
             label = "MAC_WINDOWS_SMALL";
         };
     };
