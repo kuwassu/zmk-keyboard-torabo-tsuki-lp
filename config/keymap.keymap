@@ -180,7 +180,14 @@
         mac_windows_large: mac_windows_large {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp RCTRL &kp FUNC &kp F>;
+            bindings =
+                <&macro_press>,
+                <&kp RCTRL &kp GLOBE>,
+                <&macro_tap>,
+                <&kp F>,
+                <&macro_release>,
+                <&kp RCTRL &kp GLOBE>;
+
             label = "MAC_WINDOWS_large";
         };
 
