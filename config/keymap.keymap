@@ -181,9 +181,12 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
-                <&macro_press &kp RCTRL &kp CAPS>,
-                <&macro_tap &kp F>,
-                <&macro_release &kp RCTRL &kp CAPS>;
+                <&macro_press>,
+                <&kp RCTRL &kp CAPS>,
+                <&macro_tap>,
+                <&kp F>,
+                <&macro_release>,
+                <&kp RCTRL &kp CAPS>;
 
             label = "MAC_WINDOWS_LARGE";
         };
@@ -192,9 +195,13 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
-                <&macro_press &kp RCTRL &kp CAPS>,
-                <&macro_tap &kp LEFT>,
-                <&macro_release &kp RCTRL &kp CAPS>;
+                <&macro_press>,
+                <&kp RCTRL &kp CAPS>,
+                <&macro_tap>,
+                <&kp LEFT>,
+                <&macro_release>,
+                <&kp RCTRL &kp CAPS>;
+
             label = "MAC_WINDOWS_LEFT";
         };
 
@@ -202,9 +209,13 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
-                <&macro_press &kp RCTRL &kp CAPS>,
-                <&macro_tap &kp RIGHT>,
-                <&macro_release &kp RCTRL &kp CAPS>;
+                <&macro_press>,
+                <&kp RCTRL &kp CAPS>,
+                <&macro_tap>,
+                <&kp RIGHT>,
+                <&macro_release>,
+                <&kp RCTRL &kp CAPS>;
+
             label = "MAC_WINDOWS_RIGHT";
         };
 
@@ -212,9 +223,13 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
-                <&macro_press &kp RCTRL &kp CAPS>,
-                <&macro_tap &kp DOWN>,
-                <&macro_release &kp RCTRL &kp CAPS>;
+                <&macro_press>,
+                <&kp RCTRL &kp CAPS>,
+                <&macro_tap>,
+                <&kp DOWN>,
+                <&macro_release>,
+                <&kp RCTRL &kp CAPS>;
+
             label = "MAC_WINDOWS_SMALL";
         };
     };
@@ -234,10 +249,10 @@
 
         L1_mac_default {
             bindings = <
-&none  &none              &none     &none              &none        &none                                           &none       &none  &none      &none     &none                 &none
-&none  &kp Q              &kp W     &kp E              &kp R        &kp T                                           &kp Y       &kp U  &kp I      &kp O     &kp P                 &none
-&none  &kp A              &kp S     &kp D              &kp F        &kp G        &none            &none             &kp H       &kp J  &kp K      &kp L     &lt 10 ENTER          &none
-&none  &mt RIGHT_SHIFT Z  &kp X     &kp C              &kp V        &kp B        &kp ESC          &kp DELETE        &kp N       &kp M  &kp COMMA  &kp DOT   &mt RIGHT_SHIFT FSLH  &none
+&none  &none              &none     &none              &none        &none                                       &none       &none  &none      &none     &none                 &none
+&none  &kp Q              &kp W     &kp E              &kp R        &kp T                                       &kp Y       &kp U  &kp I      &kp O     &kp P                 &none
+&none  &kp A              &kp S     &kp D              &kp F        &kp G        &none        &none             &kp H       &kp J  &kp K      &kp L     &lt 10 ENTER          &none
+&none  &mt RIGHT_SHIFT Z  &kp X     &kp C              &kp V        &kp B        &kp ESC      &kp DELETE        &kp N       &kp M  &kp COMMA  &kp DOT   &mt RIGHT_SHIFT FSLH  &none
 &none  &kp LGUI           &kp LALT  &kp RIGHT_CONTROL  &lt 11 BSPC  &lt 7 SPACE  &lt 8 LCTRL  &mt LEFT_GUI TAB  &lt 5 BSPC  &none  &none      &kp HOME  &kp END               &none
             >;
         };
@@ -304,11 +319,11 @@
 
         L8_left_thub3 {
             bindings = <
-&none  &none    &none    &none   &none   &none                   &none   &none   &none   &none     &none            &none
-&none  &kp F1   &kp F2   &kp F3  &kp F4  &kp F5                  &kp F6  &kp F7  &kp F8  &kp F9    &kp F10          &none
-&none  &kp F11  &kp F12  &trans  &trans  &trans  &none   &none   &trans  &trans  &trans  &kp CAPS  &kp PRINTSCREEN  &none
-&none  &trans   &trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans           &none
-&none  &trans   &trans   &trans  &trans  &trans  &trans  &trans  &trans  &none   &none   &trans    &trans           &none
+&none  &none    &none    &none   &none   &none                   &none       &none   &none   &none     &none            &none
+&none  &kp F1   &kp F2   &kp F3  &kp F4  &kp F5                  &kp F6      &kp F7  &kp F8  &kp F9    &kp F10          &none
+&none  &kp F11  &kp F12  &trans  &trans  &trans  &none   &none   &kp LA(F4)  &trans  &trans  &kp CAPS  &kp PRINTSCREEN  &none
+&none  &trans   &trans   &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans           &none
+&none  &trans   &trans   &trans  &trans  &trans  &trans  &trans  &trans      &none   &none   &trans    &trans           &none
             >;
         };
 
