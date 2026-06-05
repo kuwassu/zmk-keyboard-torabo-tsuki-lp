@@ -156,26 +156,6 @@
         };
     };
 
-    behaviors {
-        l4_bs: l4_bs {
-            compatible = "zmk,behavior-tap-dance";
-            label = "L4_BS";
-            #binding-cells = <0>;
-            bindings = <&lt 4 BSPC>, <&kp BSPC>;
-
-            tapping-term-ms = <100>;
-        };
-
-        l5_bs: l5_bs {
-            compatible = "zmk,behavior-tap-dance";
-            label = "L5_BS";
-            #binding-cells = <0>;
-            bindings = <&lt 5 BSPC>, <&kp BSPC>;
-
-            tapping-term-ms = <100>;
-        };
-    };
-
     macros {
         mac_windows_large: mac_windows_large {
             compatible = "zmk,behavior-macro";
