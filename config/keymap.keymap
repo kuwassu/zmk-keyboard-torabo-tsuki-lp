@@ -440,4 +440,7 @@
 
 &mt { flavor = "balanced"; };
 
-&lt { flavor = "hold-preferred"; };
+&lt {
+    flavor = "hold-preferred";
+    quick-tap-ms = <50>;
+};
