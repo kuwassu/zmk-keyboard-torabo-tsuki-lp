@@ -14,25 +14,25 @@
         bt_clear {
             bindings = <&bt BT_CLR>;
             key-positions = <53 54 55>;
-            layers = <9 10>;
+            layers = <10 11>;
         };
 
         bt_clear_all {
             bindings = <&bt BT_CLR_ALL>;
             key-positions = <13 14 15 16>;
-            layers = <9 10>;
+            layers = <10 11>;
         };
 
         mac_layout {
             bindings = <&to 1>;
             key-positions = <13 14 15>;
-            layers = <0 1 9 10>;
+            layers = <0 1 10 11>;
         };
 
         win_layout {
             bindings = <&to 0>;
             key-positions = <13 14>;
-            layers = <0 1 9 10>;
+            layers = <0 1 10 11>;
         };
 
         left_kakko {
@@ -74,13 +74,13 @@
         semicolon {
             bindings = <&kp SEMI>;
             key-positions = <33 34>;
-            layers = <9 10>;
+            layers = <10 11>;
         };
 
         colon {
             bindings = <&kp APOS>;
             key-positions = <34 35>;
-            layers = <9 10>;
+            layers = <10 11>;
         };
 
         plus {
@@ -98,37 +98,37 @@
         left_click {
             bindings = <&mkp LCLK>;
             key-positions = <33 34>;
-            layers = <0 1 2 3 11>;
+            layers = <0 1 2 3 12>;
         };
 
         right_click {
             bindings = <&mkp RCLK>;
             key-positions = <34 35>;
-            layers = <0 1 2 3 11>;
+            layers = <0 1 2 3 12>;
         };
 
         middle_click {
             bindings = <&mkp MCLK>;
             key-positions = <33 34 35>;
-            layers = <0 1 2 3 11>;
+            layers = <0 1 2 3 12>;
         };
 
         undo_click {
             bindings = <&mkp MB4>;
             key-positions = <47 48>;
-            layers = <0 1 2 3 11>;
+            layers = <0 1 2 3 12>;
         };
 
         redo_click {
             bindings = <&mkp MB5>;
             key-positions = <48 49>;
-            layers = <0 1 2 3 11>;
+            layers = <0 1 2 3 12>;
         };
 
         slow_mouse_layer {
             bindings = <&mo 3>;
             key-positions = <47 48 49>;
-            layers = <0 1 2 3 11>;
+            layers = <0 1 2 3 12>;
         };
 
         kana {
@@ -297,7 +297,7 @@
             >;
         };
 
-        L8_left_thub3 {
+        L8_win_left_thub3 {
             bindings = <
 &none  &none    &none    &none   &none   &none                   &none       &none   &none   &none     &none            &none
 &none  &kp F1   &kp F2   &kp F3  &kp F4  &kp F5                  &kp F6      &kp F7  &kp F8  &kp F9    &kp F10          &none
@@ -307,7 +307,17 @@
             >;
         };
 
-        L9_win_scroll_BT {
+        L9_mac_left_thub3 {
+            bindings = <
+&none  &none    &none    &none   &none   &none                   &none       &none   &none   &none     &none            &none
+&none  &kp F1   &kp F2   &kp F3  &kp F4  &kp F5                  &kp F6      &kp F7  &kp F8  &kp F9    &kp F10          &none
+&none  &kp F11  &kp F12  &trans  &trans  &trans  &none   &none   &kp LG(Q)   &trans  &trans  &kp CAPS  &kp LG(LS(4))    &none
+&none  &trans   &trans   &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans           &none
+&none  &trans   &trans   &trans  &trans  &trans  &trans  &trans  &trans      &none   &none   &trans    &trans           &none
+            >;
+        };
+
+        L10_win_scroll_BT {
             bindings = <
 &none  &none          &none          &none          &none          &none                                    &none   &none         &none       &none         &none   &none
 &none  &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4                             &trans  &trans        &trans      &trans        &trans  &none
@@ -317,7 +327,7 @@
             >;
         };
 
-        L10_mac_scroll_BT {
+        L11_mac_scroll_BT {
             bindings = <
 &none  &none          &none          &none          &none          &none                                    &none   &none         &none       &none         &none   &none
 &none  &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4                             &trans  &trans        &trans      &trans        &trans  &none
@@ -327,7 +337,7 @@
             >;
         };
 
-        L11_mouse {
+        L12_mouse {
             bindings = <
 &none  &none   &none      &none      &none      &none                   &none   &none      &none      &none      &none   &none
 &none  &trans  &trans     &trans     &trans     &trans                  &trans  &trans     &trans     &trans     &trans  &none

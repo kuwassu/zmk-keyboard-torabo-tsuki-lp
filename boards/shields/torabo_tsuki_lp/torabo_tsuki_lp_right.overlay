@@ -15,7 +15,7 @@
     };
 
     win-gesture-mouse {
-        layers = <6>;
+        layers = <8>;
         input-processors =
             <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
             <&zip_win_mouse_gesture>,
@@ -23,7 +23,7 @@
     };
 
     mac-gesture-mouse {
-        layers = <7>;
+        layers = <9>;
         input-processors =
             <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
             <&zip_mac_mouse_gesture>,
@@ -31,7 +31,7 @@
     };
 
     win-scroller {
-        layers = <9>;
+        layers = <10>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
             <&zip_xy_to_scroll_mapper>,
@@ -39,7 +39,7 @@
     };
 
     mac-scroller {
-        layers = <10>;
+        layers = <11>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
             <&zip_xy_to_scroll_mapper>,
