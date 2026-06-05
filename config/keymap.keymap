@@ -206,7 +206,7 @@
                 <&macro_press>,
                 <&kp RCTRL &kp CAPS>,
                 <&macro_tap>,
-                <&kp DOWN>,
+                <&kp C>,
                 <&macro_release>,
                 <&kp RCTRL &kp CAPS>;
 
