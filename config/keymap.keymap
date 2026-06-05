@@ -212,6 +212,20 @@
 
             label = "MAC_WINDOWS_SMALL";
         };
+
+        win_bt0: win_bt1 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 0 &to 0>;
+            label = "WIN_BT1";
+        };
+
+        mac_bt1: mac_bt1 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 1 &to 1>;
+            label = "MAC_BT1";
+        };
     };
 
     keymap {
