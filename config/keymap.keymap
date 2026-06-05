@@ -143,15 +143,15 @@
             layers = <0 1 6 7>;
         };
 
-        win_ime {
-            bindings = <&kp GRAVE>;
-            key-positions = <27 26 28>;
+        win_win {
+            bindings = <&kp LGUI>;
+            key-positions = <26 27 28>;
             layers = <0 6>;
         };
 
-        mac_ime {
-            bindings = <&kp RC(SPACE)>;
-            key-positions = <28 27 26>;
+        mac_ctrl {
+            bindings = <&kp RCTRL>;
+            key-positions = <26 27 28>;
             layers = <1 7>;
         };
     };
