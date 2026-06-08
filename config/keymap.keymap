@@ -143,16 +143,28 @@
             layers = <0 1 6 7>;
         };
 
-        win_win {
+        left_win_win {
             bindings = <&kp LGUI>;
             key-positions = <26 27 28>;
-            layers = <0 6>;
+            layers = <0 4 6 8>;
         };
 
-        mac_ctrl {
+        left_tmac_ctrl {
             bindings = <&kp RCTRL>;
             key-positions = <26 27 28>;
-            layers = <1 7>;
+            layers = <1 5 7 9>;
+        };
+
+        right_win_win {
+            bindings = <&kp LEFT_GUI>;
+            key-positions = <20 21 19>;
+            layers = <0 4 6 8>;
+        };
+
+        left_mac_ctrl {
+            bindings = <&kp RCTRL>;
+            key-positions = <19 20 21>;
+            layers = <1 5 7 9>;
         };
     };
 
