@@ -443,6 +443,6 @@
 &mt { flavor = "balanced"; };
 
 &lt {
-    flavor = "hold-preferred";
-    quick-tap-ms = <50>;
+    flavor = "balanced";
+    quick-tap-ms = <150>;
 };
