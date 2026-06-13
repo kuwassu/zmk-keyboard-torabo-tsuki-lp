@@ -290,7 +290,7 @@
 &none  &trans  &trans  &trans  &trans          &trans                  &trans  &trans     &trans     &trans     &trans  &none
 &none  &mo 3   &trans  &trans  &trans          &trans  &none   &none   &trans  &mkp LCLK  &mkp MCLK  &mkp RCLK  &trans  &none
 &none  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &mkp MB4   &trans     &mkp MB5   &trans  &none
-&none  &trans  &trans  &trans  &kp LEFT_SHIFT  &trans  &trans  &trans  &trans  &none      &none      &trans     &mo 3   &none
+&none  &trans  &trans  &trans  &kp LEFT_SHIFT  &trans  &trans  &trans  &trans  &none      &none      &trans     &trans  &none
             >;
         };
 
@@ -300,7 +300,7 @@
 &none  &trans  &trans     &trans     &trans     &trans                  &trans  &trans     &trans     &trans     &trans  &none
 &none  &mo 3   &mkp LCLK  &mkp MCLK  &mkp RCLK  &trans  &none   &none   &trans  &mkp LCLK  &mkp MCLK  &mkp RCLK  &trans  &none
 &none  &trans  &mkp MB4   &trans     &mkp MB5   &trans  &trans  &trans  &trans  &mkp MB4   &trans     &mkp MB5   &trans  &none
-&none  &trans  &trans     &trans     &trans     &trans  &trans  &trans  &trans  &none      &none      &trans     &mo 3   &none
+&none  &trans  &trans     &trans     &trans     &trans  &trans  &trans  &trans  &none      &none      &trans     &trans  &none
             >;
         };
 
@@ -336,11 +336,11 @@
 
         L7_mac_left_thumb2 {
             bindings = <
-&none  &none          &none         &none         &none          &none                   &none       &none   &none   &none   &none      &none
-&none  &kp N1         &kp N2        &kp N3        &kp N4         &kp N5                  &kp N6      &kp N7  &kp N8  &kp N9  &kp N0     &none
-&none  &kp RC(LBKT)   &kp LSHIFT    &kp LEFT_ALT  &kp TAB        &trans  &none   &none   &kp MINUS   &kp N4  &kp N5  &kp N6  &trans     &none
-&none  &kp LS(LG(C))  &kp RC(LEFT)  &kp RC(UP)    &kp RC(RIGHT)  &trans  &trans  &trans  &kp PERIOD  &kp N1  &kp N2  &kp N3  &kp SLASH  &none
-&none  &trans         &trans        &trans        &trans         &trans  &trans  &trans  &trans      &none   &none   &kp N0  &trans     &none
+&none  &none         &none         &none         &none          &none                   &none       &none   &none   &none   &none      &none
+&none  &kp N1        &kp N2        &kp N3        &kp N4         &kp N5                  &kp N6      &kp N7  &kp N8  &kp N9  &kp N0     &none
+&none  &kp RC(LBKT)  &kp LSHIFT    &kp LEFT_ALT  &kp TAB        &trans  &none   &none   &kp MINUS   &kp N4  &kp N5  &kp N6  &trans     &none
+&none  &trans        &kp RC(LEFT)  &kp RC(UP)    &kp RC(RIGHT)  &trans  &trans  &trans  &kp PERIOD  &kp N1  &kp N2  &kp N3  &kp SLASH  &none
+&none  &trans        &trans        &trans        &trans         &trans  &trans  &trans  &trans      &none   &none   &kp N0  &trans     &none
             >;
         };
 
