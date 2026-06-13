@@ -92,7 +92,7 @@
         asterisk {
             bindings = <&kp LS(APOS)>;
             key-positions = <34 35>;
-            layers = <4 5>;
+            layers = <4 5 6 7>;
         };
 
         left_click {
