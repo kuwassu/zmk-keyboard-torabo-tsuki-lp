@@ -174,11 +174,11 @@
             #binding-cells = <0>;
             bindings =
                 <&macro_press>,
-                <&kp RCTRL &kp CAPS>,
+                <&kp RC(CAPS)>,
                 <&macro_tap>,
                 <&kp F>,
                 <&macro_release>,
-                <&kp RCTRL &kp CAPS>;
+                <&kp RC(CAPS)>;
 
             label = "MAC_WINDOWS_LARGE";
         };
@@ -188,11 +188,11 @@
             #binding-cells = <0>;
             bindings =
                 <&macro_press>,
-                <&kp RCTRL &kp CAPS>,
+                <&kp RC(CAPS)>,
                 <&macro_tap>,
                 <&kp LEFT>,
                 <&macro_release>,
-                <&kp RCTRL &kp CAPS>;
+                <&kp RC(CAPS)>;
 
             label = "MAC_WINDOWS_LEFT";
         };
@@ -202,11 +202,11 @@
             #binding-cells = <0>;
             bindings =
                 <&macro_press>,
-                <&kp RCTRL &kp CAPS>,
+                <&kp RC(CAPS)>,
                 <&macro_tap>,
                 <&kp RIGHT>,
                 <&macro_release>,
-                <&kp RCTRL &kp CAPS>;
+                <&kp RC(CAPS)>;
 
             label = "MAC_WINDOWS_RIGHT";
         };
@@ -216,11 +216,11 @@
             #binding-cells = <0>;
             bindings =
                 <&macro_press>,
-                <&kp RCTRL &kp CAPS>,
+                <&kp RC(CAPS)>,
                 <&macro_tap>,
                 <&kp C>,
                 <&macro_release>,
-                <&kp RCTRL &kp CAPS>;
+                <&kp RC(CAPS)>;
 
             label = "MAC_WINDOWS_SMALL";
         };
