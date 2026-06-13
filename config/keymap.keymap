@@ -145,11 +145,11 @@
 
         left_win_win {
             bindings = <&kp LGUI>;
-            key-positions = <16 15 14>;
+            key-positions = <14 15 16>;
             layers = <0 4 6 8>;
         };
 
-        left_tmac_ctrl {
+        left_mac_ctrl {
             bindings = <&kp RCTRL>;
             key-positions = <14 16 15>;
             layers = <1 5 7 9>;
@@ -157,11 +157,11 @@
 
         right_win_win {
             bindings = <&kp LEFT_GUI>;
-            key-positions = <20 21 19>;
+            key-positions = <19 20 21>;
             layers = <0 4 6 8>;
         };
 
-        left_mac_ctrl {
+        right_mac_ctrl {
             bindings = <&kp RCTRL>;
             key-positions = <19 20 21>;
             layers = <1 5 7 9>;
