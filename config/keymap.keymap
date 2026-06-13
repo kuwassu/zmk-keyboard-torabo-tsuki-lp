@@ -151,7 +151,7 @@
 
         left_mac_ctrl {
             bindings = <&kp RCTRL>;
-            key-positions = <14 16 15>;
+            key-positions = <14 15 16>;
             layers = <1 5 7 9>;
         };
 
