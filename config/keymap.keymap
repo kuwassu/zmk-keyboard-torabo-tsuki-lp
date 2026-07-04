@@ -71,17 +71,17 @@
             layers = <4 5>;
         };
 
-//        semicolon {
-//            bindings = <&kp SEMI>;
-//            key-positions = <33 34>;
-//            layers = <10 11>;
-//        };
-//
-//        colon {
-//            bindings = <&kp APOS>;
-//            key-positions = <34 35>;
-//            layers = <10 11>;
-//        };
+        //        semicolon {
+        //            bindings = <&kp SEMI>;
+        //            key-positions = <33 34>;
+        //            layers = <10 11>;
+        //        };
+        //
+        //        colon {
+        //            bindings = <&kp APOS>;
+        //            key-positions = <34 35>;
+        //            layers = <10 11>;
+        //        };
 
         plus {
             bindings = <&kp LS(SEMI)>;
@@ -286,11 +286,11 @@
 
         L2_auto_mouse {
             bindings = <
-&none  &none   &none   &none   &none           &none                   &none   &none      &none      &none      &none   &none
-&none  &trans  &trans  &trans  &trans          &trans                  &trans  &trans     &trans     &trans     &trans  &none
-&none  &mo 3   &trans  &trans  &trans          &trans  &none   &none   &trans  &mkp LCLK  &mkp MCLK  &mkp RCLK  &trans  &none
-&none  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &mkp MB4   &trans     &mkp MB5   &trans  &none
-&none  &trans  &trans  &trans  &kp LEFT_SHIFT  &trans  &trans  &trans  &trans  &none      &none      &trans     &trans  &none
+&none  &none   &none   &none   &none   &none                   &none   &none      &none      &none      &none   &none
+&none  &trans  &trans  &trans  &trans  &trans                  &trans  &trans     &trans     &trans     &trans  &none
+&none  &mo 3   &trans  &trans  &trans  &trans  &none   &none   &trans  &mkp LCLK  &mkp MCLK  &mkp RCLK  &trans  &none
+&none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &mkp MB4   &trans     &mkp MB5   &trans  &none
+&none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none      &none      &trans     &trans  &none
             >;
         };
 
@@ -298,7 +298,7 @@
             bindings = <
 &none  &none   &none      &none      &none      &none                   &none   &none      &none      &none      &none   &none
 &none  &trans  &trans     &trans     &trans     &trans                  &trans  &trans     &trans     &trans     &trans  &none
-&none  &mo 3   &mkp LCLK  &mkp MCLK  &mkp RCLK  &trans  &none   &none   &trans  &mkp LCLK  &mkp MCLK  &mkp RCLK  &trans  &none
+&none  &trans  &mkp LCLK  &mkp MCLK  &mkp RCLK  &trans  &none   &none   &trans  &mkp LCLK  &mkp MCLK  &mkp RCLK  &trans  &none
 &none  &trans  &mkp MB4   &trans     &mkp MB5   &trans  &trans  &trans  &trans  &mkp MB4   &trans     &mkp MB5   &trans  &none
 &none  &trans  &trans     &trans     &trans     &trans  &trans  &trans  &trans  &none      &none      &trans     &trans  &none
             >;
@@ -326,41 +326,41 @@
 
         L6_win_left_thumb2 {
             bindings = <
-&none  &none         &none             &none         &none              &none                   &none       &none   &none   &none   &none      &none
-&none  &kp N1        &kp N2            &kp N3        &kp N4             &kp N5                  &kp N6      &kp N7  &kp N8  &kp N9  &kp N0     &none
-&none  &kp LC(LBKT)  &kp LS(TAB)       &kp LEFT_ALT  &kp TAB            &trans  &none   &none   &kp MINUS   &kp N4  &kp N5  &kp N6  &kp SPACE  &none
-&none  &trans        &kp LG(LC(LEFT))  &kp LG(TAB)   &kp LG(LC(RIGHT))  &trans  &trans  &trans  &kp PERIOD  &kp N1  &kp N2  &kp N3  &kp SLASH  &none
-&none  &trans        &trans            &trans        &trans             &trans  &trans  &trans  &trans      &none   &none   &kp N0  &trans     &none
+&none  &none         &none             &none         &none              &none                       &none              &none   &none   &none   &none         &none
+&none  &kp N1        &kp N2            &kp N3        &kp N4             &kp N5                      &kp N6             &kp N7  &kp N8  &kp N9  &kp N0        &none
+&none  &kp LC(LBKT)  &kp LS(TAB)       &kp LEFT_ALT  &kp TAB            &trans  &none   &none       &kp MINUS          &kp N4  &kp N5  &kp N6  &trans        &none
+&none  &trans        &kp LG(LC(LEFT))  &kp LG(TAB)   &kp LG(LC(RIGHT))  &trans  &trans  &kp PERIOD  &kp LS(SEMICOLON)  &kp N1  &kp N2  &kp N3  &kp SLASH     &none
+&none  &trans        &trans            &trans        &trans             &trans  &trans  &trans      &trans             &none   &none   &kp N0  &kp LS(APOS)  &none
             >;
         };
 
         L7_mac_left_thumb2 {
             bindings = <
-&none  &none         &none         &none         &none          &none                   &none       &none   &none   &none   &none      &none
-&none  &kp N1        &kp N2        &kp N3        &kp N4         &kp N5                  &kp N6      &kp N7  &kp N8  &kp N9  &kp N0     &none
-&none  &kp RC(LBKT)  &kp LSHIFT    &kp LEFT_ALT  &kp TAB        &trans  &none   &none   &kp MINUS   &kp N4  &kp N5  &kp N6  &kp SPACE  &none
-&none  &trans        &kp RC(LEFT)  &kp RC(UP)    &kp RC(RIGHT)  &trans  &trans  &trans  &kp PERIOD  &kp N1  &kp N2  &kp N3  &kp SLASH  &none
-&none  &trans        &trans        &trans        &trans         &trans  &trans  &trans  &trans      &none   &none   &kp N0  &trans     &none
+&none  &none         &none         &none         &none          &none                       &none              &none   &none   &none   &none         &none
+&none  &kp N1        &kp N2        &kp N3        &kp N4         &kp N5                      &kp N6             &kp N7  &kp N8  &kp N9  &kp N0        &none
+&none  &kp RC(LBKT)  &kp LSHIFT    &kp LEFT_ALT  &kp TAB        &trans  &none   &none       &kp MINUS          &kp N4  &kp N5  &kp N6  &trans        &none
+&none  &trans        &kp RC(LEFT)  &kp RC(UP)    &kp RC(RIGHT)  &trans  &trans  &kp PERIOD  &kp LS(SEMICOLON)  &kp N1  &kp N2  &kp N3  &kp SLASH     &none
+&none  &trans        &trans        &trans        &trans         &trans  &trans  &trans      &trans             &none   &none   &kp N0  &kp LS(APOS)  &none
             >;
         };
 
         L8_win_left_thumb3 {
             bindings = <
-&none  &none    &none    &none      &none     &none                   &none       &none   &none   &none     &none            &none
-&none  &kp F1   &kp F2   &kp F3     &kp F4    &kp F5                  &kp F6      &kp F7  &kp F8  &kp F9    &kp F10          &none
-&none  &kp F11  &kp F12  &kp LG(E)  &kp BSPC  &trans  &none   &none   &kp LA(F4)  &trans  &trans  &kp CAPS  &kp PRINTSCREEN  &none
-&none  &trans   &trans   &trans     &trans    &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans           &none
-&none  &trans   &trans   &trans     &trans    &trans  &trans  &trans  &trans      &none   &none   &trans    &trans           &none
+&none  &none    &none    &none      &none   &none                   &none       &none   &none   &none     &none            &none
+&none  &kp F1   &kp F2   &kp F3     &kp F4  &kp F5                  &kp F6      &kp F7  &kp F8  &kp F9    &kp F10          &none
+&none  &kp F11  &kp F12  &kp LG(E)  &trans  &trans  &none   &none   &kp LA(F4)  &trans  &trans  &kp CAPS  &kp PRINTSCREEN  &none
+&none  &trans   &trans   &trans     &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans           &none
+&none  &trans   &trans   &trans     &trans  &trans  &trans  &trans  &trans      &none   &none   &trans    &trans           &none
             >;
         };
 
         L9_mac_left_thumb3 {
             bindings = <
-&none  &none    &none    &none   &none     &none                   &none      &none   &none   &none     &none           &none
-&none  &kp F1   &kp F2   &kp F3  &kp F4    &kp F5                  &kp F6     &kp F7  &kp F8  &kp F9    &kp F10         &none
-&none  &kp F11  &kp F12  &trans  &kp BSPC  &trans  &none   &none   &kp LG(Q)  &trans  &trans  &kp CAPS  &kp LG(LS(N4))  &none
-&none  &trans   &trans   &trans  &trans    &trans  &trans  &trans  &trans     &trans  &trans  &trans    &trans          &none
-&none  &trans   &trans   &trans  &trans    &trans  &trans  &trans  &trans     &none   &none   &trans    &trans          &none
+&none  &none    &none    &none   &none   &none                   &none      &none   &none   &none     &none           &none
+&none  &kp F1   &kp F2   &kp F3  &kp F4  &kp F5                  &kp F6     &kp F7  &kp F8  &kp F9    &kp F10         &none
+&none  &kp F11  &kp F12  &trans  &trans  &trans  &none   &none   &kp LG(Q)  &trans  &trans  &kp CAPS  &kp LG(LS(N4))  &none
+&none  &trans   &trans   &trans  &trans  &trans  &trans  &trans  &trans     &trans  &trans  &trans    &trans          &none
+&none  &trans   &trans   &trans  &trans  &trans  &trans  &trans  &trans     &none   &none   &trans    &trans          &none
             >;
         };
 
