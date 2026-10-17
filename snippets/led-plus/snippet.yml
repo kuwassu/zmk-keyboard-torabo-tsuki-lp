@@ -1,0 +1,4 @@
+name: led-plus
+append:
+  EXTRA_DTC_OVERLAY_FILE: led-plus.overlay
+  EXTRA_CONF_FILE: led-plus.conf

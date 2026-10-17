@@ -1,0 +1,66 @@
+/ {
+  aliases {
+    led-red = &led_red;
+    led-green = &led_yellow;
+    led-blue = &led_green;
+  };
+
+  leds {
+    compatible = "gpio-leds";
+    staus = "okay";
+    led_red: led_red {
+        gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
+    };
+    led_yellow: led_yellow {
+        gpios = <&gpio1 2 GPIO_ACTIVE_LOW>;
+    };
+    led_green: led_green {
+        gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
+    };
+  };
+
+//   input_ext_listener: input_ext_listener {
+//     compatible = "zmk,input-listener";
+//     device = <&trackpad_ext>;
+//   };
+};
+
+&pinctrl {
+    i2c1_default: i2c1_default {
+        group1 {
+            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
+                    <NRF_PSEL(TWIM_SCL, 0, 21)>;
+            bias-pull-up;
+        };
+    };
+    i2c1_sleep: i2c1_sleep {
+        group1 {
+            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
+                    <NRF_PSEL(TWIM_SCL, 0, 21)>;
+            bias-pull-up;
+            low-power-enable;
+        };
+    };
+};
+
+&i2c1 {
+    status = "okay";
+    compatible = "nordic,nrf-twim";
+    pinctrl-0 = <&i2c1_default>;
+    pinctrl-1 = <&i2c1_sleep>;
+    pinctrl-names = "default", "sleep";
+    clock-frequency = <I2C_BITRATE_FAST>;
+    zephyr,concat-buf-size = <32>;
+
+    // trackpad_ext: trackpad_ext@56 {
+    //     status = "disabled";
+    //     compatible = "azoteq,iqs7211e";
+    //     reg = <0x56>;
+    //     irq-gpios = <&gpio0 31 GPIO_PULL_UP>;
+    //     power-gpios = <&gpio0 24 (GPIO_ACTIVE_HIGH | NRF_GPIO_DRIVE_H1)>;
+    //     init-symbol = "mini_trackpad_iqs7211e_init";
+    //     init-length = <217>;
+    //     scroller-mode;
+    //     h-invert;
+    // };
+};

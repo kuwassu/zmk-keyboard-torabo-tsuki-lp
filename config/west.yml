@@ -32,5 +32,9 @@ manifest:
     - name: zmk-mouse-gesture
       remote: kuwassu
       revision: v1
+    - name: zmk-driver-kscan-4-direction-switch
+      remote: sekigon-gonnoc
+    - name: zmk-driver-hires-dial
+      remote: sekigon-gonnoc
   self:
     path: config
