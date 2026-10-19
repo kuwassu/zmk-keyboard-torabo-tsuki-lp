@@ -6,9 +6,9 @@
 #include <dt-bindings/zmk/input_transform.h>
 
 &pointing_listener {
+    // Keep typing on the base layer while moving the ball; use click combos.
     input-processors =
-        <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
-        <&zip_temp_layer 2 150>;
+        <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>;
 
     slow-mouse {
         layers = <3>;
