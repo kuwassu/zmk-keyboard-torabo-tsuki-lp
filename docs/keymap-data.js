@@ -43,7 +43,7 @@ const KEYMAP = {
         "&lt 10 ENTER",
         "&none",
         "&none",
-        "&mt LEFT_SHIFT Z",
+        "&z_mt LEFT_SHIFT Z",
         "&kp X",
         "&kp C",
         "&kp V",
@@ -116,7 +116,7 @@ const KEYMAP = {
         "&lt 11 ENTER",
         "&none",
         "&none",
-        "&mt LEFT_SHIFT Z",
+        "&z_mt LEFT_SHIFT Z",
         "&kp X",
         "&kp C",
         "&kp V",
@@ -221,7 +221,7 @@ const KEYMAP = {
       "os": "both"
     },
     {
-      "name": "L3_slow_mouse",
+      "name": "L3_reserved",
       "bindings": [
         "&none",
         "&none",
@@ -236,61 +236,61 @@ const KEYMAP = {
         "&none",
         "&none",
         "&none",
-        "&trans",
-        "&trans",
-        "&trans",
-        "&trans",
-        "&trans",
-        "&trans",
-        "&trans",
-        "&trans",
-        "&trans",
-        "&trans",
         "&none",
         "&none",
-        "&trans",
-        "&mkp LCLK",
-        "&mkp MCLK",
-        "&mkp RCLK",
-        "&trans",
         "&none",
         "&none",
-        "&trans",
-        "&mkp LCLK",
-        "&mkp MCLK",
-        "&mkp RCLK",
-        "&trans",
         "&none",
         "&none",
-        "&trans",
-        "&mkp MB4",
-        "&trans",
-        "&mkp MB5",
-        "&trans",
-        "&trans",
-        "&trans",
-        "&trans",
-        "&mkp MB4",
-        "&trans",
-        "&mkp MB5",
-        "&trans",
         "&none",
         "&none",
-        "&trans",
-        "&trans",
-        "&trans",
-        "&trans",
-        "&trans",
-        "&trans",
-        "&trans",
-        "&trans",
         "&none",
         "&none",
-        "&trans",
-        "&trans",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
+        "&none",
         "&none"
       ],
-      "enabled": true,
+      "enabled": false,
       "os": "both"
     },
     {
@@ -1060,8 +1060,7 @@ const KEYMAP = {
       ],
       "layers": [
         0,
-        1,
-        3
+        1
       ]
     },
     {
@@ -1073,8 +1072,7 @@ const KEYMAP = {
       ],
       "layers": [
         0,
-        1,
-        3
+        1
       ]
     },
     {
@@ -1087,8 +1085,7 @@ const KEYMAP = {
       ],
       "layers": [
         0,
-        1,
-        3
+        1
       ]
     },
     {
@@ -1100,8 +1097,7 @@ const KEYMAP = {
       ],
       "layers": [
         0,
-        1,
-        3
+        1
       ]
     },
     {
@@ -1113,22 +1109,7 @@ const KEYMAP = {
       ],
       "layers": [
         0,
-        1,
-        3
-      ]
-    },
-    {
-      "name": "slow_mouse_layer",
-      "binding": "&mo 3",
-      "positions": [
-        47,
-        48,
-        49
-      ],
-      "layers": [
-        0,
-        1,
-        3
+        1
       ]
     },
     {

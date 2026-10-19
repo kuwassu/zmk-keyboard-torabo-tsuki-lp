@@ -8,19 +8,18 @@ const rows = [
   [39,40,41,42,43,44,45,46,47,48,49,50],
   [53,54,55,56,57,58,59,60,61,62,63,64]
 ];
-const names = ['基本配列','接続先を選択','低速マウス','記号・矢印','数字・テンキー','F・ジェスチャ','スクロール・管理'];
-const triggers = ['通常入力','H＋J＋K → 離す → 選択','M＋,＋. を押す','右下段Bspcを長押し','Spaceを長押し','Spaceの右隣を長押し','Enterを長押し'];
+const names = ['基本配列','接続先を選択','記号・矢印','数字・テンキー','F・ジェスチャ','スクロール・管理'];
+const triggers = ['通常入力','H＋J＋K → 離す → 選択','右下段Bspcを長押し','Spaceを長押し','Spaceの右隣を長押し','Enterを長押し'];
 const descriptions = [
   'いつもの文字入力。緑のキーを長押しすると、別のレイヤーを呼び出せます。',
   '基本配列で入力を200ms以上休め、H＋J＋Kを50ms以内にそろえて押して、すべて離します。Y / U / I / O / Pで接続先0〜4を選ぶと、そのOSの基本配列へ戻ります。Enter・Esc、または再度H＋J＋Kでキャンセル。他のキーは無効です。',
-  'M＋,＋.を同時に押している間。右ボールの速度は1/5。',
   '右下段のBspcを長押し。矢印はI / J / K / L、編集操作はZ / X / C / Vの位置。',
   'Spaceを長押し。Q〜Pに数字、右手側にテンキー。図の記号はJIS配列を想定しています。',
   'Spaceの右隣を長押し。Q〜PがF1〜F10、A / SがF11 / F12。同時に右ボールのジェスチャも有効。',
   'Enterを長押し。右ボールで縦横スクロール。切断・登録削除・音量操作もここから。接続先の選択は専用のL2へ分離しています。'
 ];
 let os = 'win', group = 0, showPositions = false, filter = 'all', comboScope = 'current', selectedCombo = null;
-const layerId = (g = group, system = os) => g === 0 ? +(system === 'mac') : g < 3 ? g + 1 : (g - 1) * 2 + +(system === 'mac');
+const layerId = (g = group, system = os) => [[0,1],[2,2],[4,5],[6,7],[8,9],[10,11]][g][+(system === 'mac')];
 const aliases = {LEFT_SHIFT:'Shift',RIGHT_SHIFT:'Shift',LSHIFT:'Shift',LCTRL:'Ctrl',RCTRL:'右Ctrl',RIGHT_CONTROL:'右Ctrl',LGUI:'Win',LEFT_GUI:'Win',LEFT_ALT:'Alt',LALT:'Alt',BSPC:'Bspc',ENTER:'Enter',SPACE:'Space',TAB:'Tab',ESC:'Esc',DELETE:'Delete',GRAVE:'Grave',HOME:'Home',END:'End',LEFT:'←',RIGHT:'→',UP:'↑',DOWN:'↓',CAPS:'Caps',PRINTSCREEN:'PrtSc',COMMA:',',PERIOD:'.',DOT:'.',FSLH:'/',SLASH:'/',MINUS:'-',EQUAL:'^',LBKT:'@',RIGHT_BRACKET:'[',BSLH:']',INT1:'\\',INT3:'¥',SEMI:';',SEMICOLON:';',APOS:':',LANGUAGE_1:'かな',LANG2:'英数',C_VOL_DN:'音量−',C_VOL_UP:'音量＋',C_MUTE:'ミュート',C_PLAY_PAUSE:'再生/停止'};
 function keyName(code) {
   if (/^N\d$/.test(code)) return code.slice(1);
@@ -37,9 +36,9 @@ function describe(binding) {
   const [behavior,...args] = binding.split(' ');
   if (behavior === '&none') return {label:'—',sub:'',kind:'inactive'};
   if (behavior === '&kp') return {label:keyName(args[0]),sub:'',kind:''};
-  if (behavior === '&mt') return {label:keyName(args[1]),sub:'長押し '+keyName(args[0]),kind:'mod'};
+  if (behavior === '&mt' || behavior === '&z_mt') return {label:keyName(args[1]),sub:'長押し '+keyName(args[0]),kind:'mod'};
   if (behavior === '&lt') return {label:keyName(args[1]),sub:'長押し L'+args[0],kind:'layer'};
-  if (behavior === '&mo') return {label:'低速',sub:'押している間 L'+args[0],kind:'layer'};
+  if (behavior === '&mo') return {label:'L'+args[0],sub:'押している間',kind:'layer'};
   if (behavior === '&tog') return {label:'キャンセル',sub:'元の配列へ',kind:'layer'};
   if (behavior === '&mkp') return {label:({LCLK:'左クリック',MCLK:'中クリック',RCLK:'右クリック',MB4:'戻る',MB5:'進む'}[args[0]]),sub:'',kind:''};
   if (behavior === '&bt') return {label:args[0] === 'BT_DISC'?'切断 '+args[1]:args[0] === 'BT_PRV'?'前のBT':'次のBT',sub:'',kind:''};
@@ -71,7 +70,7 @@ const comboInfo = {
   bt_select_layer:['接続先選択を開く／閉じる','system'],
   bt_clear:['現在のBT登録を削除','system'],bt_clear_all:['すべてのBT登録を削除','system'],mac_layout:['Mac配列へ切替','system'],win_layout:['Windows配列へ切替','system'],
   left_kakko:['( を入力','symbol'],right_kakko:[') を入力','symbol'],left_namikakko:['{ を入力','symbol'],right_namikakko:['} を入力','symbol'],left_kakukakko:['[ を入力','symbol'],right_kakukako:['] を入力','symbol'],plus:['+ を入力','symbol'],asterisk:['* を入力','symbol'],
-  left_click:['左クリック','mouse'],right_click:['右クリック','mouse'],middle_click:['中クリック','mouse'],undo_click:['戻る（ボタン4）','mouse'],redo_click:['進む（ボタン5）','mouse'],slow_mouse_layer:['押している間、低速マウス','mouse'],kana:['かな入力へ','system'],eisu:['英数入力へ','system'],left_win_win:['Winキー（左手）','system'],right_win_win:['Winキー（右手）','system'],left_mac_ctrl:['右Ctrl（左手）','system'],right_mac_ctrl:['右Ctrl（右手）','system']
+  left_click:['左クリック','mouse'],right_click:['右クリック','mouse'],middle_click:['中クリック','mouse'],undo_click:['戻る（ボタン4）','mouse'],redo_click:['進む（ボタン5）','mouse'],kana:['かな入力へ','system'],eisu:['英数入力へ','system'],left_win_win:['Winキー（左手）','system'],right_win_win:['Winキー（右手）','system'],left_mac_ctrl:['右Ctrl（左手）','system'],right_mac_ctrl:['右Ctrl（右手）','system']
 };
 function renderCombos() {
   const combos = osCombos().filter(c => filter==='all'||comboInfo[c.name][1]===filter);
@@ -81,7 +80,7 @@ function renderCombos() {
     const base = +(os==='mac');
     const keys = c.positions.map(p => `<kbd>${esc(describe(KEYMAP.layers[base].bindings[p]).label)}</kbd>`).join(' ＋ ');
     const enabled = c.layers.filter(layerVisible).map(l=>'L'+l).join('・');
-    const hint = c.name==='bt_select_layer' ? '入力を200ms以上休めて、3キーを50ms以内にそろえて押します。すべて離してからY/U/I/O/Pで選択。Enter・Escで元のOS配列にキャンセルできます。' : c.name.startsWith('bt_clear') ? 'Enterを長押ししてから同時押し。登録が削除されます。' : c.layers.includes(4) && !c.layers.includes(0) ? '右下段のBspcを長押し中'+(c.layers.includes(6)?'、またはSpaceを長押し中':'')+'。' : c.name==='slow_mouse_layer'?'3キーを押している間だけ有効。':'';
+    const hint = c.name==='bt_select_layer' ? '入力を200ms以上休めて、3キーを50ms以内にそろえて押します。すべて離してからY/U/I/O/Pで選択。Enter・Escで元のOS配列にキャンセルできます。' : c.name.startsWith('bt_clear') ? 'Enterを長押ししてから同時押し。登録が削除されます。' : c.layers.includes(4) && !c.layers.includes(0) ? '右下段のBspcを長押し中'+(c.layers.includes(6)?'、またはSpaceを長押し中':'')+'。' : '';
     return `<article class="card ${isCurrentCombo(c)?'combo-current':'combo-other'}" data-combo-card="${c.name}"><div class="combo-title"><h3>${esc(label)}</h3><span class="pill">${isCurrentCombo(c)?'L'+layerId()+'で有効':{system:'入力・設定',mouse:'マウス',symbol:'記号'}[category]}</span></div><p class="combo-keys">${keys}</p><p class="muted">有効：${enabled} ／ 位置 ${c.positions.join(' + ')}</p><div class="board-scroll">${board(base,c.positions,true)}</div>${hint?`<p class="muted">${hint}</p>`:''}</article>`;
   }).join('');
 }
@@ -119,6 +118,7 @@ function render() {
   renderCombos();
   const previousOS = os;
   $('#all-layers').innerHTML = KEYMAP.layers.map((layer,id) => {
+    if (!layerEnabled(id)) return '';
     os = layer.os==='both' ? previousOS : layer.os;
     return `<article class="print-layer"><h3>L${id} · ${esc(layer.name)}${layerEnabled(id)?'':'（未使用・自動切替無効）'}</h3><div class="board-scroll">${board(id)}</div></article>`;
   }).join('');
