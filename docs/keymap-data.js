@@ -929,6 +929,7 @@ const KEYMAP = {
         15
       ],
       "layers": [
+        0,
         1
       ]
     },
@@ -940,6 +941,7 @@ const KEYMAP = {
         14
       ],
       "layers": [
+        0,
         1
       ]
     },

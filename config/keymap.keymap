@@ -50,13 +50,13 @@
         mac_layout {
             bindings = <&to 1>;
             key-positions = <13 14 15>;
-            layers = <1>;
+            layers = <0 1>;
         };
 
         win_layout {
             bindings = <&to 0>;
             key-positions = <13 14>;
-            layers = <1>;
+            layers = <0 1>;
         };
 
         left_kakko {

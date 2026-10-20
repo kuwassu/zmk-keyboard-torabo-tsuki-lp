@@ -100,7 +100,7 @@ const comboKeyNames = c => c.positions.map(p => describe(KEYMAP.layers[+(os==='m
 function comboHint(c) {
   if (c.name==='bt_select_layer') return '入力を200ms以上休めて、3キーを50ms以内にそろえて押し、全部離します。L2では同じコンボで閉じます。';
   if (c.name.startsWith('bt_clear')) return 'H＋J＋KでL2を開き、全部離してから同時押し。'+(c.name==='bt_clear_all'?'全スロット':'現在選択中のスロット')+'の登録を削除します。削除後もL2です。EnterかEscで戻ります。';
-  if (c.name.endsWith('_layout')) return 'L1（Mac基本配列）だけで有効。L0からMacへはL2でスロット1または3を選びます。';
+  if (c.name.endsWith('_layout')) return 'L0・L1の両方で有効。Q＋WでWindows、Q＋W＋EでMacへ。接続先を変えずに配列だけ切り替えます。';
   return '';
 }
 function renderNearby() {

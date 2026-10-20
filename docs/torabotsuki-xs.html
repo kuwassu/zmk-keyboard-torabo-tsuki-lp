@@ -33,7 +33,7 @@
   <div class="section-heading"><span>02 / KEYMAP EXPLORER</span><h2>親指を添えて、配列をひらく。</h2></div>
   <div class="explorer card">
     <div class="controls"><fieldset><legend>表示するOS</legend><button type="button" data-os="win" aria-pressed="true">Windows</button><button type="button" data-os="mac" aria-pressed="false">Mac</button></fieldset><label class="position-toggle"><input id="positions" type="checkbox">位置番号を表示</label><button type="button" id="print">印刷 / PDF</button></div>
-    <p class="muted">この切替は説明図の表示だけを変えます。実機は <kbd>Q</kbd>＋<kbd>W</kbd> でWindows、<kbd>Q</kbd>＋<kbd>W</kbd>＋<kbd>E</kbd> でMacへ切り替えます（L1のみで有効）。L0からMacへは、L2でMac用スロット1または3を選びます。</p>
+    <p class="muted">この切替は説明図の表示だけを変えます。実機は <kbd>Q</kbd>＋<kbd>W</kbd> でWindows、<kbd>Q</kbd>＋<kbd>W</kbd>＋<kbd>E</kbd> でMacへ切り替えます（L0・L1の両方で有効）。接続先を変えずに配列だけ切り替えます。</p>
     <div class="explorer-workspace">
       <aside class="layer-rail"><h3>レイヤー一覧</h3><p class="muted">番号・入り方から選ぶ</p><div id="layer-buttons" role="group" aria-label="表示するレイヤー"></div><p class="muted">L2はOS共通です。L3は欠番です。ボール移動による配列の自動切替はありません。</p></aside>
       <div class="explorer-content">
@@ -91,7 +91,7 @@
 </section>
 <section id="reference">
   <div class="section-heading"><span>06 / REFERENCE</span><h2>迷ったときの確認先。</h2></div>
-  <div class="two"><article class="card"><h3>意図したキーが出ないとき</h3><ul><li>OS配列を確認：L1ではQ＋WでWindows、Q＋W＋EでMac。L0からMacへはL2でスロット1か3を選択。</li><li>Bluetooth管理のL2にいる：EnterかEscでキャンセルできます。</li><li>H＋J＋KでL2が開かない：入力を一呼吸休めて、3キーをそろえて押してください。</li><li>記号のずれ：PC側がJIS配列になっているか確認。</li><li>ボール移動でJ・K・Lがクリックになる：旧ファームウェアではオートマウスが有効です。今回の変更をビルド・書込みして反映してください。</li><li>長押しで文字が出る：先にレイヤーキーを押したままにしてから、対象キーを押す。</li><li>Macのジェスチャ：READMEにあるCaps Lock → Globeの設定を確認。</li></ul></article>
+  <div class="two"><article class="card"><h3>意図したキーが出ないとき</h3><ul><li>OS配列を確認：L0・L1のどちらでもQ＋WでWindows、Q＋W＋EでMacへ。接続先は変わりません。</li><li>Bluetooth管理のL2にいる：EnterかEscでキャンセルできます。</li><li>H＋J＋KでL2が開かない：入力を一呼吸休めて、3キーをそろえて押してください。</li><li>記号のずれ：PC側がJIS配列になっているか確認。</li><li>ボール移動でJ・K・Lがクリックになる：旧ファームウェアではオートマウスが有効です。今回の変更をビルド・書込みして反映してください。</li><li>長押しで文字が出る：先にレイヤーキーを押したままにしてから、対象キーを押す。</li><li>Macのジェスチャ：READMEにあるCaps Lock → Globeの設定を確認。</li></ul></article>
   <article class="card"><h3>この取説の設定元</h3><ul><li><a href="../config/keymap.keymap">キー・コンボ・マクロ</a></li><li><a href="../boards/shields/torabo_tsuki_lp/torabo_tsuki_lp_right.overlay">右ボールのレイヤー処理</a></li><li><a href="../build.yaml">現在のビルド構成</a>：右がcentral、左がperipheral。現在の構成ではダイヤル・4方向スイッチは未使用。</li><li><a href="../README.md">README / Mac側の設定</a></li></ul><p>Studio等で実機の配列を変更した場合、この取説と異なることがあります。基本配列のZは専用のtap-preferred、ほかのMTはbalanced、LTはhold-preferredです。LTのquick-tap-msは200（再タップの判定値）で、長押しの閾値そのものではありません。</p></article></div>
   <details><summary>印刷用：使用中の全11レイヤーの配列をまとめて表示</summary><div id="all-layers"></div></details>
 </section>
