@@ -8,15 +8,23 @@ const rows = [
   [39,40,41,42,43,44,45,46,47,48,49,50],
   [53,54,55,56,57,58,59,60,61,62,63,64]
 ];
-const names = ['基本配列','接続先を選択','記号・矢印','数字・テンキー','F・ジェスチャ','スクロール・管理'];
+const names = ['基本配列','Bluetooth管理','記号・矢印','数字・テンキー','F・ジェスチャ','スクロール・音量'];
 const triggers = ['通常入力','H＋J＋K → 離す → 選択','右下段Bspcを長押し','Spaceを長押し','Spaceの右隣を長押し','Enterを長押し'];
 const descriptions = [
   'いつもの文字入力。緑のキーを長押しすると、別のレイヤーを呼び出せます。',
-  '基本配列で入力を200ms以上休め、H＋J＋Kを50ms以内にそろえて押して、すべて離します。Y / U / I / O / Pで接続先0〜4を選ぶと、そのOSの基本配列へ戻ります。Enter・Esc、または再度H＋J＋Kでキャンセル。他のキーは無効です。',
+  '接続先の選択・切断・登録削除をここに集約。選択は右手のY〜P、切断は左手のA〜Gです。削除コンボは配列図のすぐ下で確認できます。',
   '右下段のBspcを長押し。矢印はI / J / K / L、編集操作はZ / X / C / Vの位置。',
   'Spaceを長押し。Q〜Pに数字、右手側にテンキー。図の記号はJIS配列を想定しています。',
   'Spaceの右隣を長押し。Q〜PがF1〜F10、A / SがF11 / F12。同時に右ボールのジェスチャも有効。',
-  'Enterを長押し。右ボールで縦横スクロール。切断・登録削除・音量操作もここから。接続先の選択は専用のL2へ分離しています。'
+  'Enterを長押し。右ボールで縦横スクロール。M / , / .で音量−・ミュート・音量＋、中央右のTabで再生・一時停止。BT操作はL2です。'
+];
+const flows = [
+  ['いつもの配列','文字入力・クリックのコンボ','長押しキーやH＋J＋Kで別レイヤーへ'],
+  ['入力を200ms休める → H＋J＋Kを50ms以内に押す → 全部離す','Y〜P：接続先0〜4 ／ A〜G：切断0〜4','選択すると自動で戻る。切断・削除後はEnterかEscで戻る'],
+  ['右下段Bspcを押したまま','矢印・記号・コピーなどの編集','Bspcを離す'],
+  ['Spaceを押したまま','上段の数字・右手のテンキー','Spaceを離す'],
+  ['Spaceの右隣を押したまま','F1〜F12・ボールでジェスチャ','押していたキーを離す'],
+  ['Enterを押したまま','ボールでスクロール・音量・再生操作','Enterを離す']
 ];
 let os = 'win', group = 0, showPositions = false, filter = 'all', comboScope = 'current', selectedCombo = null;
 const layerId = (g = group, system = os) => [[0,1],[2,2],[4,5],[6,7],[8,9],[10,11]][g][+(system === 'mac')];
@@ -61,13 +69,13 @@ function board(id, selected = [], mini = false) {
     const active = selected.includes(pos);
     const cls = ['key',kind,inherited?'inherited':'',active?'selected':''].join(' ');
     const baseLabel = describe(KEYMAP.layers[base].bindings[pos]).label;
-    keys += `<g class="${cls}" transform="translate(${x},${y})"><title>位置${pos}（${esc(baseLabel)}）: ${esc(raw)}${inherited?' → '+esc(binding):''}</title><rect width="64" height="72" rx="9"/>${showPositions&&!mini?`<text class="key-pos" x="5" y="13">${pos}</text>`:''}<text class="key-label" x="32" y="${sub?32:41}"${label.length>8?' textLength="57" lengthAdjust="spacingAndGlyphs"':''}>${esc(label)}</text>${sub?`<text class="key-sub" x="32" y="55">${esc(sub)}</text>`:''}</g>`;
+    keys += `<g class="${cls}" transform="translate(${x},${y})"><title>位置${pos}（${esc(baseLabel)}）: ${esc(raw)}${inherited?' → '+esc(binding):''}</title><rect width="64" height="72" rx="9"/>${showPositions&&!mini?`<text class="key-pos" x="5" y="13">${pos}</text>`:''}${id>1&&!mini?`<text class="key-base" x="59" y="13">${esc(baseLabel)}</text>`:''}<text class="key-label" x="32" y="${sub?32:41}"${label.length>8?' textLength="57" lengthAdjust="spacingAndGlyphs"':''}>${esc(label)}</text>${sub?`<text class="key-sub" x="32" y="55">${esc(sub)}</text>`:''}</g>`;
   }));
   const selectedLabel = selected.map(p => describe(KEYMAP.layers[base].bindings[p]).label).join(' と ');
   return `<svg class="keyboard" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 402" role="img" aria-label="${esc(mini?selectedLabel+' の同時押し位置図':(os==='win'?'Windows':'Mac')+' L'+id+' '+KEYMAP.layers[id].name+' 配列図')}"><text class="hand" x="12" y="16">LEFT</text><text class="hand" x="840" y="16">RIGHT</text>${keys}</svg>`;
 }
 const comboInfo = {
-  bt_select_layer:['接続先選択を開く／閉じる','system'],
+  bt_select_layer:['Bluetooth管理を開く／閉じる','system'],
   bt_clear:['現在のBT登録を削除','system'],bt_clear_all:['すべてのBT登録を削除','system'],mac_layout:['Mac配列へ切替','system'],win_layout:['Windows配列へ切替','system'],
   left_kakko:['( を入力','symbol'],right_kakko:[') を入力','symbol'],left_namikakko:['{ を入力','symbol'],right_namikakko:['} を入力','symbol'],left_kakukakko:['[ を入力','symbol'],right_kakukako:['] を入力','symbol'],plus:['+ を入力','symbol'],asterisk:['* を入力','symbol'],
   left_click:['左クリック','mouse'],right_click:['右クリック','mouse'],middle_click:['中クリック','mouse'],undo_click:['戻る（ボタン4）','mouse'],redo_click:['進む（ボタン5）','mouse'],kana:['かな入力へ','system'],eisu:['英数入力へ','system'],left_win_win:['Winキー（左手）','system'],right_win_win:['Winキー（右手）','system'],left_mac_ctrl:['右Ctrl（左手）','system'],right_mac_ctrl:['右Ctrl（右手）','system']
@@ -80,7 +88,7 @@ function renderCombos() {
     const base = +(os==='mac');
     const keys = c.positions.map(p => `<kbd>${esc(describe(KEYMAP.layers[base].bindings[p]).label)}</kbd>`).join(' ＋ ');
     const enabled = c.layers.filter(layerVisible).map(l=>'L'+l).join('・');
-    const hint = c.name==='bt_select_layer' ? '入力を200ms以上休めて、3キーを50ms以内にそろえて押します。すべて離してからY/U/I/O/Pで選択。Enter・Escで元のOS配列にキャンセルできます。' : c.name.startsWith('bt_clear') ? 'Enterを長押ししてから同時押し。登録が削除されます。' : c.layers.includes(4) && !c.layers.includes(0) ? '右下段のBspcを長押し中'+(c.layers.includes(6)?'、またはSpaceを長押し中':'')+'。' : '';
+    const hint = comboHint(c) || (c.layers.includes(4) && !c.layers.includes(0) ? '右下段のBspcを長押し中'+(c.layers.includes(6)?'、またはSpaceを長押し中':'')+'。' : '');
     return `<article class="card ${isCurrentCombo(c)?'combo-current':'combo-other'}" data-combo-card="${c.name}"><div class="combo-title"><h3>${esc(label)}</h3><span class="pill">${isCurrentCombo(c)?'L'+layerId()+'で有効':{system:'入力・設定',mouse:'マウス',symbol:'記号'}[category]}</span></div><p class="combo-keys">${keys}</p><p class="muted">有効：${enabled} ／ 位置 ${c.positions.join(' + ')}</p><div class="board-scroll">${board(base,c.positions,true)}</div>${hint?`<p class="muted">${hint}</p>`:''}</article>`;
   }).join('');
 }
@@ -89,6 +97,12 @@ const layerVisible = id => layerEnabled(id) && (KEYMAP.layers[id].os==='both' ||
 const isCurrentCombo = combo => layerEnabled(layerId()) && combo.layers.includes(layerId());
 const osCombos = () => KEYMAP.combos.filter(c => c.layers.some(layerVisible));
 const comboKeyNames = c => c.positions.map(p => describe(KEYMAP.layers[+(os==='mac')].bindings[p]).label);
+function comboHint(c) {
+  if (c.name==='bt_select_layer') return '入力を200ms以上休めて、3キーを50ms以内にそろえて押し、全部離します。L2では同じコンボで閉じます。';
+  if (c.name.startsWith('bt_clear')) return 'H＋J＋KでL2を開き、全部離してから同時押し。'+(c.name==='bt_clear_all'?'全スロット':'現在選択中のスロット')+'の登録を削除します。削除後もL2です。EnterかEscで戻ります。';
+  if (c.name.endsWith('_layout')) return 'L1（Mac基本配列）だけで有効。L0からMacへはL2でスロット1または3を選びます。';
+  return '';
+}
 function renderNearby() {
   const available = osCombos(), active = available.filter(isCurrentCombo);
   const visible = comboScope==='current' ? active : available;
@@ -105,7 +119,8 @@ function previewCombo(name) {
     return;
   }
   const enabled = combo.layers.filter(layerVisible).map(l=>'L'+l).join('・');
-  $('#combo-preview').textContent = `${comboKeyNames(combo).join(' ＋ ')} → ${comboInfo[combo.name][0]} ／ ${isCurrentCombo(combo)?'このレイヤーで有効':'現在は無効。有効：'+enabled}。もう一度選ぶと強調を解除します。`;
+  const target = combo.layers.find(layerVisible);
+  $('#combo-preview').innerHTML = `${esc(comboKeyNames(combo).join(' ＋ '))} → <strong>${esc(comboInfo[combo.name][0])}</strong> ／ ${isCurrentCombo(combo)?'このレイヤーで有効':'現在は無効。有効：'+enabled}。 ${esc(comboHint(combo))}${!isCurrentCombo(combo)?` <button type="button" data-jump="${target}">L${target}の配列を見る</button>`:''}`;
 }
 function render() {
   document.querySelectorAll('[data-os]').forEach(b => b.setAttribute('aria-pressed',String(b.dataset.os===os)));
@@ -113,7 +128,7 @@ function render() {
   $('#layer-buttons').innerHTML = names.map((n,g)=>`<button type="button" data-group="${g}" aria-pressed="${group===g}"${layerEnabled(layerId(g))?'':' disabled'}><span><b>L${layerId(g)}</b> ${n}</span><small>${triggers[g]}</small></button>`).join('');
   if (focusedGroup) $(`[data-group="${focusedGroup}"]`).focus({preventScroll:true});
   const id = layerId();
-  $('#layer-description').innerHTML = `<div class="layer-intro"><h3>${names[group]}</h3><span class="pill">L${id} · ${os==='win'?'Windows':'Mac'}</span></div><p>${descriptions[group]}</p>`;
+  $('#layer-description').innerHTML = `<div class="layer-intro"><h3>${names[group]}</h3><span class="pill">L${id} · ${id===2?'OS共通':os==='win'?'Windows':'Mac'}</span></div><p>${descriptions[group]}</p><ol class="layer-flow">${flows[group].map((text,i)=>`<li><b>${['入る','使う','戻る'][i]}</b><span>${esc(text)}</span></li>`).join('')}</ol>`;
   renderNearby();
   renderCombos();
   const previousOS = os;
@@ -128,6 +143,7 @@ document.querySelectorAll('[data-os]').forEach(b => b.addEventListener('click',(
 $('#layer-buttons').addEventListener('click',e=>{const b=e.target.closest('[data-group]');if(b&&!b.disabled){group=+b.dataset.group;selectedCombo=null;render();}});
 document.querySelectorAll('[data-scope]').forEach(b => b.addEventListener('click',()=>{comboScope=b.dataset.scope;selectedCombo=null;renderNearby();}));
 $('#nearby-list').addEventListener('click',e=>{const b=e.target.closest('[data-combo]');if(b){const name=b.dataset.combo;selectedCombo=selectedCombo===name?null:name;renderNearby();$(`[data-combo="${name}"]`).focus({preventScroll:true});}});
+$('#combo-preview').addEventListener('click',e=>{const b=e.target.closest('[data-jump]');if(b){group=names.findIndex((_,g)=>layerId(g)===+b.dataset.jump);render();$(`[data-group="${group}"]`).focus({preventScroll:true});}});
 $('#positions').addEventListener('change',e=>{showPositions=e.target.checked;render();});
 $('#combo-filters').addEventListener('click',e=>{const b=e.target.closest('[data-filter]');if(!b)return;filter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));renderCombos();});
 $('#print').addEventListener('click',()=>window.print());

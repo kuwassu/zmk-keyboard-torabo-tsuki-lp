@@ -175,11 +175,11 @@ const KEYMAP = {
         "&win_bt4",
         "&none",
         "&none",
-        "&none",
-        "&none",
-        "&none",
-        "&none",
-        "&none",
+        "&bt BT_DISC 0",
+        "&bt BT_DISC 1",
+        "&bt BT_DISC 2",
+        "&bt BT_DISC 3",
+        "&bt BT_DISC 4",
         "&none",
         "&none",
         "&none",
@@ -732,7 +732,7 @@ const KEYMAP = {
       "os": "mac"
     },
     {
-      "name": "L10_win_scroll_BT",
+      "name": "L10_win_scroll_media",
       "bindings": [
         "&none",
         "&none",
@@ -759,11 +759,11 @@ const KEYMAP = {
         "&none",
         "&none",
         "&none",
-        "&bt BT_DISC 0",
-        "&bt BT_DISC 1",
-        "&bt BT_DISC 2",
-        "&bt BT_DISC 3",
-        "&bt BT_DISC 4",
+        "&trans",
+        "&trans",
+        "&trans",
+        "&trans",
+        "&trans",
         "&none",
         "&none",
         "&trans",
@@ -805,7 +805,7 @@ const KEYMAP = {
       "os": "win"
     },
     {
-      "name": "L11_mac_scroll_BT",
+      "name": "L11_mac_scroll_media",
       "bindings": [
         "&none",
         "&none",
@@ -832,11 +832,11 @@ const KEYMAP = {
         "&none",
         "&none",
         "&none",
-        "&bt BT_DISC 0",
-        "&bt BT_DISC 1",
-        "&bt BT_DISC 2",
-        "&bt BT_DISC 3",
-        "&bt BT_DISC 4",
+        "&trans",
+        "&trans",
+        "&trans",
+        "&trans",
+        "&trans",
         "&none",
         "&none",
         "&trans",
@@ -904,8 +904,7 @@ const KEYMAP = {
         55
       ],
       "layers": [
-        10,
-        11
+        2
       ]
     },
     {
@@ -918,8 +917,7 @@ const KEYMAP = {
         16
       ],
       "layers": [
-        10,
-        11
+        2
       ]
     },
     {
@@ -931,10 +929,7 @@ const KEYMAP = {
         15
       ],
       "layers": [
-        0,
-        1,
-        10,
-        11
+        1
       ]
     },
     {
@@ -945,10 +940,7 @@ const KEYMAP = {
         14
       ],
       "layers": [
-        0,
-        1,
-        10,
-        11
+        1
       ]
     },
     {

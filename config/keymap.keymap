@@ -38,25 +38,25 @@
         bt_clear {
             bindings = <&bt BT_CLR>;
             key-positions = <53 54 55>;
-            layers = <10 11>;
+            layers = <2>;
         };
 
         bt_clear_all {
             bindings = <&bt BT_CLR_ALL>;
             key-positions = <13 14 15 16>;
-            layers = <10 11>;
+            layers = <2>;
         };
 
         mac_layout {
             bindings = <&to 1>;
             key-positions = <13 14 15>;
-            layers = <0 1 10 11>;
+            layers = <1>;
         };
 
         win_layout {
             bindings = <&to 0>;
             key-positions = <13 14>;
-            layers = <0 1 10 11>;
+            layers = <1>;
         };
 
         left_kakko {
@@ -312,13 +312,13 @@
             >;
         };
 
-        // Latched selection: H+J+K opens it, a slot macro selects and returns.
+        // Latched Bluetooth management: selection returns, disconnect/clear stay here.
         // No transparent bindings: unrelated keys cannot type or click here.
         L2_bt_select {
             bindings = <
 &none  &none  &none  &none  &none  &none                  &none     &none     &none     &none     &none     &none
 &none  &none  &none  &none  &none  &none                  &win_bt0  &mac_bt1  &win_bt2  &mac_bt3  &win_bt4  &none
-&none  &none  &none  &none  &none  &none  &none   &none   &none    &none     &none     &none     &tog 2    &none
+&none  &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &bt BT_DISC 4  &none &none &none &none &none &none &tog 2 &none
 &none  &none  &none  &none  &none  &none  &tog 2  &none   &none    &none     &none     &none     &none     &none
 &none  &none  &none  &none  &none  &none  &none   &none   &none    &none     &none     &none     &none     &none
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
@@ -435,11 +435,11 @@
             >;
         };
 
-        L10_win_scroll_BT {
+        L10_win_scroll_media {
             bindings = <
 &none  &none          &none          &none          &none          &none                                    &none     &none         &none       &none         &none     &none
 &none  &none          &none          &none          &none          &none                                    &none     &none         &none       &none         &none     &none
-&none  &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &bt BT_DISC 4  &none   &none             &trans    &trans        &trans      &kp LCTRL     &trans    &none
+&none  &trans        &trans        &trans        &trans        &trans        &none   &none             &trans    &trans        &trans      &kp LCTRL     &trans    &none
 &none  &trans         &trans         &trans         &trans         &trans         &trans  &trans            &trans    &kp C_VOL_DN  &kp C_MUTE  &kp C_VOL_UP  &trans    &none
 &none  &trans         &trans         &trans         &trans         &trans         &trans  &kp C_PLAY_PAUSE  &trans    &none         &none       &trans        &trans    &none
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
@@ -450,11 +450,11 @@
             >;
         };
 
-        L11_mac_scroll_BT {
+        L11_mac_scroll_media {
             bindings = <
 &none  &none          &none          &none          &none          &none                                    &none     &none         &none       &none         &none     &none
 &none  &none          &none          &none          &none          &none                                    &none     &none         &none       &none         &none     &none
-&none  &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &bt BT_DISC 4  &none   &none             &trans    &trans        &trans      &kp RCTRL     &trans    &none
+&none  &trans        &trans        &trans        &trans        &trans        &none   &none             &trans    &trans        &trans      &kp RCTRL     &trans    &none
 &none  &trans         &trans         &trans         &trans         &trans         &trans  &trans            &trans    &kp C_VOL_DN  &kp C_MUTE  &kp C_VOL_UP  &trans    &none
 &none  &trans         &trans         &trans         &trans         &trans         &trans  &kp C_PLAY_PAUSE  &trans    &none         &none       &trans        &trans    &none
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
