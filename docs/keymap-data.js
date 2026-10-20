@@ -1110,8 +1110,8 @@ const KEYMAP = {
       "name": "kana",
       "binding": "&kp LANGUAGE_1",
       "positions": [
-        27,
-        28
+        33,
+        35
       ],
       "layers": [
         0,
@@ -1125,7 +1125,7 @@ const KEYMAP = {
       "binding": "&kp LANG2",
       "positions": [
         26,
-        27
+        28
       ],
       "layers": [
         0,

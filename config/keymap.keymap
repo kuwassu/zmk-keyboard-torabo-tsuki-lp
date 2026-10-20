@@ -151,13 +151,13 @@
 
         kana {
             bindings = <&kp LANGUAGE_1>;
-            key-positions = <27 28>;
+            key-positions = <33 35>;
             layers = <0 1 6 7>;
         };
 
         eisu {
             bindings = <&kp LANG2>;
-            key-positions = <26 27>;
+            key-positions = <26 28>;
             layers = <0 1 6 7>;
         };
 
