@@ -1,0 +1,9 @@
+description: Select a scroll axis until the scroll layer changes
+compatible: "torabo,behavior-scroll-mode"
+include: one_param.yaml
+
+properties:
+  scroll-layers:
+    type: array
+    required: true
+    description: Layer changes that reset the mode to free scrolling

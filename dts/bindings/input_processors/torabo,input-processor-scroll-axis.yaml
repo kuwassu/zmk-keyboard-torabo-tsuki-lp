@@ -1,0 +1,3 @@
+description: Suppress the unselected scroll axis without dropping event synchronization
+compatible: "torabo,input-processor-scroll-axis"
+include: ip_zero_param.yaml

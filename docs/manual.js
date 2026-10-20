@@ -16,7 +16,7 @@ const descriptions = [
   '右下段のBspcを長押し。矢印はI / J / K / L、編集操作はZ / X / C / Vの位置。',
   'Spaceを長押し。Q〜Pに数字、右手側にテンキー。図の記号はJIS配列を想定しています。',
   'Spaceの右隣を長押し。Q〜PがF1〜F10、A / SがF11 / F12。同時に右ボールのジェスチャも有効。',
-  'Enterを長押し。右ボールで縦横スクロール。M / , / .で音量−・ミュート・音量＋、中央右のTabで再生・一時停止。BT操作はL2です。'
+  'Enterを長押し中、Jを1回押すと縦のみ、Kで横のみ、Hで縦横自由に切り替えます。H・J・Kは離しても選択を保持。Enterを離すと解除され、次回は自由スクロールから始まります。'
 ];
 const flows = [
   ['いつもの配列','文字入力・クリックのコンボ','長押しキーやH＋J＋Kで別レイヤーへ'],
@@ -24,7 +24,7 @@ const flows = [
   ['右下段Bspcを押したまま','矢印・記号・コピーなどの編集','Bspcを離す'],
   ['Spaceを押したまま','上段の数字・右手のテンキー','Spaceを離す'],
   ['Spaceの右隣を押したまま','F1〜F12・ボールでジェスチャ','押していたキーを離す'],
-  ['Enterを押したまま','ボールでスクロール・音量・再生操作','Enterを離す']
+  ['Enterを押したまま','J：↕ 縦のみ ／ K：↔ 横のみ ／ H：自由','Enterを離す。次回は自由スクロール']
 ];
 let os = 'win', group = 0, showPositions = false, filter = 'all', comboScope = 'current', selectedCombo = null;
 const layerId = (g = group, system = os) => [[0,1],[2,2],[4,5],[6,7],[8,9],[10,11]][g][+(system === 'mac')];
@@ -42,6 +42,7 @@ function keyName(code) {
 }
 function describe(binding) {
   const [behavior,...args] = binding.split(' ');
+  if (behavior === '&scroll_mode') return {label:['自由 ↕↔','縦のみ ↕','横のみ ↔'][+args[0]],sub:'1回押して選択',kind:'layer'};
   if (behavior === '&none') return {label:'—',sub:'',kind:'inactive'};
   if (behavior === '&kp') return {label:keyName(args[0]),sub:'',kind:''};
   if (behavior === '&mt' || behavior === '&z_mt') return {label:keyName(args[1]),sub:'長押し '+keyName(args[0]),kind:'mod'};

@@ -5,6 +5,13 @@
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 
+/ {
+    scroll_axis_filter: scroll_axis_filter {
+        compatible = "torabo,input-processor-scroll-axis";
+        #input-processor-cells = <0>;
+    };
+};
+
 &pointing_listener {
     // Keep typing on the base layer while moving the ball; use click combos.
     input-processors =
@@ -31,7 +38,8 @@
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
             <&zip_xy_to_scroll_mapper>,
-            <&zip_scroll_scaler 1 2>;
+            <&zip_scroll_scaler 1 2>,
+            <&scroll_axis_filter>;
     };
 
     mac-scroller {
@@ -39,7 +47,8 @@
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
             <&zip_xy_to_scroll_mapper>,
-            <&zip_scroll_scaler 1 12>;
+            <&zip_scroll_scaler 1 12>,
+            <&scroll_axis_filter>;
     };
 };
 
