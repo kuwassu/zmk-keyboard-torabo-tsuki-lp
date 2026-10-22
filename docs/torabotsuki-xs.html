@@ -56,7 +56,7 @@
       <tr><td>左下段のSpace</td><td>数字・テンキー（L6 / L7）</td></tr>
       <tr><td>Spaceの右隣</td><td>Fキー・ジェスチャ（L8 / L9）<br>短押しはWin：Grave、Mac：Ctrl</td></tr>
       <tr><td>Lの右隣のEnter</td><td>スクロール・音量（L10 / L11）<br>J：縦のみ ／ K：横のみ ／ H：自由</td></tr>
-      <tr><td>左親指左側（旧Bspc）</td><td>短押し：次の1キーだけShift（Shift¹）<br>長押し：押している間Shift</td></tr>
+      <tr><td>左親指左側（旧Bspc）</td><td>短押し1回：次の1キーだけShift（Shift¹）<br>素早く2回：Caps Lockのオン／オフ（判定200ms）<br>長押し：押している間Shift</td></tr>
       <tr><td>Z・/</td><td>文字入力専用（Shift兼用は廃止）</td></tr>
       <tr><td>中央右のTab</td><td>Win：右Ctrl、Mac：左Cmd</td></tr>
     </tbody></table></div></article>
@@ -64,7 +64,7 @@
   </div>
 </section>
 <section id="combos">
-  <p class="notice"><strong>Shiftは左親指へ：</strong>左親指左側（旧Bspc）を短く押して離すと、次の1キーだけShift入力になります（図のShift¹）。1500ms以内に次のキーを押してください。200ms以上押すか、押したまま別のキーを押すと通常のShiftになり、離すまで有効です。Zと右小指の/は文字入力専用。記号レイヤーのZ位置はUndo専用、/位置は基本配列の/を引き継ぎます。Backspaceは右下段に残しています。</p>
+  <p class="notice"><strong>Shiftは左親指へ：</strong>左親指左側（旧Bspc）の短押し1回で、次の1キーだけShift入力になります（図のShift¹）。短押しを素早く2回行うとCaps Lockのオン／オフを切り替えます（連打の判定200ms）。単押しの確定は最大200ms待ちますが、その前に別のキーを押すと直ちに確定し、そのキーにShiftが付きます。Sticky Shiftの有効時間は確定後1500msです。200ms以上押すか、押したまま別のキーを押すと通常のShiftになり、離すまで有効です。MacでCaps LockをGlobeに割り当てている場合、2回押しもGlobeになります。Caps Lockとして使う場合はOS側の割り当てもCaps Lockにしてください。Zと右小指の/は文字入力専用。記号レイヤーのZ位置はUndo専用、/位置は基本配列の/を引き継ぎます。Backspaceは右下段に残しています。</p>
   <div class="section-heading"><span>03 / TOGETHER</span><h2>同時に押す場所が、ひと目で。</h2></div>
   <div class="two"><article class="card"><span class="pill">左手 · 英数</span><h3><kbd>S</kbd> ＋ <kbd>F</kbd></h3><p>薬指と人差し指を同時に。間のDは押しません。</p></article><article class="card"><span class="pill">右手 · かな</span><h3><kbd>J</kbd> ＋ <kbd>L</kbd></h3><p>人差し指と薬指を同時に。間のKは押しません。基本配列でKも押すと中クリックです。</p></article></div>
   <p>色のついたキーを一緒に押します。図は<strong>基本配列の位置名</strong>で表示します。上のOS・レイヤー選択と連動して、現在のレイヤーで有効なコンボを強調します。他のコンボも一覧に残しています。</p>
@@ -93,7 +93,7 @@
 <section id="reference">
   <div class="section-heading"><span>06 / REFERENCE</span><h2>迷ったときの確認先。</h2></div>
   <div class="two"><article class="card"><h3>意図したキーが出ないとき</h3><ul><li>OS配列を確認：L0・L1のどちらでもQ＋WでWindows、Q＋W＋EでMacへ。接続先は変わりません。</li><li>Bluetooth管理のL2にいる：EnterかEscでキャンセルできます。</li><li>H＋J＋KでL2が開かない：入力を一呼吸休めて、3キーをそろえて押してください。</li><li>記号のずれ：PC側がJIS配列になっているか確認。</li><li>ボール移動でJ・K・Lがクリックになる：旧ファームウェアではオートマウスが有効です。今回の変更をビルド・書込みして反映してください。</li><li>長押しで文字が出る：先にレイヤーキーを押したままにしてから、対象キーを押す。</li><li>Macのジェスチャ：READMEにあるCaps Lock → Globeの設定を確認。</li></ul></article>
-  <article class="card"><h3>この取説の設定元</h3><ul><li><a href="../config/keymap.keymap">キー・コンボ・マクロ</a></li><li><a href="../boards/shields/torabo_tsuki_lp/torabo_tsuki_lp_right.overlay">右ボールのレイヤー処理</a></li><li><a href="../build.yaml">現在のビルド構成</a>：右がcentral、左がperipheral。現在の構成ではダイヤル・4方向スイッチは未使用。</li><li><a href="../README.md">README / Mac側の設定</a></li></ul><p>Studio等で実機の配列を変更した場合、この取説と異なることがあります。親指Shiftは専用のhold-preferred（200ms）とSticky Shift（1500ms・quick-release）の組み合わせです。ほかのMTはbalanced、LTはhold-preferredです。LTのquick-tap-msは200（再タップの判定値）で、長押しの閾値そのものではありません。</p></article></div>
+  <article class="card"><h3>この取説の設定元</h3><ul><li><a href="../config/keymap.keymap">キー・コンボ・マクロ</a></li><li><a href="../boards/shields/torabo_tsuki_lp/torabo_tsuki_lp_right.overlay">右ボールのレイヤー処理</a></li><li><a href="../build.yaml">現在のビルド構成</a>：右がcentral、左がperipheral。現在の構成ではダイヤル・4方向スイッチは未使用。</li><li><a href="../README.md">README / Mac側の設定</a></li></ul><p>Studio等で実機の配列を変更した場合、この取説と異なることがあります。親指Shiftは専用のhold-preferred（200ms）の短押し側にTap Dance（200ms）を組み合わせ、単押しをSticky Shift（1500ms・quick-release）、2回押しをCaps Lockにしています。長押し側は通常のShiftです。ほかのMTはbalanced、LTはhold-preferredです。LTのquick-tap-msは200（再タップの判定値）で、長押しの閾値そのものではありません。</p></article></div>
   <details><summary>印刷用：使用中の全11レイヤーの配列をまとめて表示</summary><div id="all-layers"></div></details>
 </section>
 </main>

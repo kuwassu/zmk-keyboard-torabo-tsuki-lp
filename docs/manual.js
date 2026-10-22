@@ -45,7 +45,7 @@ function describe(binding) {
   if (behavior === '&scroll_mode') return {label:['自由 ↕↔','縦のみ ↕','横のみ ↔'][+args[0]],sub:'1回押して選択',kind:'layer'};
   if (behavior === '&none') return {label:'—',sub:'',kind:'inactive'};
   if (behavior === '&kp') return {label:keyName(args[0]),sub:'',kind:''};
-  if (behavior === '&thumb_shift') return {label:'Shift¹',sub:'長押し Shift',kind:'mod'};
+  if (behavior === '&thumb_shift') return {label:'Shift¹',sub:'2回 Caps',kind:'mod'};
   if (behavior === '&mt') return {label:keyName(args[1]),sub:'長押し '+keyName(args[0]),kind:'mod'};
   if (behavior === '&lt') return {label:keyName(args[1]),sub:'長押し L'+args[0],kind:'layer'};
   if (behavior === '&mo') return {label:'L'+args[0],sub:'押している間',kind:'layer'};

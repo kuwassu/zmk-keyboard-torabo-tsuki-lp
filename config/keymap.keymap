@@ -29,12 +29,21 @@
             ignore-modifiers;
         };
 
+        thumb_shift_tap: thumb_shift_tap {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&thumb_sk LEFT_SHIFT>, <&kp CAPS>;
+        };
+
         thumb_shift: thumb_shift {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&thumb_sk>;
+            // Keep hold-tap outside tap-dance so holding Shift needs only 200ms.
+            // The tap-dance takes no parameters; the second keymap argument is ignored.
+            bindings = <&kp>, <&thumb_shift_tap>;
             display-name = "Thumb Shift";
         };
     };
@@ -303,7 +312,7 @@
 &none  &kp Q             &kp W     &kp E     &kp R                &kp T                                    &kp Y       &kp U  &kp I      &kp O     &kp P                 &none
 &none  &kp A             &kp S     &kp D     &kp F                &kp G        &none        &none          &kp H       &kp J  &kp K      &kp L     &lt 10 ENTER          &none
 &none  &kp Z  &kp X     &kp C     &kp V                &kp B        &kp ESC      &kp DELETE     &kp N       &kp M  &kp COMMA  &kp DOT   &kp FSLH  &none
-&none  &kp LCTRL         &kp LGUI  &kp LALT  &thumb_shift LEFT_SHIFT LEFT_SHIFT  &lt 6 SPACE  &lt 8 GRAVE  &mt RCTRL TAB  &lt 4 BSPC  &none  &none      &kp HOME  &kp END               &none
+&none  &kp LCTRL         &kp LGUI  &kp LALT  &thumb_shift LEFT_SHIFT 0  &lt 6 SPACE  &lt 8 GRAVE  &mt RCTRL TAB  &lt 4 BSPC  &none  &none      &kp HOME  &kp END               &none
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
 &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
 #elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
@@ -318,7 +327,7 @@
 &none  &kp Q             &kp W     &kp E              &kp R                &kp T                                       &kp Y       &kp U  &kp I      &kp O         &kp P                 &none
 &none  &kp A             &kp S     &kp D              &kp F                &kp G        &none        &none             &kp H       &kp J  &kp K      &kp L         &lt 11 ENTER          &none
 &none  &kp Z  &kp X     &kp C              &kp V                &kp B        &kp ESC      &kp LG(BSPC)      &kp N       &kp M  &kp COMMA  &kp DOT       &kp FSLH  &none
-&none  &kp LGUI          &kp LALT  &kp RIGHT_CONTROL  &thumb_shift LEFT_SHIFT LEFT_SHIFT  &lt 7 SPACE  &lt 9 LCTRL  &mt LEFT_GUI TAB  &lt 5 BSPC  &none  &none      &kp LG(LEFT)  &kp LG(RIGHT)         &none
+&none  &kp LGUI          &kp LALT  &kp RIGHT_CONTROL  &thumb_shift LEFT_SHIFT 0  &lt 7 SPACE  &lt 9 LCTRL  &mt LEFT_GUI TAB  &lt 5 BSPC  &none  &none      &kp LG(LEFT)  &kp LG(RIGHT)         &none
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
 &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
 #elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
