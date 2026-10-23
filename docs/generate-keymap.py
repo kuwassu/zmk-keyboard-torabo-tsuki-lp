@@ -28,7 +28,7 @@ for name, body in re.findall(r"(\w+)\s*\{([^{}]*)\};", combos_source, re.S):
         if prop in props:
             combo[prop] = int(props[prop])
     combos.append(combo)
-assert len(layers) == 12 and len(combos) == 24
+assert len(layers) == 12 and len(combos) == 26
 data = {"layers": layers, "combos": combos}
 output = "// Generated from config/keymap.keymap by generate-keymap.py.\nconst KEYMAP = "
 output += json.dumps(data, ensure_ascii=False, indent=2) + ";\n"

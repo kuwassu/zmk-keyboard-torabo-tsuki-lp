@@ -15,7 +15,7 @@ const descriptions = [
   '接続先の選択・切断・登録削除をここに集約。選択は右手のY〜P、切断は左手のA〜Gです。削除コンボは配列図のすぐ下で確認できます。',
   '右下段のBspcを長押し。矢印はI / J / K / L、編集操作はZ / X / C / Vの位置。',
   'Spaceを長押し。Q〜Pに数字、右手側にテンキー。右ボールはジェスチャーになり、通常のポインター移動は止まります。図の記号はJIS配列を想定しています。',
-  'Spaceの右隣を長押し。Q〜PがF1〜F10、A / SがF11 / F12。同時に右ボールのジェスチャも有効。',
+  'Spaceの右隣を長押し。Q〜PがF1〜F10、A / SがF11 / F12。同時に右ボールのジェスチャも有効。閉じる操作はA＋S＋Dの同時押し（Win：Alt＋F4、Mac：Cmd＋Q）。旧H位置は無効です。',
   'Enterを長押し中、Jを1回押すと縦のみ、Kで横のみ、Hで縦横自由に切り替えます。H・J・Kは離しても選択を保持。Enterを離すと解除され、次回は自由スクロールから始まります。'
 ];
 const flows = [
@@ -77,6 +77,7 @@ function board(id, selected = [], mini = false) {
   return `<svg class="keyboard" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 402" role="img" aria-label="${esc(mini?selectedLabel+' の同時押し位置図':(os==='win'?'Windows':'Mac')+' L'+id+' '+KEYMAP.layers[id].name+' 配列図')}"><text class="hand" x="12" y="16">LEFT</text><text class="hand" x="840" y="16">RIGHT</text>${keys}</svg>`;
 }
 const comboInfo = {
+  win_close:['ウィンドウを閉じる（Alt＋F4）','system'],mac_close:['アプリを終了（Cmd＋Q）','system'],
   bt_select_layer:['Bluetooth管理を開く／閉じる','system'],
   bt_clear:['現在のBT登録を削除','system'],bt_clear_all:['すべてのBT登録を削除','system'],mac_layout:['Mac配列へ切替','system'],win_layout:['Windows配列へ切替','system'],
   left_kakko:['( を入力','symbol'],right_kakko:[') を入力','symbol'],left_namikakko:['{ を入力','symbol'],right_namikakko:['} を入力','symbol'],left_kakukakko:['[ を入力','symbol'],right_kakukako:['] を入力','symbol'],plus:['+ を入力','symbol'],asterisk:['* を入力','symbol'],
@@ -100,6 +101,7 @@ const isCurrentCombo = combo => layerEnabled(layerId()) && combo.layers.includes
 const osCombos = () => KEYMAP.combos.filter(c => c.layers.some(layerVisible));
 const comboKeyNames = c => c.positions.map(p => describe(KEYMAP.layers[+(os==='mac')].bindings[p]).label);
 function comboHint(c) {
+  if (c.name.endsWith('_close')) return 'Fレイヤーで入力を150ms以上休め、A＋S＋Dを50ms以内にそろえて押します。旧H位置は無効です。';
   if (c.name==='eisu') return '左手の薬指＋人差し指（S＋F）で英数へ。間のDは押しません。';
   if (c.name==='kana') return '右手の人差し指＋薬指（J＋L）でかなへ。間のKは押しません。基本配列ではJ＋K＋Lが中クリックです。';
   if (c.name==='bt_select_layer') return '入力を200ms以上休めて、3キーを50ms以内にそろえて押し、全部離します。L2では同じコンボで閉じます。';

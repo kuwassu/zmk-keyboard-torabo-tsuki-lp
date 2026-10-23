@@ -620,7 +620,7 @@ const KEYMAP = {
         "&trans",
         "&none",
         "&none",
-        "&kp LA(F4)",
+        "&none",
         "&trans",
         "&trans",
         "&kp CAPS",
@@ -693,7 +693,7 @@ const KEYMAP = {
         "&trans",
         "&none",
         "&none",
-        "&kp LG(Q)",
+        "&none",
         "&trans",
         "&trans",
         "&kp CAPS",
@@ -879,6 +879,34 @@ const KEYMAP = {
     }
   ],
   "combos": [
+    {
+      "name": "win_close",
+      "binding": "&kp LA(F4)",
+      "positions": [
+        25,
+        26,
+        27
+      ],
+      "layers": [
+        8
+      ],
+      "timeout-ms": 50,
+      "require-prior-idle-ms": 150
+    },
+    {
+      "name": "mac_close",
+      "binding": "&kp LG(Q)",
+      "positions": [
+        25,
+        26,
+        27
+      ],
+      "layers": [
+        9
+      ],
+      "timeout-ms": 50,
+      "require-prior-idle-ms": 150
+    },
     {
       "name": "bt_select_layer",
       "binding": "&tog 2",

@@ -15,7 +15,7 @@
   <div class="hero"><span class="eyebrow">KEYBOARD FIELD GUIDE · 01</span>
   <h1>torabotsuki-xs<span>指先で、できること。</span></h1>
   <p>いつもの文字入力から、親指で呼び出す数字や記号まで。<br>押す場所と組み合わせを、図でたどる操作ガイド。</p>
-  <div class="badges"><span>Windows / Mac</span><span>11 active layers</span><span>24 combos</span><span>オフライン対応</span></div></div>
+  <div class="badges"><span>Windows / Mac</span><span>11 active layers</span><span>26 combos</span><span>オフライン対応</span></div></div>
 </header>
 <nav aria-label="目次"><div><a href="#start">はじめに</a><a href="#layout">配列を見る</a><a href="#combos">同時押し</a><a href="#pointer">ボール操作</a><a href="#bluetooth">接続</a><a href="#reference">補足</a></div></nav>
 <main id="main">
@@ -68,6 +68,7 @@
   <div class="section-heading"><span>03 / TOGETHER</span><h2>同時に押す場所が、ひと目で。</h2></div>
   <div class="two"><article class="card"><span class="pill">左手 · 英数</span><h3><kbd>S</kbd> ＋ <kbd>F</kbd></h3><p>薬指と人差し指を同時に。間のDは押しません。</p></article><article class="card"><span class="pill">右手 · かな</span><h3><kbd>J</kbd> ＋ <kbd>L</kbd></h3><p>人差し指と薬指を同時に。間のKは押しません。基本配列でKも押すと中クリックです。</p></article></div>
   <p>色のついたキーを一緒に押します。図は<strong>基本配列の位置名</strong>で表示します。上のOS・レイヤー選択と連動して、現在のレイヤーで有効なコンボを強調します。他のコンボも一覧に残しています。</p>
+  <p class="notice"><strong>閉じる操作は3キーで：</strong>Spaceの右隣を長押ししてFレイヤー（L8 / L9）に入り、入力を150ms以上休めてから <kbd>A</kbd>＋<kbd>S</kbd>＋<kbd>D</kbd> を50ms以内にそろえて押します。WinはAlt＋F4、MacはCmd＋Q（アプリ終了）。旧H位置は無効です。確認時は保存済みのウィンドウで、Hだけでは閉じず、3キー同時押しで動作することを確かめてください。</p>
   <div id="combo-filters" class="layer-buttons" role="group" aria-label="コンボの分類"><button type="button" data-filter="all" aria-pressed="true">すべて</button><button type="button" data-filter="mouse" aria-pressed="false">マウス</button><button type="button" data-filter="symbol" aria-pressed="false">記号</button><button type="button" data-filter="system" aria-pressed="false">入力・OS・接続</button></div>
   <p id="combo-count" class="muted" aria-live="polite"></p><div id="combo-list" class="combo-grid"></div>
   <p class="notice">2キーと3キーなど、押す場所が重なるコンボがあります。3キー操作は3つをそろえて押してください。英数・かなはそれぞれ <code>LANG2</code>・<code>LANGUAGE_1</code> を送信します。実際の入力モード切替はOS・IMEの設定に依存します。マウスの「戻る／進む」はボタン4／5の送信です。</p>
