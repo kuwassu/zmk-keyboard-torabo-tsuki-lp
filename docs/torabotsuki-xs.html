@@ -53,7 +53,7 @@
   <div class="two">
     <article class="card"><h3>長押しキーの早見表</h3><div class="table-scroll"><table><thead><tr><th>基本配列のキー</th><th>押している間の動作</th></tr></thead><tbody>
       <tr><td>右下段のBspc</td><td>記号・矢印・編集（L4 / L5）</td></tr>
-      <tr><td>左下段のSpace</td><td>数字・テンキー（L6 / L7）</td></tr>
+      <tr><td>左下段のSpace</td><td>数字・テンキー・ジェスチャー（L6 / L7）</td></tr>
       <tr><td>Spaceの右隣</td><td>Fキー・ジェスチャ（L8 / L9）<br>短押しはWin：Grave、Mac：Ctrl</td></tr>
       <tr><td>Lの右隣のEnter</td><td>スクロール・音量（L10 / L11）<br>J：縦のみ ／ K：横のみ ／ H：自由</td></tr>
       <tr><td>左親指左側（旧Bspc）</td><td>短押し1回：次の1キーだけShift（Shift¹）<br>素早く2回：Caps Lockのオン／オフ（判定200ms）<br>長押し：押している間Shift</td></tr>
@@ -79,7 +79,7 @@
     <article class="card"><span class="pill">一定の速度で操作</span><h3>マウス操作はコンボに統一。</h3><p>低速マウスと、M＋,＋.で速度を切り替えるコンボは廃止しました。ボールは通常速度で動き、J・K・Lは単独では文字入力です。</p><p>戻る／進むは2キーのコンボを使います。M＋,＋.の3キーは専用の操作ではなく、既存の戻る／進むコンボと重なるため使わないでください。</p></article>
     <article class="card"><span class="pill">Enter長押し / L10・L11</span><h3>ボールでスクロール。</h3><div class="pointer-figure"><kbd>Enter<small>押したまま</small></kbd><span>＋</span><span class="ball">↕</span></div><p>Enterを長押しして右ボールを動かすとスクロールします。押したまま <kbd>J</kbd> を1回押すと縦のみ、<kbd>K</kbd> で横のみ、<kbd>H</kbd> で縦横自由に切り替わります。H・J・Kは離してもモードを保持します。Enterを離すと解除され、次回は自由スクロールから始まります。設定上のスクロール倍率はWin：1/2、Mac：1/12です。M / , / .で音量−・ミュート・音量＋、中央右のTabで再生・一時停止も操作できます。BTの切断・削除はL2へ移しました。</p><p>現在のビルドは左ミニトラックパッドもスクロールモードです。右ボールのレイヤー処理とは別経路で動作し、H・J・Kによる軸制限は適用しません。</p></article>
   </div>
-  <article class="card gesture-card"><div><span class="pill">F・ジェスチャ長押し / L8・L9</span><h3>4方向で、ウィンドウ操作。</h3><p>Spaceの右隣のキーを押したまま、右ボールをいずれかの方向へ動かします。この間、通常のポインター移動は止まります。</p><p>WindowsはWin＋矢印、MacはCtrl＋Caps Lock＋矢印／F／Cを送信します。MacはREADMEの設定に合わせてCaps LockをGlobeへ変更する想定です。実際の動作はOS側のショートカット設定に依存します。</p><p class="muted">検出の移動量は100、クールダウンは100ms。下図の方向は処理後のポインター座標で、実機のボールを回す向きとは反転する場合があります。</p></div><div class="gesture-cross" aria-label="ジェスチャの4方向"><div class="g-up">↑<br>Win：最大化<br>Mac：Ctrl＋Caps＋F</div><div class="g-left">← 左へ<br>Win＋←<br>Mac：Ctrl＋Caps＋←</div><div class="g-center">●</div><div class="g-right">右へ →<br>Win＋→<br>Mac：Ctrl＋Caps＋→</div><div class="g-down">↓<br>Win：最小化等（Win＋↓）<br>Mac：Ctrl＋Caps＋C</div></div></article>
+  <article class="card gesture-card"><div><span class="pill">数字／Fレイヤー / L6・L7・L8・L9</span><h3>4方向で、ウィンドウ操作。</h3><p>Space（数字レイヤー）、またはSpaceの右隣のキー（Fレイヤー）を押したまま、右ボールをいずれかの方向へ動かします。この間、通常のポインター移動は止まります。</p><p>WindowsはWin＋矢印、MacはCtrl＋Caps Lock＋矢印／F／Cを送信します。MacはREADMEの設定に合わせてCaps LockをGlobeへ変更する想定です。実際の動作はOS側のショートカット設定に依存します。</p><p class="muted">数字とFのどちらでも同じジェスチャーです。Enterのスクロールレイヤーも同時に有効な場合は、既存の定義順によりジェスチャーを優先します。確認するときは、Spaceを長押しして右ボールを動かし、離すと通常のポインター移動に戻ることを確かめてください。検出の移動量は100、クールダウンは100ms。下図の方向は処理後のポインター座標で、実機のボールを回す向きとは反転する場合があります。</p></div><div class="gesture-cross" aria-label="ジェスチャの4方向"><div class="g-up">↑<br>Win：最大化<br>Mac：Ctrl＋Caps＋F</div><div class="g-left">← 左へ<br>Win＋←<br>Mac：Ctrl＋Caps＋←</div><div class="g-center">●</div><div class="g-right">右へ →<br>Win＋→<br>Mac：Ctrl＋Caps＋→</div><div class="g-down">↓<br>Win：最小化等（Win＋↓）<br>Mac：Ctrl＋Caps＋C</div></div></article>
 </section>
 <section id="bluetooth">
   <div class="section-heading"><span>05 / CONNECTION</span><h2>接続先は、5つのスロットに。</h2></div>
