@@ -11,10 +11,10 @@ const rows = [
 const names = ['基本配列','Bluetooth管理','記号・矢印','数字・テンキー','F・ジェスチャ','スクロール・メディア'];
 const triggers = ['通常入力','J＋K＋L＋Enter → 離す → 選択','右下段Bspcを長押し','Spaceを長押し','Spaceの右隣を長押し','Enterを長押し'];
 const descriptions = [
-  'S＋D＋F → 離す → 次の1キーにShift。Zを押したまま次のキーで即Shift（Z＋/で「？」）。/の長押しShiftも使えます。親指Shiftは1回で次の1キー、2回でCaps Lock。',
+  'S＋D＋F → 離す → 次の1キーにShift。Z・/は150ms長押しでShift（文字優先）。親指Shiftは1回で次の1キー、2回でCaps Lock。',
   'Y〜Pで接続先、A〜Gで切断。EnterかEscで戻ります。',
   '矢印・編集・記号。Z位置は短押しUndo／長押しShift、/位置は右Shift。R位置はWin：F2、Mac：Enter。',
-  '上段に数字、右手にテンキー。ボールは通常のポインター移動です。',
+  'Spaceは150ms未満で空白・変換、150ms長押しで数字レイヤー。上段に数字、右手にテンキー。ボールは通常のポインター移動です。',
   'F1〜F12と右ボールのジェスチャー。A＋S＋DでWin：Alt＋F4、Mac：Cmd＋Q。',
   '右ボールでスクロール。J：縦のみ、K：横のみ、H：縦横自由。Enterを離すと解除。'
 ];
@@ -46,8 +46,8 @@ function describe(binding) {
   if (behavior === '&none') return {label:'—',sub:'',kind:'inactive'};
   if (behavior === '&kp') return {label:keyName(args[0]),sub:'',kind:''};
   if (behavior === '&thumb_shift') return {label:'Shift¹',sub:'2回 Caps',kind:'mod'};
-  if (behavior === '&mt' || behavior === '&z_mt' || behavior === '&z_shift') return {label:keyName(args[1]),sub:'長押し '+keyName(args[0]),kind:'mod'};
-  if (behavior === '&lt') return {label:keyName(args[1]),sub:'長押し L'+args[0],kind:'layer'};
+  if (behavior === '&mt' || behavior === '&z_mt') return {label:keyName(args[1]),sub:'長押し '+keyName(args[0]),kind:'mod'};
+  if (behavior === '&lt' || behavior === '&space_lt') return {label:keyName(args[1]),sub:'長押し L'+args[0],kind:'layer'};
   if (behavior === '&mo') return {label:'L'+args[0],sub:'押している間',kind:'layer'};
   if (behavior === '&tog') return {label:'キャンセル',sub:'元の配列へ',kind:'layer'};
   if (behavior === '&mkp') return {label:({LCLK:'左クリック',MCLK:'中クリック',RCLK:'右クリック',MB4:'戻る',MB5:'進む'}[args[0]]),sub:'',kind:''};
