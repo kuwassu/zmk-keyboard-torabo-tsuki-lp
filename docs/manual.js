@@ -12,7 +12,7 @@ const names = ['基本配列','Bluetooth管理','記号・矢印','数字・テ�
 const triggers = ['通常入力','J＋K＋L＋Enter → 離す → 選択','右下段Bspcを長押し','Spaceを長押し','Spaceの右隣を長押し','Enterを長押し'];
 const descriptions = [
   'S＋D＋F → 離す → 次の1キーにShift。Z・/は150ms長押しでShift（文字優先）。親指Shiftは1回で次の1キー、2回でCaps Lock。',
-  'Y〜Pで接続先、A〜Gで切断。EnterかEscで戻ります。',
+  'Y/U/I/O/P/H/Jで接続先0〜6、A/S/D/F/G/Z/Xで切断。EnterかEscで戻ります。',
   '矢印・編集・記号。Z位置は短押しUndo／長押しShift、/位置は右Shift。R位置はWin：F2、Mac：Enter。',
   'Spaceは150ms未満で空白・変換、150ms長押しで数字レイヤー。上段に数字、右手にテンキー。ボールは通常のポインター移動です。',
   'F1〜F12と右ボールのジェスチャー。A＋S＋DでWin：Alt＋F4、Mac：Cmd＋Q。',
@@ -20,7 +20,7 @@ const descriptions = [
 ];
 const flows = [
   ['いつもの配列','文字入力・クリックのコンボ','長押しキーやJ＋K＋L＋Enterで別レイヤーへ'],
-  ['入力を200ms休める → J＋K＋L＋Enterを50ms以内に押す → 全部離す','Y〜P：接続先0〜4 ／ A〜G：切断0〜4','選択すると自動で戻る。切断・削除後はEnterかEscで戻る'],
+  ['入力を200ms休める → J＋K＋L＋Enterを50ms以内に押す → 全部離す','Y/U/I/O/P/H/J：接続先0〜6 ／ A/S/D/F/G/Z/X：切断0〜6','選択すると自動で戻る。切断・削除後はEnterかEscで戻る'],
   ['右下段Bspcを押したまま','矢印・記号・コピーなどの編集','Bspcを離す'],
   ['Spaceを押したまま','上段の数字・右手のテンキー','Spaceを離す'],
   ['Spaceの右隣を押したまま','F1〜F12・ボールでジェスチャ','押していたキーを離す'],

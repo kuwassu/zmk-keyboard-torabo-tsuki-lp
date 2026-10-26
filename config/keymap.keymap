@@ -340,6 +340,20 @@
             bindings = <&bt BT_SEL 4 &to 0>;
             label = "WIN_BT4";
         };
+
+        mac_bt5: mac_bt5 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 5 &to 1>;
+            label = "MAC_BT5";
+        };
+
+        win_bt6: win_bt6 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 6 &to 0>;
+            label = "WIN_BT6";
+        };
     };
 
     keymap {
@@ -381,8 +395,8 @@
             bindings = <
 &none  &none  &none  &none  &none  &none                  &none     &none     &none     &none     &none     &none
 &none  &none  &none  &none  &none  &none                  &win_bt0  &mac_bt1  &win_bt2  &mac_bt3  &win_bt4  &none
-&none  &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &bt BT_DISC 4  &none &none &none &none &none &none &tog 2 &none
-&none  &none  &none  &none  &none  &none  &tog 2  &none   &none    &none     &none     &none     &none     &none
+&none  &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &bt BT_DISC 4  &none &none &mac_bt5 &win_bt6 &none &none &tog 2 &none
+&none  &bt BT_DISC 5  &bt BT_DISC 6  &none  &none  &none  &tog 2  &none   &none    &none     &none     &none     &none     &none
 &none  &none  &none  &none  &none  &none  &none   &none   &none    &none     &none     &none     &none     &none
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
 &none &none &none &none &none
