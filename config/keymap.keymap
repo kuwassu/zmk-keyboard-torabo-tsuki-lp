@@ -20,6 +20,14 @@
             scroll-layers = <10 11>;
         };
 
+        z_shift: z_fast_shift {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&kp>;
+        };
+
         z_mt: z_mod_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -344,7 +352,7 @@
 &none  &none             &none     &none     &none                &none                                    &none       &none  &none      &none     &none                 &none
 &none  &kp Q             &kp W     &kp E     &kp R                &kp T                                    &kp Y       &kp U  &kp I      &kp O     &kp P                 &none
 &none  &kp A             &kp S     &kp D     &kp F                &kp G        &none        &none          &kp H       &kp J  &kp K      &kp L     &lt 10 ENTER          &none
-&none  &z_mt LEFT_SHIFT Z  &kp X     &kp C     &kp V                &kp B        &kp ESC      &kp DELETE     &kp N       &kp M  &kp COMMA  &kp DOT   &z_mt RIGHT_SHIFT FSLH  &none
+&none  &z_shift LEFT_SHIFT Z  &kp X     &kp C     &kp V                &kp B        &kp ESC      &kp DELETE     &kp N       &kp M  &kp COMMA  &kp DOT   &z_mt RIGHT_SHIFT FSLH  &none
 &none  &kp LCTRL         &kp LGUI  &kp LALT  &thumb_shift LEFT_SHIFT 0  &lt 6 SPACE  &lt 8 GRAVE  &mt RCTRL TAB  &lt 4 BSPC  &none  &none      &kp HOME  &kp END               &none
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
 &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
@@ -359,7 +367,7 @@
 &none  &none             &none     &none              &none                &none                                       &none       &none  &none      &none         &none                 &none
 &none  &kp Q             &kp W     &kp E              &kp R                &kp T                                       &kp Y       &kp U  &kp I      &kp O         &kp P                 &none
 &none  &kp A             &kp S     &kp D              &kp F                &kp G        &none        &none             &kp H       &kp J  &kp K      &kp L         &lt 11 ENTER          &none
-&none  &z_mt LEFT_SHIFT Z  &kp X     &kp C              &kp V                &kp B        &kp ESC      &kp LG(BSPC)      &kp N       &kp M  &kp COMMA  &kp DOT       &z_mt RIGHT_SHIFT FSLH  &none
+&none  &z_shift LEFT_SHIFT Z  &kp X     &kp C              &kp V                &kp B        &kp ESC      &kp LG(BSPC)      &kp N       &kp M  &kp COMMA  &kp DOT       &z_mt RIGHT_SHIFT FSLH  &none
 &none  &kp LGUI          &kp LALT  &kp RIGHT_CONTROL  &thumb_shift LEFT_SHIFT 0  &lt 7 SPACE  &lt 9 LCTRL  &mt LEFT_GUI TAB  &lt 5 BSPC  &none  &none      &kp LG(LEFT)  &kp LG(RIGHT)         &none
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
 &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
