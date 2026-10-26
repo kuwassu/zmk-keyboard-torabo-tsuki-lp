@@ -8,7 +8,7 @@ const rows = [
   [39,40,41,42,43,44,45,46,47,48,49,50],
   [53,54,55,56,57,58,59,60,61,62,63,64]
 ];
-const names = ['基本配列','Bluetooth管理','記号・矢印','数字・テンキー','F・ジェスチャ','スクロール・音量'];
+const names = ['基本配列','Bluetooth管理','記号・矢印','数字・テンキー','F・ジェスチャ','スクロール・メディア'];
 const triggers = ['通常入力','J＋K＋L＋Enter → 離す → 選択','右下段Bspcを長押し','Spaceを長押し','Spaceの右隣を長押し','Enterを長押し'];
 const descriptions = [
   'S＋D＋F → 離す → 次の1キーにShift。Z・/の長押しShiftも使えます。親指Shiftは1回で次の1キー、2回でCaps Lock。',
@@ -28,7 +28,7 @@ const flows = [
 ];
 let os = 'win', group = 0, showPositions = false, comboScope = 'current', selectedCombo = null;
 const layerId = (g = group, system = os) => [[0,1],[2,2],[4,5],[6,7],[8,9],[10,11]][g][+(system === 'mac')];
-const aliases = {LEFT_SHIFT:'Shift',RIGHT_SHIFT:'Shift',LSHIFT:'Shift',LCTRL:'Ctrl',RCTRL:'右Ctrl',RIGHT_CONTROL:'右Ctrl',LGUI:'Win',LEFT_GUI:'Win',LEFT_ALT:'Alt',LALT:'Alt',BSPC:'Bspc',ENTER:'Enter',SPACE:'Space',TAB:'Tab',ESC:'Esc',DELETE:'Delete',GRAVE:'Grave',HOME:'Home',END:'End',LEFT:'←',RIGHT:'→',UP:'↑',DOWN:'↓',CAPS:'Caps',PRINTSCREEN:'PrtSc',COMMA:',',PERIOD:'.',DOT:'.',FSLH:'/',SLASH:'/',MINUS:'-',EQUAL:'^',LBKT:'@',RIGHT_BRACKET:'[',BSLH:']',INT1:'\\',INT3:'¥',SEMI:';',SEMICOLON:';',APOS:':',LANGUAGE_1:'かな',LANG2:'英数',C_VOL_DN:'音量−',C_VOL_UP:'音量＋',C_MUTE:'ミュート',C_PLAY_PAUSE:'再生/停止'};
+const aliases = {LEFT_SHIFT:'Shift',RIGHT_SHIFT:'Shift',LSHIFT:'Shift',LCTRL:'Ctrl',RCTRL:'右Ctrl',RIGHT_CONTROL:'右Ctrl',LGUI:'Win',LEFT_GUI:'Win',LEFT_ALT:'Alt',LALT:'Alt',BSPC:'Bspc',ENTER:'Enter',SPACE:'Space',TAB:'Tab',ESC:'Esc',DELETE:'Delete',GRAVE:'Grave',HOME:'Home',END:'End',LEFT:'←',RIGHT:'→',UP:'↑',DOWN:'↓',CAPS:'Caps',PRINTSCREEN:'PrtSc',COMMA:',',PERIOD:'.',DOT:'.',FSLH:'/',SLASH:'/',MINUS:'-',EQUAL:'^',LBKT:'@',RIGHT_BRACKET:'[',BSLH:']',INT1:'\\',INT3:'¥',SEMI:';',SEMICOLON:';',APOS:':',LANGUAGE_1:'かな',LANG2:'英数',C_BRI_DN:'明るさ−',C_BRI_UP:'明るさ＋',C_VOL_DN:'音量−',C_VOL_UP:'音量＋',C_MUTE:'ミュート',C_PLAY_PAUSE:'再生/停止'};
 function keyName(code) {
   if (/^N\d$/.test(code)) return code.slice(1);
   const shifted = {'N1':'!','N2':'"','N3':'#','N4':'$','N5':'%','N6':'&','N7':"'",'N8':'(','N9':')','EQUAL':'~','INT1':'_','RIGHT_BRACKET':'{','BSLH':'}','SEMI':'+','SEMICOLON':'+','APOS':'*'};
@@ -127,7 +127,7 @@ function renderPointer() {
       : [['↑','Ctrl＋Caps＋F',''],['←','Ctrl＋Caps＋←',''],['→','Ctrl＋Caps＋→',''],['↓','Ctrl＋Caps＋C','']];
     panel.innerHTML = '<h3>右ボール：4方向のジェスチャー</h3><p>Spaceの右隣を押したまま動かします。この間はポインター移動が止まります。</p><div class="gesture-directions">'+directions.map(([arrow,label,keys])=>'<div><b>'+arrow+'</b><span>'+label+'</span>'+(keys?'<small>'+keys+'</small>':'')+'</div>').join('')+'</div><p class="muted">方向はポインター座標基準です。'+(os==='mac'?'CapsはCaps Lockの送信キー。<a href="#reference">Globeへの割り当て設定</a>を確認してください。':'')+'</p>';
   } else if (group === 5) {
-    panel.innerHTML = '<h3>右ボール：スクロール</h3><p><kbd>H</kbd> 縦横自由 ／ <kbd>J</kbd> 縦のみ ／ <kbd>K</kbd> 横のみ。1回押して選択し、Enterを離すまで保持。次回は自由スクロールです。</p><p class="muted">M / , / .：音量−・ミュート・音量＋。左ミニトラックパッドはこの軸制限の対象外です。</p>';
+    panel.innerHTML = '<h3>右ボール：スクロール</h3><p><kbd>H</kbd> 縦横自由 ／ <kbd>J</kbd> 縦のみ ／ <kbd>K</kbd> 横のみ。1回押して選択し、Enterを離すまで保持。次回は自由スクロールです。</p><p class="muted">U / O：明るさ−・明るさ＋。M / , / .：音量−・ミュート・音量＋。左ミニトラックパッドはこの軸制限の対象外です。</p>';
   } else if (group === 0) {
     panel.innerHTML = '<h3>右ボール：ポインター移動</h3><p><kbd>J＋K</kbd> 左クリック ／ <kbd>K＋L</kbd> 右クリック ／ <kbd>J＋K＋L</kbd> 中クリック。押したまま動かすとドラッグ。</p><p class="muted">M＋,：戻る ／ ,＋.：進む。押す位置はコンボを選ぶと図に表示します。</p>';
   } else {
