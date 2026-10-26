@@ -400,7 +400,7 @@
 &none  &none                 &none       &none       &none      &none                                       &none       &none         &none     &none      &none            &none
 &none  &kp LS(N1)            &kp LC(W)   &kp F7      &kp F2     &kp LS(EQUAL)                               &kp LC(Y)   &kp LS(INT1)  &kp UP    &kp MINUS  &kp LS(N5)       &none
 &none  &kp LS(N6)            &kp LS(N7)  &kp LS(N2)  &kp BSPC   &kp LBKT       &none              &none     &kp EQUAL   &kp LEFT      &kp DOWN  &kp RIGHT  &kp F10          &none
-&none  &kp LC(Z)  &kp LC(X)   &kp LC(C)   &kp LC(V)  &kp INT3       &kp RIGHT_BRACKET  &kp BSLH  &kp LS(N3)  &kp LS(N4)    &kp SEMI  &kp APOS   &trans  &none
+&none  &mt LEFT_SHIFT LC(Z)  &kp LC(X)   &kp LC(C)   &kp LC(V)  &kp INT3       &kp RIGHT_BRACKET  &kp BSLH  &kp LS(N3)  &kp LS(N4)    &kp SEMI  &kp APOS   &kp RIGHT_SHIFT  &none
 &none  &trans                &trans      &trans      &trans     &kp LS(SPACE)  &trans             &trans    &trans      &none         &none     &trans     &trans           &none
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
 &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
@@ -415,7 +415,7 @@
 &none  &none                 &none       &none       &none      &none                                       &none          &none         &none     &none      &none            &none
 &none  &kp LS(N1)            &kp LG(W)   &kp F7      &kp ENTER     &kp LS(EQUAL)                               &kp LG(LS(Z))  &kp LS(INT1)  &kp UP    &kp MINUS  &kp LS(N5)       &none
 &none  &kp LS(N6)            &kp LS(N7)  &kp LS(N2)  &kp BSPC   &kp LBKT       &none              &none     &kp EQUAL      &kp LEFT      &kp DOWN  &kp RIGHT  &kp F10          &none
-&none  &kp LG(Z)  &kp LG(X)   &kp LG(C)   &kp LG(V)  &kp INT3       &kp RIGHT_BRACKET  &kp BSLH  &kp LS(N3)     &kp LS(N4)    &kp SEMI  &kp APOS   &trans  &none
+&none  &mt LEFT_SHIFT LG(Z)  &kp LG(X)   &kp LG(C)   &kp LG(V)  &kp INT3       &kp RIGHT_BRACKET  &kp BSLH  &kp LS(N3)     &kp LS(N4)    &kp SEMI  &kp APOS   &kp RIGHT_SHIFT  &none
 &none  &trans                &trans      &trans      &trans     &kp LS(SPACE)  &trans             &trans    &trans         &none         &none     &trans     &trans           &none
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
 &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
