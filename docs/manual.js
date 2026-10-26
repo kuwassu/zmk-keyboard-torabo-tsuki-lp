@@ -11,12 +11,12 @@ const rows = [
 const names = ['基本配列','Bluetooth管理','記号・矢印','数字・テンキー','F・ジェスチャ','スクロール・音量'];
 const triggers = ['通常入力','J＋K＋L＋Enter → 離す → 選択','右下段Bspcを長押し','Spaceを長押し','Spaceの右隣を長押し','Enterを長押し'];
 const descriptions = [
-  'いつもの文字入力。緑のキーを長押しすると、別のレイヤーを呼び出せます。',
-  '接続先の選択・切断・登録削除をここに集約。選択は右手のY〜P、切断は左手のA〜Gです。削除コンボは配列図のすぐ下で確認できます。',
-  '右下段のBspcを長押し。矢印はI / J / K / L、編集操作はZ / X / C / Vの位置。Z位置は短押しでUndo・長押しで左Shift、/位置は右Shift。R位置はWin：F2、Mac：Enter。',
-  'Spaceを長押し。Q〜Pに数字、右手側にテンキー。図の記号はJIS配列を想定しています。',
-  'Spaceの右隣を長押し。Q〜PがF1〜F10、A / SがF11 / F12。同時に右ボールのジェスチャも有効。閉じる操作はA＋S＋Dの同時押し（Win：Alt＋F4、Mac：Cmd＋Q）。旧H位置は無効です。',
-  'Enterを長押し中、Jを1回押すと縦のみ、Kで横のみ、Hで縦横自由に切り替えます。H・J・Kは離しても選択を保持。Enterを離すと解除され、次回は自由スクロールから始まります。'
+  '文字入力とクリック。親指Shiftは1回で次の1キーにShift、2回でCaps Lock、長押しでShift。Z・/も長押しでShift。',
+  'Y〜Pで接続先、A〜Gで切断。EnterかEscで戻ります。',
+  '矢印・編集・記号。Z位置は短押しUndo／長押しShift、/位置は右Shift。R位置はWin：F2、Mac：Enter。',
+  '上段に数字、右手にテンキー。ボールは通常のポインター移動です。',
+  'F1〜F12と右ボールのジェスチャー。A＋S＋DでWin：Alt＋F4、Mac：Cmd＋Q。',
+  '右ボールでスクロール。J：縦のみ、K：横のみ、H：縦横自由。Enterを離すと解除。'
 ];
 const flows = [
   ['いつもの配列','文字入力・クリックのコンボ','長押しキーやJ＋K＋L＋Enterで別レイヤーへ'],
@@ -128,6 +128,22 @@ function previewCombo(name) {
   const target = combo.layers.find(layerVisible);
   $('#combo-preview').innerHTML = `${esc(comboKeyNames(combo).join(' ＋ '))} → <strong>${esc(comboInfo[combo.name][0])}</strong> ／ ${isCurrentCombo(combo)?'このレイヤーで有効':'現在は無効。有効：'+enabled}。 ${esc(comboHint(combo))}${!isCurrentCombo(combo)?` <button type="button" data-jump="${target}">L${target}の配列を見る</button>`:''}`;
 }
+function renderPointer() {
+  const panel = $('#layer-pointer');
+  if (group === 4) {
+    const directions = os === 'win'
+      ? [['↑','最大化','Win＋↑'],['←','左へ配置','Win＋←'],['→','右へ配置','Win＋→'],['↓','最小化など','Win＋↓']]
+      : [['↑','Ctrl＋Caps＋F',''],['←','Ctrl＋Caps＋←',''],['→','Ctrl＋Caps＋→',''],['↓','Ctrl＋Caps＋C','']];
+    panel.innerHTML = '<h3>右ボール：4方向のジェスチャー</h3><p>Spaceの右隣を押したまま動かします。この間はポインター移動が止まります。</p><div class="gesture-directions">'+directions.map(([arrow,label,keys])=>'<div><b>'+arrow+'</b><span>'+label+'</span>'+(keys?'<small>'+keys+'</small>':'')+'</div>').join('')+'</div><p class="muted">方向はポインター座標基準です。'+(os==='mac'?'CapsはCaps Lockの送信キー。<a href="#reference">Globeへの割り当て設定</a>を確認してください。':'')+'</p>';
+  } else if (group === 5) {
+    panel.innerHTML = '<h3>右ボール：スクロール</h3><p><kbd>H</kbd> 縦横自由 ／ <kbd>J</kbd> 縦のみ ／ <kbd>K</kbd> 横のみ。1回押して選択し、Enterを離すまで保持。次回は自由スクロールです。</p><p class="muted">M / , / .：音量−・ミュート・音量＋。左ミニトラックパッドはこの軸制限の対象外です。</p>';
+  } else if (group === 0) {
+    panel.innerHTML = '<h3>右ボール：ポインター移動</h3><p><kbd>J＋K</kbd> 左クリック ／ <kbd>K＋L</kbd> 右クリック ／ <kbd>J＋K＋L</kbd> 中クリック。押したまま動かすとドラッグ。</p><p class="muted">M＋,：戻る ／ ,＋.：進む。押す位置は下のコンボを選ぶと図に表示します。</p>';
+  } else {
+    panel.innerHTML = '';
+  }
+  panel.hidden = !panel.innerHTML;
+}
 function render() {
   document.querySelectorAll('[data-os]').forEach(b => b.setAttribute('aria-pressed',String(b.dataset.os===os)));
   const focusedGroup = document.activeElement?.dataset.group;
@@ -136,6 +152,7 @@ function render() {
   const id = layerId();
   $('#layer-description').innerHTML = `<div class="layer-intro"><h3>${names[group]}</h3><span class="pill">L${id} · ${id===2?'OS共通':os==='win'?'Windows':'Mac'}</span></div><p>${descriptions[group]}</p><ol class="layer-flow">${flows[group].map((text,i)=>`<li><b>${['入る','使う','戻る'][i]}</b><span>${esc(text)}</span></li>`).join('')}</ol>`;
   renderNearby();
+  renderPointer();
   renderCombos();
   const previousOS = os;
   $('#all-layers').innerHTML = KEYMAP.layers.map((layer,id) => {
