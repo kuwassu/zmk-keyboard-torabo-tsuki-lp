@@ -20,6 +20,16 @@
             scroll-layers = <10 11>;
         };
 
+        z_mt: z_mod_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <250>;
+            require-prior-idle-ms = <125>;
+            quick-tap-ms = <175>;
+            bindings = <&kp>, <&kp>;
+        };
+
         thumb_sk: thumb_sticky_shift {
             compatible = "zmk,behavior-sticky-key";
             #binding-cells = <1>;
@@ -69,7 +79,7 @@
 
         bt_select_layer {
             bindings = <&tog 2>;
-            key-positions = <32 33 34>;
+            key-positions = <33 34 35 36>;
             layers = <0 1 2>;
             timeout-ms = <50>;
             require-prior-idle-ms = <200>;
@@ -327,7 +337,7 @@
 &none  &none             &none     &none     &none                &none                                    &none       &none  &none      &none     &none                 &none
 &none  &kp Q             &kp W     &kp E     &kp R                &kp T                                    &kp Y       &kp U  &kp I      &kp O     &kp P                 &none
 &none  &kp A             &kp S     &kp D     &kp F                &kp G        &none        &none          &kp H       &kp J  &kp K      &kp L     &lt 10 ENTER          &none
-&none  &kp Z  &kp X     &kp C     &kp V                &kp B        &kp ESC      &kp DELETE     &kp N       &kp M  &kp COMMA  &kp DOT   &kp FSLH  &none
+&none  &z_mt LEFT_SHIFT Z  &kp X     &kp C     &kp V                &kp B        &kp ESC      &kp DELETE     &kp N       &kp M  &kp COMMA  &kp DOT   &z_mt RIGHT_SHIFT FSLH  &none
 &none  &kp LCTRL         &kp LGUI  &kp LALT  &thumb_shift LEFT_SHIFT 0  &lt 6 SPACE  &lt 8 GRAVE  &mt RCTRL TAB  &lt 4 BSPC  &none  &none      &kp HOME  &kp END               &none
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
 &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
@@ -342,7 +352,7 @@
 &none  &none             &none     &none              &none                &none                                       &none       &none  &none      &none         &none                 &none
 &none  &kp Q             &kp W     &kp E              &kp R                &kp T                                       &kp Y       &kp U  &kp I      &kp O         &kp P                 &none
 &none  &kp A             &kp S     &kp D              &kp F                &kp G        &none        &none             &kp H       &kp J  &kp K      &kp L         &lt 11 ENTER          &none
-&none  &kp Z  &kp X     &kp C              &kp V                &kp B        &kp ESC      &kp LG(BSPC)      &kp N       &kp M  &kp COMMA  &kp DOT       &kp FSLH  &none
+&none  &z_mt LEFT_SHIFT Z  &kp X     &kp C              &kp V                &kp B        &kp ESC      &kp LG(BSPC)      &kp N       &kp M  &kp COMMA  &kp DOT       &z_mt RIGHT_SHIFT FSLH  &none
 &none  &kp LGUI          &kp LALT  &kp RIGHT_CONTROL  &thumb_shift LEFT_SHIFT 0  &lt 7 SPACE  &lt 9 LCTRL  &mt LEFT_GUI TAB  &lt 5 BSPC  &none  &none      &kp LG(LEFT)  &kp LG(RIGHT)         &none
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
 &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
@@ -403,7 +413,7 @@
         L5_mac_right_thumb {
             bindings = <
 &none  &none                 &none       &none       &none      &none                                       &none          &none         &none     &none      &none            &none
-&none  &kp LS(N1)            &kp LG(W)   &kp F7      &kp F2     &kp LS(EQUAL)                               &kp LG(LS(Z))  &kp LS(INT1)  &kp UP    &kp MINUS  &kp LS(N5)       &none
+&none  &kp LS(N1)            &kp LG(W)   &kp F7      &kp ENTER     &kp LS(EQUAL)                               &kp LG(LS(Z))  &kp LS(INT1)  &kp UP    &kp MINUS  &kp LS(N5)       &none
 &none  &kp LS(N6)            &kp LS(N7)  &kp LS(N2)  &kp BSPC   &kp LBKT       &none              &none     &kp EQUAL      &kp LEFT      &kp DOWN  &kp RIGHT  &kp F10          &none
 &none  &kp LG(Z)  &kp LG(X)   &kp LG(C)   &kp LG(V)  &kp INT3       &kp RIGHT_BRACKET  &kp BSLH  &kp LS(N3)     &kp LS(N4)    &kp SEMI  &kp APOS   &trans  &none
 &none  &trans                &trans      &trans      &trans     &kp LS(SPACE)  &trans             &trans    &trans         &none         &none     &trans     &trans           &none

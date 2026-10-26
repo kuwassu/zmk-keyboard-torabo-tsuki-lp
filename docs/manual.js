@@ -9,20 +9,20 @@ const rows = [
   [53,54,55,56,57,58,59,60,61,62,63,64]
 ];
 const names = ['基本配列','Bluetooth管理','記号・矢印','数字・テンキー','F・ジェスチャ','スクロール・音量'];
-const triggers = ['通常入力','H＋J＋K → 離す → 選択','右下段Bspcを長押し','Spaceを長押し','Spaceの右隣を長押し','Enterを長押し'];
+const triggers = ['通常入力','J＋K＋L＋Enter → 離す → 選択','右下段Bspcを長押し','Spaceを長押し','Spaceの右隣を長押し','Enterを長押し'];
 const descriptions = [
   'いつもの文字入力。緑のキーを長押しすると、別のレイヤーを呼び出せます。',
   '接続先の選択・切断・登録削除をここに集約。選択は右手のY〜P、切断は左手のA〜Gです。削除コンボは配列図のすぐ下で確認できます。',
-  '右下段のBspcを長押し。矢印はI / J / K / L、編集操作はZ / X / C / Vの位置。',
-  'Spaceを長押し。Q〜Pに数字、右手側にテンキー。右ボールはジェスチャーになり、通常のポインター移動は止まります。図の記号はJIS配列を想定しています。',
+  '右下段のBspcを長押し。矢印はI / J / K / L、編集操作はZ / X / C / Vの位置。Z位置はUndo専用、/位置は透過（基本配列の文字／Shift兼用を引き継ぐ）。R位置はWin：F2、Mac：Enter。',
+  'Spaceを長押し。Q〜Pに数字、右手側にテンキー。図の記号はJIS配列を想定しています。',
   'Spaceの右隣を長押し。Q〜PがF1〜F10、A / SがF11 / F12。同時に右ボールのジェスチャも有効。閉じる操作はA＋S＋Dの同時押し（Win：Alt＋F4、Mac：Cmd＋Q）。旧H位置は無効です。',
   'Enterを長押し中、Jを1回押すと縦のみ、Kで横のみ、Hで縦横自由に切り替えます。H・J・Kは離しても選択を保持。Enterを離すと解除され、次回は自由スクロールから始まります。'
 ];
 const flows = [
-  ['いつもの配列','文字入力・クリックのコンボ','長押しキーやH＋J＋Kで別レイヤーへ'],
-  ['入力を200ms休める → H＋J＋Kを50ms以内に押す → 全部離す','Y〜P：接続先0〜4 ／ A〜G：切断0〜4','選択すると自動で戻る。切断・削除後はEnterかEscで戻る'],
+  ['いつもの配列','文字入力・クリックのコンボ','長押しキーやJ＋K＋L＋Enterで別レイヤーへ'],
+  ['入力を200ms休める → J＋K＋L＋Enterを50ms以内に押す → 全部離す','Y〜P：接続先0〜4 ／ A〜G：切断0〜4','選択すると自動で戻る。切断・削除後はEnterかEscで戻る'],
   ['右下段Bspcを押したまま','矢印・記号・コピーなどの編集','Bspcを離す'],
-  ['Spaceを押したまま','数字・テンキー・ボールでジェスチャー','Spaceを離す'],
+  ['Spaceを押したまま','上段の数字・右手のテンキー','Spaceを離す'],
   ['Spaceの右隣を押したまま','F1〜F12・ボールでジェスチャ','押していたキーを離す'],
   ['Enterを押したまま','J：↕ 縦のみ ／ K：↔ 横のみ ／ H：自由','Enterを離す。次回は自由スクロール']
 ];
@@ -46,7 +46,7 @@ function describe(binding) {
   if (behavior === '&none') return {label:'—',sub:'',kind:'inactive'};
   if (behavior === '&kp') return {label:keyName(args[0]),sub:'',kind:''};
   if (behavior === '&thumb_shift') return {label:'Shift¹',sub:'2回 Caps',kind:'mod'};
-  if (behavior === '&mt') return {label:keyName(args[1]),sub:'長押し '+keyName(args[0]),kind:'mod'};
+  if (behavior === '&mt' || behavior === '&z_mt') return {label:keyName(args[1]),sub:'長押し '+keyName(args[0]),kind:'mod'};
   if (behavior === '&lt') return {label:keyName(args[1]),sub:'長押し L'+args[0],kind:'layer'};
   if (behavior === '&mo') return {label:'L'+args[0],sub:'押している間',kind:'layer'};
   if (behavior === '&tog') return {label:'キャンセル',sub:'元の配列へ',kind:'layer'};
@@ -104,8 +104,8 @@ function comboHint(c) {
   if (c.name.endsWith('_close')) return 'Fレイヤーで入力を150ms以上休め、A＋S＋Dを50ms以内にそろえて押します。旧H位置は無効です。';
   if (c.name==='eisu') return '左手の薬指＋人差し指（S＋F）で英数へ。間のDは押しません。';
   if (c.name==='kana') return '右手の人差し指＋薬指（J＋L）でかなへ。間のKは押しません。基本配列ではJ＋K＋Lが中クリックです。';
-  if (c.name==='bt_select_layer') return '入力を200ms以上休めて、3キーを50ms以内にそろえて押し、全部離します。L2では同じコンボで閉じます。';
-  if (c.name.startsWith('bt_clear')) return 'H＋J＋KでL2を開き、全部離してから同時押し。'+(c.name==='bt_clear_all'?'全スロット':'現在選択中のスロット')+'の登録を削除します。削除後もL2です。EnterかEscで戻ります。';
+  if (c.name==='bt_select_layer') return '入力を200ms以上休めて、4キーを50ms以内にそろえて押し、全部離します。L2では同じコンボで閉じます。';
+  if (c.name.startsWith('bt_clear')) return 'J＋K＋L＋EnterでL2を開き、全部離してから同時押し。'+(c.name==='bt_clear_all'?'全スロット':'現在選択中のスロット')+'の登録を削除します。削除後もL2です。EnterかEscで戻ります。';
   if (c.name.endsWith('_layout')) return 'L0・L1の両方で有効。Q＋WでWindows、Q＋W＋EでMacへ。接続先を変えずに配列だけ切り替えます。';
   return '';
 }
