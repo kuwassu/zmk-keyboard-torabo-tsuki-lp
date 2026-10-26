@@ -205,6 +205,13 @@
             layers = <0 1 6 7>;
         };
 
+        sticky_shift_combo {
+            bindings = <&thumb_sk LEFT_SHIFT>;
+            key-positions = <26 27 28>;
+            layers = <0 1 6 7>;
+            timeout-ms = <50>;
+        };
+
         eisu {
             bindings = <&kp LANG2>;
             key-positions = <26 28>;

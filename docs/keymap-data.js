@@ -1150,6 +1150,22 @@ const KEYMAP = {
       ]
     },
     {
+      "name": "sticky_shift_combo",
+      "binding": "&thumb_sk LEFT_SHIFT",
+      "positions": [
+        26,
+        27,
+        28
+      ],
+      "layers": [
+        0,
+        1,
+        6,
+        7
+      ],
+      "timeout-ms": 50
+    },
+    {
       "name": "eisu",
       "binding": "&kp LANG2",
       "positions": [
