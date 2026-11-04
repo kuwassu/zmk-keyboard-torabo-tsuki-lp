@@ -11,7 +11,7 @@ const rows = [
 const names = ['基本配列','Bluetooth管理','タブ切替','記号・矢印','数字・テンキー','F・ジェスチャ','スクロール・メディア'];
 const triggers = ['通常入力','J＋K＋L＋Enter → 離す → 選択','左親指Shiftを長押し','右下段Bspcを長押し','Spaceを長押し','Spaceの右隣を長押し','Enterを長押し'];
 const descriptions = [
-  'Z＋/（・）を100ms以内に重ねて「？」。Z／/の通常のShift判定は文字優先・150ms。S＋D＋Fで次の1キーにShift。親指は1回でShift、2回でCaps、長押しでタブ切替。',
+  'Z＋/（・）を100ms以内に重ねて「？」。通常のShift判定は文字優先でZが200ms、/が150ms。S＋D＋Fで次の1キーにShift。親指は1回でShift、2回でCaps、長押しでタブ切替。',
   'Y/U/I/O/P/H/Jで接続先0〜6、A/S/D/F/G/Z/Xで切断。EnterかEscで戻ります。',
   '左親指Shiftを200ms長押し＋右ボールで、左：前のタブ、右：次のタブ。親指の長押しではShiftを送りません。',
   '矢印・編集・記号。Z位置は短押しUndo／長押しShift、/位置は右Shift。R位置はWin：F2、Mac：Enter。',
@@ -93,7 +93,7 @@ const isCurrentCombo = combo => layerEnabled(layerId()) && combo.layers.includes
 const osCombos = () => KEYMAP.combos.filter(c => c.layers.some(layerVisible));
 const comboKeyNames = c => c.positions.map(p => describe(KEYMAP.layers[+(os==='mac')].bindings[p]).label);
 function comboHint(c) {
-  if (c.name==='question_mark') return 'Zと右小指の/（JISの「・」）を100ms以内に重ねて押すと「？」を直接送ります。押す順序・直前入力の待ち時間は不問。Z＋Enterなどは文字優先・150msのままです。L2のBluetooth管理とL4／L5の記号レイヤーでは無効です。';
+  if (c.name==='question_mark') return 'Zと右小指の/（JISの「・」）を100ms以内に重ねて押すと「？」を直接送ります。押す順序・直前入力の待ち時間は不問。Z＋Enterなどは文字優先・200msです。L2のBluetooth管理とL4／L5の記号レイヤーでは無効です。';
   if (c.name.endsWith('_close')) return 'Fレイヤーで入力を150ms以上休め、A＋S＋Dを50ms以内にそろえて押します。';
   if (c.name==='sticky_shift_combo') return 'S＋D＋Fを50ms以内に押して離し、1500ms以内に次のキーを押すとShiftが付きます。待ち時間なし。S＋Fだけなら英数です。';
   if (c.name==='eisu') return '左手の薬指＋人差し指（S＋F）で英数へ。間のDは押しません。';
