@@ -15,7 +15,7 @@
   <div class="hero"><span class="eyebrow">KEYBOARD FIELD GUIDE</span>
   <h1>torabotsuki-xs<span>キー配置と操作ガイド</span></h1>
   <p>OSとレイヤーを選んで、キーとボールの操作を確認。</p>
-  <div class="badges"><span>Windows / Mac</span><span>12 active layers</span><span>27 combos</span><span>オフライン対応</span></div></div>
+  <div class="badges"><span>Windows / Mac</span><span>12 active layers</span><span>28 combos</span><span>オフライン対応</span></div></div>
 </header>
 <nav aria-label="目次"><div><a href="#layout">配列を見る</a><a href="#bluetooth">接続</a><a href="#reference">OSの設定</a></div></nav>
 <main id="main">
@@ -41,8 +41,10 @@
         </aside>
     </div>
     <div class="legend"><span><i class="dot teal"></i>レイヤー・接続操作</span><span><i class="dot amber"></i>長押しで修飾キー</span><span><i class="dot gray"></i>下位レイヤーから引継ぎ</span></div>
-    <p class="muted">大きな文字は短押し、下の小文字は長押し。右上は基本配列の位置名。点線は引継ぎ、「—」は無効です。図はキー位置の模式図です。Zは文字優先の150ms判定、/・Spaceは文字優先の150ms判定。それぞれ判定時間未満で離すと文字・空白（変換）、Zは150ms長押しで左Shift、/・Spaceは150ms長押しで右Shift／数字レイヤーです。Zで「？」を入力するときは、Zを150ms押してから/を短押しします。</p>
-    <p class="muted">Zは <code>tap-preferred</code>・150msです。途中でEnterなどを押しても、その時点でzに確定せず、Zを150ms押し続ければShiftになります。150ms未満でZを離すと文字のzです。「・」だけ即Shiftにする例外はありません。Windows／Mac両配列と透過で引き継ぐレイヤーに適用されます。書き込み後は、Z→Enterを重ねてZを150ms以上保持した場合のShift＋Enterと、150ms未満で離した場合のz＋Enterを確認してください。実機動作は未確認です。</p>
+    <p class="muted">大きな文字は短押し、下の小文字は長押し。右上は基本配列の位置名。点線は引継ぎ、「—」は無効です。図はキー位置の模式図です。Z・/・Spaceは文字優先の150ms判定。通常は短押しで文字・空白（変換）、長押しで左右のShift／数字レイヤーです。「？」はZ＋/（JISの「・」）を100ms以内に重ねて押す専用コンボでも入力できます。</p>
+    <p class="muted">Zと/をどちらの順でも100ms以内に重ねて押すと、Shift判定を待たずに「？」（Shift＋/）を直接送ります。入力を休める必要はなく、タイピング途中も有効。L0／L1・L3・L6〜L11で使えます。L2のBluetooth管理とL4／L5の記号レイヤーでは無効です。文字として「z・」を素早く重ねた場合も「？」になるので、文字として打つ場合はZを離してから/を押してください。</p>
+    <p class="muted">コンボが成立しない場合のZは従来どおり <code>tap-preferred</code>・150msです。途中でEnterなどを押しても、その時点でzに確定せず、Zを150ms押し続ければShiftになります。150ms未満でZを離すと文字のzです。100msを超えてZ＋/を押す場合は、従来どおりZを150ms保持してから/を短押しします。コンボ待ちでZ／/単独の入力が最大100ms保留される場合があります。</p>
+    <p class="muted">書き込み後はWindows／Mac両配列で、タイピング途中のZ→/と/→Zを100ms以内に重ねて「？」が1回だけ入力されること、Zと/を離して順に打てば文字になること、Z→Enterの150ms以上の保持でShift＋Enter・150ms未満でz＋Enterになることを確認します。Z→Aなどの文字入力、Z／/単独の短押し・長押し、コンボが無効なL2・L4／L5の既存操作も確認してください。実機動作は未確認です。</p>
   </div>
 </section>
 <section id="bluetooth">

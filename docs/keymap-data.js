@@ -880,6 +880,27 @@ const KEYMAP = {
   ],
   "combos": [
     {
+      "name": "question_mark",
+      "binding": "&kp LS(FSLH)",
+      "positions": [
+        39,
+        50
+      ],
+      "layers": [
+        0,
+        1,
+        3,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "timeout-ms": 100,
+      "require-prior-idle-ms": 0
+    },
+    {
       "name": "win_close",
       "binding": "&kp LA(F4)",
       "positions": [

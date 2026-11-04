@@ -75,6 +75,15 @@
     combos {
         compatible = "zmk,combos";
 
+        question_mark {
+            bindings = <&kp LS(FSLH)>;
+            key-positions = <39 50>;
+            layers = <0 1 3 6 7 8 9 10 11>;
+            timeout-ms = <100>;
+            // Allow the combo during typing; keep the normal Z hold-tap unchanged.
+            require-prior-idle-ms = <0>;
+        };
+
         win_close {
             bindings = <&kp LA(F4)>;
             key-positions = <25 26 27>;
