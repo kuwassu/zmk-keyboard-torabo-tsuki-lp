@@ -15,7 +15,7 @@
   <div class="hero"><span class="eyebrow">KEYBOARD FIELD GUIDE</span>
   <h1>torabotsuki-xs<span>キー配置と操作ガイド</span></h1>
   <p>OSとレイヤーを選んで、キーとボールの操作を確認。</p>
-  <div class="badges"><span>Windows / Mac</span><span>11 active layers</span><span>27 combos</span><span>オフライン対応</span></div></div>
+  <div class="badges"><span>Windows / Mac</span><span>12 active layers</span><span>27 combos</span><span>オフライン対応</span></div></div>
 </header>
 <nav aria-label="目次"><div><a href="#layout">配列を見る</a><a href="#bluetooth">接続</a><a href="#reference">OSの設定</a></div></nav>
 <main id="main">
@@ -26,7 +26,7 @@
     <div class="controls"><fieldset><legend>表示するOS</legend><button type="button" data-os="win" aria-pressed="true">Windows</button><button type="button" data-os="mac" aria-pressed="false">Mac</button></fieldset><label class="position-toggle"><input id="positions" type="checkbox">位置番号を表示</label><button type="button" id="print">印刷 / PDF</button></div>
     <p class="muted">実機の配列切替：<kbd>Q＋W</kbd> Windows ／ <kbd>Q＋W＋E</kbd> Mac。この画面のOSボタンは表示だけを切り替えます。</p>
     <div class="explorer-workspace">
-      <aside class="layer-rail"><h3>レイヤー一覧</h3><p class="muted">番号・入り方から選ぶ</p><div id="layer-buttons" role="group" aria-label="表示するレイヤー"></div><p class="muted">L2はOS共通。L3は未使用。</p></aside>
+      <aside class="layer-rail"><h3>レイヤー一覧</h3><p class="muted">番号・入り方から選ぶ</p><div id="layer-buttons" role="group" aria-label="表示するレイヤー"></div><p class="muted">L2・L3はOS共通。L3は親指長押しのタブ切替。</p></aside>
       <div class="explorer-content">
         <div id="layer-description" aria-live="polite"></div>
         <div id="main-board" class="board-scroll"></div>
@@ -70,6 +70,12 @@
   </div>
   <p class="muted"><strong>Globeの直接送信：</strong>ZMKでは <code>&amp;kp GLOBE</code> を送れますが、Apple純正のFn／Globeを完全には再現しません。このキーマップのジェスチャーはCtrl＋Caps Lock＋方向キー等を送る設定なので、上記のCaps Lock → Globeを使います。<a href="https://zmk.dev/docs/keymaps/list-of-keycodes">ZMKのキー仕様</a></p>
   <p class="muted">Macのジェスチャーの結果はOSのショートカット設定に依存します。動かないときは配列図に添えた送信キーと設定を照合してください。</p>
+  <article class="card"><h3>左親指長押し＋右ボールでタブ切替</h3>
+    <p>左親指左側（Shift・旧Bspc）を200ms長押ししてから、押したまま右ボールを動かします。左で前のタブ（Ctrl＋Shift＋Tab）、右で次のタブ（Ctrl＋Tab）。Windows／Mac共通で、<a href="https://support.google.com/chrome/answer/157179?hl=ja">Chromeなどのタブ切替ショートカット</a>を送ります。タブの順序や対応はアプリの設定に依存します。</p>
+    <p>長押し中はL3が有効になり、上下は未割当、ポインター移動は停止。親指を離すと解除し、途中までの動きは次回へ持ち越しません。F・スクロールレイヤー（L8〜L11）との同時押しではそちらのボール操作が優先です。数字・記号レイヤーでは親指長押しでタブ切替を使えます。</p>
+    <p>親指の1回押しは次の1キーだけShift、素早い2回押しはCaps Lockのままです。MacでCaps Lock→Globeを割り当てている場合は2回押しでGlobeになります。親指の長押しや押したままの文字入力ではShiftを送らなくなるため、通常のShift長押しはZ／右小指の/を使います。別のキーを押した場合は200msを待たずにL3へ入ります。</p>
+    <p class="muted">書き込み後の確認：Windows／Macで短押しShift・2回押しCaps／Globe、200ms長押し後の左右タブ切替、上下が未割当であること、離した後のポインター復帰を確認します。短い動きで離して再度長押ししたときに前回の動きが足されないこと、Fのウィンドウ操作とEnterのスクロールの優先、左タッチパッドのMac用低速も確認してください。実機動作は未確認です。</p>
+  </article>
   <article class="card"><h3>左ミニトラックパッドのスクロール速度</h3>
     <p>接続先選択時の配列に連動して、縦横ともWindowsは従来どおり、Macは1/6の速度に切り替わります。OSの自動判別ではありません。接続先を変えずに切り替える場合は <kbd>Q＋W</kbd>（Windows）／<kbd>Q＋W＋E</kbd>（Mac）を使います。</p>
     <table><thead><tr><th>デバイス</th><th>Windows</th><th>Mac</th></tr></thead><tbody><tr><td>左タッチパッド（常時）</td><td>1倍</td><td>1/6倍</td></tr><tr><td>右ボール（Enter長押し中）</td><td>1/2倍</td><td>1/12倍</td></tr></tbody></table>
@@ -78,7 +84,7 @@
     <p class="muted">書き込み後の確認：同じ距離を指でなぞってWindows→Mac→Windowsで速度が変わること、Macの各レイヤーでも低速を維持することを確認します。縦横の方向・クリック、右ボールの移動・ジェスチャー・スクロールも確認してください。1/6は初期調整値で、実機での速度感は未確認です。</p>
   </article>
   <p class="muted">設定元：<a href="../config/keymap.keymap">キーマップ</a> ／ <a href="../boards/shields/torabo_tsuki_lp/torabo_tsuki_lp_right.overlay">右ボール</a> ／ <a href="../README.md">README</a>。Studioで実機を変更した場合は図と異なることがあります。</p>
-  <details><summary>印刷用：使用中の全11レイヤーの配列をまとめて表示</summary><div id="all-layers"></div></details>
+  <details><summary>印刷用：使用中の全12レイヤーの配列をまとめて表示</summary><div id="all-layers"></div></details>
 </section>
 </main>
 <footer>torabotsuki-xs · キー操作ガイド <span>ブラウザーでこのHTMLを開いて使えます。</span></footer>

@@ -50,6 +50,15 @@
             <&zip_scroll_scaler 1 12>,
             <&scroll_axis_filter>;
     };
+
+    tab-gesture-mouse {
+        // Listed after L8-L11: window gestures and scrolling take precedence.
+        layers = <3>;
+        input-processors =
+            <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
+            <&zip_mouse_gesture>,
+            <&zip_xy_scaler 0 1>;
+    };
 };
 
 &size_s_transform {

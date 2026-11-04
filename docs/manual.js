@@ -8,11 +8,12 @@ const rows = [
   [39,40,41,42,43,44,45,46,47,48,49,50],
   [53,54,55,56,57,58,59,60,61,62,63,64]
 ];
-const names = ['基本配列','Bluetooth管理','記号・矢印','数字・テンキー','F・ジェスチャ','スクロール・メディア'];
-const triggers = ['通常入力','J＋K＋L＋Enter → 離す → 選択','右下段Bspcを長押し','Spaceを長押し','Spaceの右隣を長押し','Enterを長押し'];
+const names = ['基本配列','Bluetooth管理','タブ切替','記号・矢印','数字・テンキー','F・ジェスチャ','スクロール・メディア'];
+const triggers = ['通常入力','J＋K＋L＋Enter → 離す → 選択','左親指Shiftを長押し','右下段Bspcを長押し','Spaceを長押し','Spaceの右隣を長押し','Enterを長押し'];
 const descriptions = [
-  'S＋D＋F → 離す → 次の1キーにShift。Zは200ms、/は150ms長押しでShift（文字優先）。親指Shiftは1回で次の1キー、2回でCaps Lock。',
+  'S＋D＋F → 離す → 次の1キーにShift。Zは200ms、/は150ms長押しでShift（文字優先）。親指は1回でShift、2回でCaps、長押しでタブ切替。',
   'Y/U/I/O/P/H/Jで接続先0〜6、A/S/D/F/G/Z/Xで切断。EnterかEscで戻ります。',
+  '左親指Shiftを200ms長押し＋右ボールで、左：前のタブ、右：次のタブ。親指の長押しではShiftを送りません。',
   '矢印・編集・記号。Z位置は短押しUndo／長押しShift、/位置は右Shift。R位置はWin：F2、Mac：Enter。',
   'Spaceは150ms未満で空白・変換、150ms長押しで数字レイヤー。上段に数字、右手にテンキー。ボールは通常のポインター移動です。',
   'F1〜F12と右ボールのジェスチャー。A＋S＋DでWin：Alt＋F4、Mac：Cmd＋Q。',
@@ -21,13 +22,14 @@ const descriptions = [
 const flows = [
   ['いつもの配列','文字入力・クリックのコンボ','長押しキーやJ＋K＋L＋Enterで別レイヤーへ'],
   ['入力を200ms休める → J＋K＋L＋Enterを50ms以内に押す → 全部離す','Y/U/I/O/P/H/J：接続先0〜6 ／ A/S/D/F/G/Z/X：切断0〜6','選択すると自動で戻る。切断・削除後はEnterかEscで戻る'],
+  ['左親指Shiftを200ms押したまま','右ボールを左：前のタブ ／ 右：次のタブ','親指を離す。ポインター移動に戻る'],
   ['右下段Bspcを押したまま','矢印・記号・コピーなどの編集','Bspcを離す'],
   ['Spaceを押したまま','上段の数字・右手のテンキー','Spaceを離す'],
   ['Spaceの右隣を押したまま','F1〜F12・ボールでジェスチャ','押していたキーを離す'],
   ['Enterを押したまま','J：↕ 縦のみ ／ K：↔ 横のみ ／ H：自由','Enterを離す。次回は自由スクロール']
 ];
 let os = 'win', group = 0, showPositions = false, comboScope = 'current', selectedCombo = null;
-const layerId = (g = group, system = os) => [[0,1],[2,2],[4,5],[6,7],[8,9],[10,11]][g][+(system === 'mac')];
+const layerId = (g = group, system = os) => [[0,1],[2,2],[3,3],[4,5],[6,7],[8,9],[10,11]][g][+(system === 'mac')];
 const aliases = {LEFT_SHIFT:'Shift',RIGHT_SHIFT:'Shift',LSHIFT:'Shift',LCTRL:'Ctrl',RCTRL:'右Ctrl',RIGHT_CONTROL:'右Ctrl',LGUI:'Win',LEFT_GUI:'Win',LEFT_ALT:'Alt',LALT:'Alt',BSPC:'Bspc',ENTER:'Enter',SPACE:'Space',TAB:'Tab',ESC:'Esc',DELETE:'Delete',GRAVE:'Grave',HOME:'Home',END:'End',LEFT:'←',RIGHT:'→',UP:'↑',DOWN:'↓',CAPS:'Caps',PRINTSCREEN:'PrtSc',COMMA:',',PERIOD:'.',DOT:'.',FSLH:'/',SLASH:'/',MINUS:'-',EQUAL:'^',LBKT:'@',RIGHT_BRACKET:'[',BSLH:']',INT1:'\\',INT3:'¥',SEMI:';',SEMICOLON:';',APOS:':',LANGUAGE_1:'かな',LANG2:'英数',C_BRI_DN:'明るさ−',C_BRI_UP:'明るさ＋',C_VOL_DN:'音量−',C_VOL_UP:'音量＋',C_MUTE:'ミュート',C_PLAY_PAUSE:'再生/停止'};
 function keyName(code) {
   if (/^N\d$/.test(code)) return code.slice(1);
@@ -45,7 +47,7 @@ function describe(binding) {
   if (behavior === '&scroll_mode') return {label:['自由 ↕↔','縦のみ ↕','横のみ ↔'][+args[0]],sub:'1回押して選択',kind:'layer'};
   if (behavior === '&none') return {label:'—',sub:'',kind:'inactive'};
   if (behavior === '&kp') return {label:keyName(args[0]),sub:'',kind:''};
-  if (behavior === '&thumb_shift') return {label:'Shift¹',sub:'2回 Caps',kind:'mod'};
+  if (behavior === '&thumb_shift') return {label:'Shift¹ / Caps²',sub:'長押し タブ切替',kind:'layer'};
   if (behavior === '&mt' || behavior === '&z_mt' || behavior === '&slash_mt') return {label:keyName(args[1]),sub:'長押し '+keyName(args[0]),kind:'mod'};
   if (behavior === '&lt' || behavior === '&space_lt') return {label:keyName(args[1]),sub:'長押し L'+args[0],kind:'layer'};
   if (behavior === '&mo') return {label:'L'+args[0],sub:'押している間',kind:'layer'};
@@ -121,15 +123,17 @@ function previewCombo(name) {
 }
 function renderPointer() {
   const panel = $('#layer-pointer');
-  if (group === 4) {
+  if (group === 2) {
+    panel.innerHTML = '<h3>右ボール：タブ切替</h3><p>左親指Shiftを200ms長押ししてから動かします。<kbd>←</kbd> 前のタブ（Ctrl＋Shift＋Tab） ／ <kbd>→</kbd> 次のタブ（Ctrl＋Tab）。Windows／Mac共通です。</p><p class="muted">上下は未割当。長押し中はポインター移動が止まり、離すと解除。途中までの動きは次回へ持ち越しません。F・スクロールレイヤーを同時に押すとそちらが優先。通常のShift長押しはZ／右小指の/を使います。タブの順序や対応はアプリに依存します。</p>';
+  } else if (group === 5) {
     const directions = os === 'win'
       ? [['↑','最大化','Win＋↑'],['←','左へ配置','Win＋←'],['→','右へ配置','Win＋→'],['↓','最小化など','Win＋↓']]
       : [['↑','Ctrl＋Caps＋F',''],['←','Ctrl＋Caps＋←',''],['→','Ctrl＋Caps＋→',''],['↓','Ctrl＋Caps＋C','']];
     panel.innerHTML = '<h3>右ボール：4方向のジェスチャー</h3><p>Spaceの右隣を押したまま動かします。この間はポインター移動が止まります。</p><div class="gesture-directions">'+directions.map(([arrow,label,keys])=>'<div><b>'+arrow+'</b><span>'+label+'</span>'+(keys?'<small>'+keys+'</small>':'')+'</div>').join('')+'</div><p class="muted">方向はポインター座標基準です。'+(os==='mac'?'CapsはCaps Lockの送信キー。<a href="#reference">Globeへの割り当て設定</a>を確認してください。':'')+'</p>';
-  } else if (group === 5) {
+  } else if (group === 6) {
     panel.innerHTML = '<h3>右ボール：スクロール</h3><p><kbd>H</kbd> 縦横自由 ／ <kbd>J</kbd> 縦のみ ／ <kbd>K</kbd> 横のみ。1回押して選択し、Enterを離すまで保持。次回は自由スクロールです。</p><p class="muted">U / O：明るさ−・明るさ＋。M / , / .：音量−・ミュート・音量＋。左ミニトラックパッドはこの軸制限の対象外です。</p>';
   } else if (group === 0) {
-    panel.innerHTML = '<h3>右ボール：ポインター移動</h3><p><kbd>J＋K</kbd> 左クリック ／ <kbd>K＋L</kbd> 右クリック ／ <kbd>J＋K＋L</kbd> 中クリック。押したまま動かすとドラッグ。</p><p class="muted">M＋,：戻る ／ ,＋.：進む。押す位置はコンボを選ぶと図に表示します。</p>';
+    panel.innerHTML = '<h3>右ボール：ポインター移動</h3><p><kbd>J＋K</kbd> 左クリック ／ <kbd>K＋L</kbd> 右クリック ／ <kbd>J＋K＋L</kbd> 中クリック。押したまま動かすとドラッグ。</p><p>左親指Shiftを200ms長押し＋ボール左／右で前／次のタブ。短押しShift・2回押しCapsはそのままです。</p><p class="muted">M＋,：戻る ／ ,＋.：進む。押す位置はコンボを選ぶと図に表示します。</p>';
   } else {
     panel.innerHTML = '';
   }
@@ -142,7 +146,7 @@ function render() {
   $('#layer-buttons').innerHTML = names.map((n,g)=>`<button type="button" data-group="${g}" aria-pressed="${group===g}"${layerEnabled(layerId(g))?'':' disabled'}><span><b>L${layerId(g)}</b> ${n}</span><small>${triggers[g]}</small></button>`).join('');
   if (focusedGroup) $(`[data-group="${focusedGroup}"]`).focus({preventScroll:true});
   const id = layerId();
-  $('#layer-description').innerHTML = `<div class="layer-intro"><h3>${names[group]}</h3><span class="pill">L${id} · ${id===2?'OS共通':os==='win'?'Windows':'Mac'}</span></div><p>${descriptions[group]}</p>${group ? `<ol class="layer-flow">${flows[group].map((text,i)=>`<li><b>${['入る','使う','戻る'][i]}</b><span>${esc(text)}</span></li>`).join('')}</ol>` : ''}`;
+  $('#layer-description').innerHTML = `<div class="layer-intro"><h3>${names[group]}</h3><span class="pill">L${id} · ${KEYMAP.layers[id].os==='both'?'OS共通':os==='win'?'Windows':'Mac'}</span></div><p>${descriptions[group]}</p>${group ? `<ol class="layer-flow">${flows[group].map((text,i)=>`<li><b>${['入る','使う','戻る'][i]}</b><span>${esc(text)}</span></li>`).join('')}</ol>` : ''}`;
   renderNearby();
   renderPointer();
   const previousOS = os;
