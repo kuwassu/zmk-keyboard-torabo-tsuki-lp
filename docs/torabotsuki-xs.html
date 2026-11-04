@@ -41,8 +41,8 @@
         </aside>
     </div>
     <div class="legend"><span><i class="dot teal"></i>レイヤー・接続操作</span><span><i class="dot amber"></i>長押しで修飾キー</span><span><i class="dot gray"></i>下位レイヤーから引継ぎ</span></div>
-    <p class="muted">大きな文字は短押し、下の小文字は長押し。右上は基本配列の位置名。点線は引継ぎ、「—」は無効です。図はキー位置の模式図です。Z単独は200ms未満で文字、200ms長押しで左Shift。Zを先に押したまま右小指の/（JISの「・」）を押すと、その瞬間にShiftが確定します。/を150ms未満で離せば「？」を入力でき、200ms待つ必要はありません。Zより先に/を押した場合や、Zを離してから/を押した場合は対象外です。200msより前に/以外を押すとZの文字入力が確定するため、「za」などは素早く打てます。他のキーへShiftをかける場合はZを200ms長押ししてから押します。/・Spaceは従来どおり文字優先の150ms判定で、短押しは文字・空白（変換）、長押しは右Shift／数字レイヤーです。</p>
-    <p class="muted">設定：<code>z_mt</code> は <code>hold-preferred</code>・200msと <code>hold-trigger-key-positions = &lt;50&gt;</code>（/位置）の組み合わせ。Windows／Mac両配列と、L3など基本配列のZを透過で引き継ぐレイヤーに適用されます。記号レイヤーのUndo／Shiftは別設定です。書き込み後は、タイピング途中のZ→/で「？」になること、Z単独・Z→Aなどの文字入力、Zの200ms長押しと/の150ms判定を確認してください。実機動作は未確認です。</p>
+    <p class="muted">大きな文字は短押し、下の小文字は長押し。右上は基本配列の位置名。点線は引継ぎ、「—」は無効です。図はキー位置の模式図です。Zは文字優先の200ms判定、/・Spaceは文字優先の150ms判定。それぞれ判定時間未満で離すと文字・空白（変換）、Zは200ms長押しで左Shift、/・Spaceは150ms長押しで右Shift／数字レイヤーです。Zで「？」を入力するときは、Zを200ms押してから/を短押しします。</p>
+    <p class="muted">Zは <code>tap-preferred</code>・200msです。途中でEnterなどを押しても、その時点でzに確定せず、Zを200ms押し続ければShiftになります。200ms未満でZを離すと文字のzです。「・」だけ即Shiftにする例外はありません。Windows／Mac両配列と透過で引き継ぐレイヤーに適用されます。書き込み後は、Z→Enterを重ねてZを200ms以上保持した場合のShift＋Enterと、200ms未満で離した場合のz＋Enterを確認してください。実機動作は未確認です。</p>
   </div>
 </section>
 <section id="bluetooth">
