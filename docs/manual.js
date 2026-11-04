@@ -133,6 +133,7 @@ function renderPointer() {
   } else {
     panel.innerHTML = '';
   }
+  panel.innerHTML += '<h3>左タッチパッド：スクロール</h3><p>'+ (os === 'mac' ? 'Mac配列では従来の1/6の速度です。各レイヤーでも低速を維持します。' : 'Windows配列では従来どおりの速度です。') +' 接続先選択またはQ＋W／Q＋W＋Eの配列切替に連動します。<a href="#reference">速度の設定と確認方法</a></p>';
   panel.hidden = !panel.innerHTML;
 }
 function render() {

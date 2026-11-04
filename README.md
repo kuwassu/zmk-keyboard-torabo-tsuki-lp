@@ -14,6 +14,8 @@ Enter長押しのスクロールレイヤー（L10 / L11）では、`J`を1回�
 
 接続先の切替は、基本配列で `J + K + L + Enter` を同時押しして全キーを離し、`Y / U / I / O / P / H / J` でスロット `0 / 1 / 2 / 3 / 4 / 5 / 6` を選びます。選択後は対応するWindows／Macの基本配列に戻ります。選択前なら `Enter` または `Esc` でキャンセルできます。コンボは直前200ms入力なし・4キーを50ms以内の条件で有効です。Enter長押し中は接続先を切り替えません。
 
+左ミニトラックパッドの縦横スクロール速度も配列に連動します。Windows（L0）は従来どおり1倍、Mac（L1）は1/6倍です。OSの自動判別ではなく、接続先選択後の配列、または `Q + W`／`Q + W + E` の配列切替で変わります。Macの記号・数字・F・スクロールレイヤーやBluetooth管理中もL1が有効なので低速を維持します。設定は `snippets/input-split-listener/input-split-listener.overlay` の `mac-scroller` 内の `<&zip_scroll_scaler 1 6>`（分子・分母）で調整できます。右ボールとは独立した補正で、ポインター移動・クリックは補正しません。現在の構成では右側中央のファームウェアを書き換えれば反映されます。書き込み後は同じ距離を指でなぞり、Windows→Mac→Windowsの切替、Macの各レイヤーでの低速維持、縦横・方向・クリックと右ボールの操作を実機で確認してください。
+
 Bluetoothは7スロット（0〜6）です。0・2・4・6はWindows、1・3・5はMac配列に戻ります。中央側専用の `snippets/split-central/split-central.conf` で `CONFIG_BT_MAX_CONN=8` と `CONFIG_BT_MAX_PAIRED=8` を設定し、ホスト7枠＋左右間通信用1枠を確保しています（[ZMK公式設定](https://zmk.dev/docs/config/system#bluetooth)）。現在の `build.yaml` では右側が中央、左側が周辺です。
 
 Bluetoothの切断・登録削除もL2に集約しました。A / S / D / F / G / Z / Xでスロット0〜6を切断、左下段の修飾キー3つ（位置53・54・55）で現在の登録、Q + W + E + Rで全登録を削除します。切断・削除後はL2に留まるのでEnterかEscで戻ります。L10 / L11はスクロール・メディア操作用です。配列切替コンボはL0・L1の両方で有効です。Q + WでWindows、Q + W + EでMacへ、接続先を変えずに配列だけ切り替えます。

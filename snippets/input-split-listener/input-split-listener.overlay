@@ -14,5 +14,14 @@
         device = <&pointing_device_split>;
         status = "okay";
         input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>;
+
+        mac-scroller {
+            // L1 stays active under Mac's momentary layers and Bluetooth management.
+            // Windows uses the unchanged base path above; match the ball's 1:6 OS ratio.
+            layers = <1>;
+            input-processors =
+                <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
+                <&zip_scroll_scaler 1 6>;
+        };
      };
 };
