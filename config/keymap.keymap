@@ -23,8 +23,11 @@
         z_mt: z_mod_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "tap-preferred";
+            flavor = "hold-preferred";
             tapping-term-ms = <200>;
+            // Resolve Shift immediately only when the slash/dot key follows Z.
+            // Other key presses before 200ms resolve Z as a tap.
+            hold-trigger-key-positions = <50>;
             bindings = <&kp>, <&kp>;
         };
 

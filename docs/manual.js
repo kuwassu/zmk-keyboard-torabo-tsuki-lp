@@ -11,7 +11,7 @@ const rows = [
 const names = ['基本配列','Bluetooth管理','タブ切替','記号・矢印','数字・テンキー','F・ジェスチャ','スクロール・メディア'];
 const triggers = ['通常入力','J＋K＋L＋Enter → 離す → 選択','左親指Shiftを長押し','右下段Bspcを長押し','Spaceを長押し','Spaceの右隣を長押し','Enterを長押し'];
 const descriptions = [
-  'S＋D＋F → 離す → 次の1キーにShift。Zは200ms、/は150ms長押しでShift（文字優先）。親指は1回でShift、2回でCaps、長押しでタブ切替。',
+  'S＋D＋F → 離す → 次の1キーにShift。Z→/と重ねて短押しで「？」（200ms待ち不要）。Z単独は200ms、/は150ms長押しでShift。親指は1回でShift、2回でCaps、長押しでタブ切替。',
   'Y/U/I/O/P/H/Jで接続先0〜6、A/S/D/F/G/Z/Xで切断。EnterかEscで戻ります。',
   '左親指Shiftを200ms長押し＋右ボールで、左：前のタブ、右：次のタブ。親指の長押しではShiftを送りません。',
   '矢印・編集・記号。Z位置は短押しUndo／長押しShift、/位置は右Shift。R位置はWin：F2、Mac：Enter。',
