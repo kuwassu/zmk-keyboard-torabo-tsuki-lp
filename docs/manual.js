@@ -139,7 +139,7 @@ function renderPointer() {
   } else {
     panel.innerHTML = '';
   }
-  panel.innerHTML += '<h3>左タッチパッド：スクロール</h3><p>'+ (os === 'mac' ? 'Mac配列は補正なしの1/8倍（以前のMacより25%低速）です。' : 'Windows配列は補正なしの1/6倍（以前のMac相当）です。') +' キーの長押しは不要。指を縦横になぞるとスクロールします。各レイヤーでも速度を維持し、接続先選択またはQ＋W／Q＋W＋Eの配列切替に連動します。<a href="#reference">速度の設定と確認方法</a></p>';
+  panel.innerHTML += `<div class="trackpad-quick"><div class="visual-heading"><h3>左パッド · なぞるだけ</h3><span class="pill">${os==='mac'?'Mac · 1/8倍':'Win · 1/6倍'}</span></div><div class="quick-swipes"><div><svg viewBox="0 50 468 230" role="img" aria-label="指を縦になぞると縦スクロール"><image href="trackpad-scroll.svg" width="960" height="310"/></svg><b>↕ 縦スクロール</b></div><div><svg viewBox="492 50 468 230" role="img" aria-label="指を横になぞると横スクロール"><image href="trackpad-scroll.svg" width="960" height="310"/></svg><b>↔ 横スクロール</b></div></div><a class="visual-caption" href="#trackpad">キー長押し不要 · 全レイヤー共通 → 速度の図を見る</a></div>`;
   panel.hidden = !panel.innerHTML;
 }
 function render() {
@@ -167,6 +167,6 @@ $('#combo-preview').addEventListener('click',e=>{const b=e.target.closest('[data
 $('#positions').addEventListener('change',e=>{showPositions=e.target.checked;render();});
 $('#print').addEventListener('click',()=>window.print());
 let detailsWasOpen;
-window.addEventListener('beforeprint',()=>{const d=$('details');detailsWasOpen=d.open;d.open=true;});
-window.addEventListener('afterprint',()=>{$('details').open=detailsWasOpen;});
+window.addEventListener('beforeprint',()=>{const d=$('#print-layers');detailsWasOpen=d.open;d.open=true;});
+window.addEventListener('afterprint',()=>{$('#print-layers').open=detailsWasOpen;});
 render();

@@ -6,6 +6,7 @@ description: このリポジトリのZMK設定やキー操作を修正し、docs
 # torabo-tsuki の修正ルール
 
 - 修正時は必ず同じ変更で `docs/` も更新する。操作への影響、設定値、確認方法を該当箇所に反映し、実装だけを変更して完了にしない。
+- 操作ガイドは図解を中心にする。指・キー・ボールの動きと結果を図や矢印で示し、本文は短いラベルにする。配列図の近くにも図解を出し、設定値の詳細や検証手順などの長文は折りたたむ。
 - 現在使うキーマップは `config/keymap.keymap`。`docs/torabotsuki-xs.html` が操作ガイド、`docs/manual.js` が図の表示ロジック。READMEに該当する説明があれば合わせて更新する。
 - キーマップ変更後は `python docs/generate-keymap.py` で `docs/keymap-data.js` を再生成する。生成データを手編集しない。
 - Windows / Mac両配列と、透過キーで引き継ぐレイヤーへの影響を確認する。MacのCaps Lock → Globeなど、OS側設定との関係も説明に反映する。

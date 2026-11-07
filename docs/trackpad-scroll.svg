@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 310" role="img" aria-labelledby="title desc">
+  <title id="title">左トラックパッドの縦・横スクロール</title>
+  <desc id="desc">左の図はパッド上で指を縦に動かしてページを縦スクロール。右の図は指を横に動かしてページを横スクロール。キーを押す必要はありません。矢印は動かす軸を示しています。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#136951"/></marker>
+    <pattern id="grid" width="15" height="15" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#c5d9cd"/></pattern>
+  </defs>
+  <style>text{font-family:system-ui,"Segoe UI","Noto Sans JP",sans-serif;fill:#23352f}.label{font-size:18px;font-weight:700}.note{font-size:14px;fill:#5c6d65}.stroke{fill:none;stroke:#136951;stroke-width:5;stroke-linecap:round;marker-start:url(#arrow);marker-end:url(#arrow)}.page{fill:#fff;stroke:#b1c8bb;stroke-width:2}.line{stroke:#c7d8cf;stroke-width:7;stroke-linecap:round}.finger{fill:#ffe7c5;stroke:#96632f;stroke-width:2}</style>
+  <rect x="1" y="1" width="467" height="308" rx="18" fill="#f0f6ef" stroke="#d1e0d5"/>
+  <rect x="492" y="1" width="467" height="308" rx="18" fill="#f0f6ef" stroke="#d1e0d5"/>
+  <text x="25" y="36" class="label">↕ 縦になぞる</text><text x="516" y="36" class="label">↔ 横になぞる</text>
+  <!-- Vertical swipe: a fingertip and an axis arrow on the pad. -->
+  <rect x="30" y="66" width="150" height="169" rx="24" fill="#e1ede5" stroke="#8caf9a" stroke-width="2"/>
+  <rect x="40" y="76" width="130" height="149" rx="17" fill="url(#grid)"/>
+  <path d="M72 222v-78a19 19 0 0 1 38 0v78" class="finger"/>
+  <path d="M82 144q9-12 18 0" fill="none" stroke="#b58b59" stroke-width="2"/>
+  <path d="M141 107v87" class="stroke"/>
+  <text x="105" y="262" text-anchor="middle" class="note">左パッド · 指1本</text>
+  <path d="M201 151h38m-10-9 10 9-10 9" fill="none" stroke="#789986" stroke-width="3"/>
+  <rect x="260" y="66" width="178" height="169" rx="10" class="page"/>
+  <path d="M260 94h178" stroke="#b1c8bb" stroke-width="2"/>
+  <circle cx="274" cy="80" r="3" fill="#91b6a0"/><circle cx="285" cy="80" r="3" fill="#91b6a0"/>
+  <path d="M280 119h91m-91 24h76m-76 24h91m-91 24h61m-61 24h86" class="line"/>
+  <path d="M409 116v98" stroke="#dce8df" stroke-width="8" stroke-linecap="round"/>
+  <path d="M409 132v65" class="stroke"/>
+  <text x="349" y="262" text-anchor="middle" class="label">縦スクロール</text>
+  <!-- Horizontal swipe. -->
+  <rect x="520" y="66" width="150" height="169" rx="24" fill="#e1ede5" stroke="#8caf9a" stroke-width="2"/>
+  <rect x="530" y="76" width="130" height="149" rx="17" fill="url(#grid)"/>
+  <path d="M572 222v-78a19 19 0 0 1 38 0v78" class="finger"/>
+  <path d="M582 144q9-12 18 0" fill="none" stroke="#b58b59" stroke-width="2"/>
+  <path d="M550 108h91" class="stroke"/>
+  <text x="595" y="262" text-anchor="middle" class="note">左パッド · 指1本</text>
+  <path d="M691 151h38m-10-9 10 9-10 9" fill="none" stroke="#789986" stroke-width="3"/>
+  <rect x="750" y="66" width="178" height="169" rx="10" class="page"/>
+  <path d="M750 94h178" stroke="#b1c8bb" stroke-width="2"/>
+  <circle cx="764" cy="80" r="3" fill="#91b6a0"/><circle cx="775" cy="80" r="3" fill="#91b6a0"/>
+  <path d="M770 119h136m-136 24h136m-136 24h136" class="line"/>
+  <path d="M770 204h136" stroke="#dce8df" stroke-width="8" stroke-linecap="round"/>
+  <path d="M790 204h95" class="stroke"/>
+  <text x="839" y="262" text-anchor="middle" class="label">横スクロール</text>
+  <text x="480" y="296" text-anchor="middle" class="note">矢印は動かす軸の図解です。</text>
+</svg>
