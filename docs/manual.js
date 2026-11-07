@@ -139,7 +139,7 @@ function renderPointer() {
   } else {
     panel.innerHTML = '';
   }
-  panel.innerHTML += '<h3>左タッチパッド：スクロール</h3><p>'+ (os === 'mac' ? 'Mac配列では従来の1/6の速度です。各レイヤーでも低速を維持します。' : 'Windows配列では従来どおりの速度です。') +' 接続先選択またはQ＋W／Q＋W＋Eの配列切替に連動します。<a href="#reference">速度の設定と確認方法</a></p>';
+  panel.innerHTML += '<h3>左タッチパッド：スクロール</h3><p>'+ (os === 'mac' ? 'Mac配列は補正なしの1/8倍（以前のMacより25%低速）です。' : 'Windows配列は補正なしの1/6倍（以前のMac相当）です。') +' キーの長押しは不要。指を縦横になぞるとスクロールします。各レイヤーでも速度を維持し、接続先選択またはQ＋W／Q＋W＋Eの配列切替に連動します。<a href="#reference">速度の設定と確認方法</a></p>';
   panel.hidden = !panel.innerHTML;
 }
 function render() {

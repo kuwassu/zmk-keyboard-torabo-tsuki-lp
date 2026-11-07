@@ -79,12 +79,12 @@
     <p>親指の1回押しは次の1キーだけShift、素早い2回押しはCaps Lockのままです。MacでCaps Lock→Globeを割り当てている場合は2回押しでGlobeになります。親指の長押しや押したままの文字入力ではShiftを送らなくなるため、通常のShift長押しはZ／右小指の/を使います。別のキーを押した場合は200msを待たずにL3へ入ります。</p>
     <p class="muted">書き込み後の確認：Windows／Macで短押しShift・2回押しCaps／Globe、200ms長押し後の左右タブ切替、上下が未割当であること、離した後のポインター復帰を確認します。短い動きで離して再度長押ししたときに前回の動きが足されないこと、Fのウィンドウ操作とEnterのスクロールの優先、左タッチパッドのMac用低速も確認してください。実機動作は未確認です。</p>
   </article>
-  <article class="card"><h3>左ミニトラックパッドのスクロール速度</h3>
-    <p>接続先選択時の配列に連動して、縦横ともWindowsは従来どおり、Macは1/6の速度に切り替わります。OSの自動判別ではありません。接続先を変えずに切り替える場合は <kbd>Q＋W</kbd>（Windows）／<kbd>Q＋W＋E</kbd>（Mac）を使います。</p>
-    <table><thead><tr><th>デバイス</th><th>Windows</th><th>Mac</th></tr></thead><tbody><tr><td>左タッチパッド（常時）</td><td>1倍</td><td>1/6倍</td></tr><tr><td>右ボール（Enter長押し中）</td><td>1/2倍</td><td>1/12倍</td></tr></tbody></table>
-    <p>Macの記号・数字・F・スクロールレイヤー、Bluetooth管理中も低速を維持します。左タッチパッドのポインター移動やクリックには補正をかけません。右ボールのH／J／Kによる軸制限も左には適用しません。</p>
-    <p class="muted">調整箇所：<code>snippets/input-split-listener/input-split-listener.overlay</code> の <code>mac-scroller</code> 内にある <code>&amp;zip_scroll_scaler 1 6</code>（分子・分母）。現在の構成では右側中央のファームウェアを書き換えると反映されます。</p>
-    <p class="muted">書き込み後の確認：同じ距離を指でなぞってWindows→Mac→Windowsで速度が変わること、Macの各レイヤーでも低速を維持することを確認します。縦横の方向・クリック、右ボールの移動・ジェスチャー・スクロールも確認してください。1/6は初期調整値で、実機での速度感は未確認です。</p>
+  <article class="card"><h3>左ミニトラックパッドの使い方と速度</h3>
+    <p>左ミニトラックパッドは常時スクロール用です。キーを長押しせず、指を縦になぞると縦スクロール、横になぞると横スクロールします。接続先選択時の配列に連動して、縦横ともWindowsは補正なしの1/6倍（以前のMac相当）、Macは1/8倍（以前のMacより25%低速）に切り替わります。OSの自動判別ではありません。接続先を変えずに切り替える場合は <kbd>Q＋W</kbd>（Windows）／<kbd>Q＋W＋E</kbd>（Mac）を使います。</p>
+    <table><thead><tr><th>デバイス</th><th>Windows</th><th>Mac</th></tr></thead><tbody><tr><td>左タッチパッド（常時）</td><td>1/6倍</td><td>1/8倍</td></tr><tr><td>右ボール（Enter長押し中）</td><td>1/2倍</td><td>1/12倍</td></tr></tbody></table>
+    <p>Windows／Macとも、記号・数字・F・スクロール・タブ切替レイヤー、Bluetooth管理中も選んだ配列の速度を維持します。左タッチパッドのポインター移動やクリックには補正をかけません。右ボールのH／J／Kによる軸制限も左には適用しません。</p>
+    <p class="muted">調整箇所：<code>snippets/input-split-listener/input-split-listener.overlay</code> の通常経路にある <code>&amp;zip_scroll_scaler 1 6</code>（Windows）、<code>mac-scroller</code> 内の <code>&amp;zip_scroll_scaler 1 8</code>（Mac）。数値は分子・分母で、Macでは通常経路に重ねず置き換えて適用します。現在の構成では右側中央のファームウェアを書き換えると反映されます。</p>
+    <p class="muted">書き込み後の確認：同じ距離を指でなぞってWindows→Mac→Windowsで速度が変わること、両OSの各レイヤーでも速度を維持することを確認します。縦横の方向・クリック、右ボールの移動・ジェスチャー・スクロールも確認してください。倍率は入力値に対する設定値で、画面上の移動量はOSやアプリにも依存します。今回の速度感は実機未確認です。</p>
   </article>
   <p class="muted">設定元：<a href="../config/keymap.keymap">キーマップ</a> ／ <a href="../boards/shields/torabo_tsuki_lp/torabo_tsuki_lp_right.overlay">右ボール</a> ／ <a href="../README.md">README</a>。Studioで実機を変更した場合は図と異なることがあります。</p>
   <details><summary>印刷用：使用中の全12レイヤーの配列をまとめて表示</summary><div id="all-layers"></div></details>

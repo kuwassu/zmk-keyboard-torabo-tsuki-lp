@@ -14,7 +14,7 @@ Enter長押しのスクロールレイヤー（L10 / L11）では、`J`を1回�
 
 接続先の切替は、基本配列で `J + K + L + Enter` を同時押しして全キーを離し、`Y / U / I / O / P / H / J` でスロット `0 / 1 / 2 / 3 / 4 / 5 / 6` を選びます。選択後は対応するWindows／Macの基本配列に戻ります。選択前なら `Enter` または `Esc` でキャンセルできます。コンボは直前200ms入力なし・4キーを50ms以内の条件で有効です。Enter長押し中は接続先を切り替えません。
 
-左ミニトラックパッドの縦横スクロール速度も配列に連動します。Windows（L0）は従来どおり1倍、Mac（L1）は1/6倍です。OSの自動判別ではなく、接続先選択後の配列、または `Q + W`／`Q + W + E` の配列切替で変わります。Macの記号・数字・F・スクロールレイヤーやBluetooth管理中もL1が有効なので低速を維持します。設定は `snippets/input-split-listener/input-split-listener.overlay` の `mac-scroller` 内の `<&zip_scroll_scaler 1 6>`（分子・分母）で調整できます。右ボールとは独立した補正で、ポインター移動・クリックは補正しません。現在の構成では右側中央のファームウェアを書き換えれば反映されます。書き込み後は同じ距離を指でなぞり、Windows→Mac→Windowsの切替、Macの各レイヤーでの低速維持、縦横・方向・クリックと右ボールの操作を実機で確認してください。
+左ミニトラックパッドの縦横スクロール速度も配列に連動します。Windows（L0）は補正なしの1/6倍（以前のMac相当）、Mac（L1）は1/8倍（以前のMacより25%低速）です。キーの長押しは不要で、指を縦横になぞるとスクロールします。OSの自動判別ではなく、接続先選択後の配列、または `Q + W`／`Q + W + E` の配列切替で変わります。Windows／Macとも各レイヤーで速度を維持します。MacではL1が有効な間、専用の補正を適用します。設定は `snippets/input-split-listener/input-split-listener.overlay` の通常経路の `<&zip_scroll_scaler 1 6>`（Windows）と `mac-scroller` 内の `<&zip_scroll_scaler 1 8>`（Mac）で調整できます。数値は分子・分母で、Macの補正は通常経路に重ねず置き換えます。右ボールとは独立した補正で、ポインター移動・クリックは補正しません。現在の構成では右側中央のファームウェアを書き換えれば反映されます。書き込み後は同じ距離を指でなぞり、Windows→Mac→Windowsの切替、両OSの各レイヤーでの速度維持、縦横・方向・クリックと右ボールの操作を実機で確認してください。
 
 Bluetoothは7スロット（0〜6）です。0・2・4・6はWindows、1・3・5はMac配列に戻ります。中央側専用の `snippets/split-central/split-central.conf` で `CONFIG_BT_MAX_CONN=8` と `CONFIG_BT_MAX_PAIRED=8` を設定し、ホスト7枠＋左右間通信用1枠を確保しています（[ZMK公式設定](https://zmk.dev/docs/config/system#bluetooth)）。現在の `build.yaml` では右側が中央、左側が周辺です。
 
