@@ -126,7 +126,8 @@ function previewCombo(name) {
 function renderPointer() {
   const panel = $('#layer-pointer');
   if (group === 2) {
-    panel.innerHTML = '<h3>右ボール：タブ切替</h3><p>左親指Shiftを200ms長押ししてから動かします。<kbd>←</kbd> 前のタブ（Ctrl＋Shift＋Tab） ／ <kbd>→</kbd> 次のタブ（Ctrl＋Tab）。Windows／Mac共通です。</p><p class="muted">上下は未割当。長押し中はポインター移動が止まり、離すと解除。途中までの動きは次回へ持ち越しません。F・スクロールレイヤーを同時に押すとそちらが優先。通常のShift長押しはZ／右小指の/を使います。タブの順序や対応はアプリに依存します。</p>';
+    const ctrl = os === 'mac' ? '右Ctrl' : '左Ctrl';
+    panel.innerHTML = `<h3>右ボール：タブ切替</h3><p>左親指Shiftを200ms長押ししてから動かします。<kbd>←</kbd> 前のタブ（${ctrl}＋Shift＋Tab） ／ <kbd>→</kbd> 次のタブ（${ctrl}＋Tab）。</p><p class="muted">上下は未割当。長押し中はポインター移動が止まり、離すと解除。途中までの動きは次回へ持ち越しません。F・スクロールレイヤーを同時に押すとそちらが優先。通常のShift長押しはZ／右小指の/を使います。タブの順序や対応はアプリに依存します。</p>`;
   } else if (group === 5) {
     const directions = os === 'win'
       ? [['↑','最大化','Win＋↑'],['←','左へ配置','Win＋←'],['→','右へ配置','Win＋→'],['↓','最小化など','Win＋↓']]

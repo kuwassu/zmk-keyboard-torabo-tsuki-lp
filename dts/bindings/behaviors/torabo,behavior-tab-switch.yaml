@@ -1,0 +1,13 @@
+description: Send a Windows or Mac tab shortcut according to the active base layer
+compatible: "torabo,behavior-tab-switch"
+include: two_param.yaml
+
+properties:
+  mac-layer:
+    type: int
+    required: true
+    description: Mac base layer, including when covered by momentary layers
+
+binding-cells:
+  - windows-keycode
+  - mac-keycode

@@ -13,6 +13,12 @@
 
 / {
     behaviors {
+        tab_switch: tab_switch {
+            compatible = "torabo,behavior-tab-switch";
+            #binding-cells = <2>;
+            mac-layer = <1>;
+        };
+
         scroll_mode: scroll_mode {
             compatible = "torabo,behavior-scroll-mode";
             #binding-cells = <1>;
@@ -584,12 +590,12 @@
 
     previous_tab {
         pattern = <GESTURE_LEFT>;
-        bindings = <&kp LC(LS(TAB))>;
+        bindings = <&tab_switch LC(LS(TAB)) RC(LS(TAB))>;
     };
 
     next_tab {
         pattern = <GESTURE_RIGHT>;
-        bindings = <&kp LC(TAB)>;
+        bindings = <&tab_switch LC(TAB) RC(TAB)>;
     };
 };
 

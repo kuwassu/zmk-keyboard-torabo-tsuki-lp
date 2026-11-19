@@ -102,13 +102,14 @@
       <li>画面のズームを使う場合：アクセシビリティ → ズーム機能 →「スクロールジェスチャと修飾キーを使って拡大縮小」を有効にし、使う修飾キーを選ぶ。<a href="https://support.apple.com/ja-jp/guide/mac-help/mh40579/mac">ズームの設定</a></li>
     </ul></article>
   </div>
-  <p class="muted"><strong>Globeの直接送信：</strong>ZMKでは <code>&amp;kp GLOBE</code> を送れますが、Apple純正のFn／Globeを完全には再現しません。このキーマップのジェスチャーはCtrl＋Caps Lock＋方向キー等を送る設定なので、上記のCaps Lock → Globeを使います。<a href="https://zmk.dev/docs/keymaps/list-of-keycodes">ZMKのキー仕様</a></p>
+  <p class="muted"><strong>Globeの直接送信：</strong>ZMKでは <code>&amp;kp GLOBE</code> を送れますが、Apple純正のFn／Globeを完全には再現しません。このキーマップのウィンドウ操作ジェスチャーはCtrl＋Caps Lock＋方向キー等を送る設定なので、上記のCaps Lock → Globeを使います。<a href="https://zmk.dev/docs/keymaps/list-of-keycodes">ZMKのキー仕様</a></p>
   <p class="muted">Macのジェスチャーの結果はOSのショートカット設定に依存します。動かないときは配列図に添えた送信キーと設定を照合してください。</p>
   <article class="card"><h3>左親指長押し＋右ボールでタブ切替</h3>
-    <p>左親指左側（Shift・旧Bspc）を200ms長押ししてから、押したまま右ボールを動かします。左で前のタブ（Ctrl＋Shift＋Tab）、右で次のタブ（Ctrl＋Tab）。Windows／Mac共通で、<a href="https://support.google.com/chrome/answer/157179?hl=ja">Chromeなどのタブ切替ショートカット</a>を送ります。タブの順序や対応はアプリの設定に依存します。</p>
+    <p>左親指左側（Shift・旧Bspc）を200ms長押ししてから、押したまま右ボールを動かします。左で前のタブ、右で次のタブへ移動します。<a href="https://support.google.com/chrome/answer/157179?hl=ja">Chromeなどのタブ切替ショートカット</a>を送ります。タブの順序や対応はアプリの設定に依存します。</p>
+    <div class="gesture-directions"><div><b>←</b><span>前のタブ</span><small>Win：左Ctrl＋Shift＋Tab<br>Mac：右Ctrl＋Shift＋Tab</small></div><div><b>→</b><span>次のタブ</span><small>Win：左Ctrl＋Tab<br>Mac：右Ctrl＋Tab</small></div></div>
     <p>長押し中はL3が有効になり、上下は未割当、ポインター移動は停止。親指を離すと解除し、途中までの動きは次回へ持ち越しません。F・スクロールレイヤー（L8〜L11）との同時押しではそちらのボール操作が優先です。数字・記号レイヤーでは親指長押しでタブ切替を使えます。</p>
     <p>親指の1回押しは次の1キーだけShift、素早い2回押しはCaps Lockのままです。MacでCaps Lock→Globeを割り当てている場合は2回押しでGlobeになります。親指の長押しや押したままの文字入力ではShiftを送らなくなるため、通常のShift長押しはZ／右小指の/を使います。別のキーを押した場合は200msを待たずにL3へ入ります。</p>
-    <p class="muted">書き込み後の確認：Windows／Macで短押しShift・2回押しCaps／Globe、200ms長押し後の左右タブ切替、上下が未割当であること、離した後のポインター復帰を確認します。短い動きで離して再度長押ししたときに前回の動きが足されないこと、Fのウィンドウ操作とEnterのスクロールの優先、左タッチパッドのMac用低速も確認してください。実機動作は未確認です。</p>
+    <p class="muted">書き込み後の確認：基本配列と数字・記号レイヤーで、Macは右Ctrl、Windowsは左Ctrlが送信され、左右で前／次のタブに切り替わることを確認します。Windows→Mac→Windowsの配列切替後も確認してください。Windows／Macで短押しShift・2回押しCaps／Globe、200ms長押し後の左右タブ切替、上下が未割当であること、離した後のポインター復帰を確認します。短い動きで離して再度長押ししたときに前回の動きが足されないこと、Fのウィンドウ操作とEnterのスクロールの優先、左タッチパッドのMac用低速も確認してください。実機動作は未確認です。</p>
   </article>
 
   <p class="muted">設定元：<a href="../config/keymap.keymap">キーマップ</a> ／ <a href="../boards/shields/torabo_tsuki_lp/torabo_tsuki_lp_right.overlay">右ボール</a> ／ <a href="../README.md">README</a>。Studioで実機を変更した場合は図と異なることがあります。</p>
