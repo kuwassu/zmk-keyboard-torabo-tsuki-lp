@@ -28,7 +28,7 @@ const flows = [
   ['Spaceの右隣を押したまま','F1〜F12・ボールでジェスチャ','押していたキーを離す'],
   ['Enterを押したまま','J：↕ 縦のみ ／ K：↔ 横のみ ／ H：自由','Enterを離す。次回は自由スクロール']
 ];
-let os = 'win', group = 0, showPositions = false, comboScope = 'current', selectedCombo = null;
+let os = 'win', group = 0, showPositions = false, comboScope = 'current', selectedCombo = null, pointerMode = null;
 const layerId = (g = group, system = os) => [[0,1],[2,2],[3,3],[4,5],[6,7],[8,9],[10,11]][g][+(system === 'mac')];
 const aliases = {LEFT_SHIFT:'Shift',RIGHT_SHIFT:'Shift',LSHIFT:'Shift',LCTRL:'Ctrl',RCTRL:'右Ctrl',RIGHT_CONTROL:'右Ctrl',LGUI:'Win',LEFT_GUI:'Win',LEFT_ALT:'Alt',LALT:'Alt',BSPC:'Bspc',ENTER:'Enter',SPACE:'Space',TAB:'Tab',ESC:'Esc',DELETE:'Delete',GRAVE:'Grave',HOME:'Home',END:'End',LEFT:'←',RIGHT:'→',UP:'↑',DOWN:'↓',CAPS:'Caps',PRINTSCREEN:'PrtSc',COMMA:',',PERIOD:'.',DOT:'.',FSLH:'/',SLASH:'/',MINUS:'-',EQUAL:'^',LBKT:'@',RIGHT_BRACKET:'[',BSLH:']',INT1:'\\',INT3:'¥',SEMI:';',SEMICOLON:';',APOS:':',LANGUAGE_1:'かな',LANG2:'英数',C_BRI_DN:'明るさ−',C_BRI_UP:'明るさ＋',C_VOL_DN:'音量−',C_VOL_UP:'音量＋',C_MUTE:'ミュート',C_PLAY_PAUSE:'再生/停止'};
 function keyName(code) {
@@ -125,24 +125,30 @@ function previewCombo(name) {
 }
 function renderPointer() {
   const panel = $('#layer-pointer');
-  if (group === 2) {
-    const ctrl = os === 'mac' ? '右Ctrl' : '左Ctrl';
-    panel.innerHTML = `<h3>右ボール：タブ切替</h3><p>左親指Shiftを200ms長押ししてから動かします。<kbd>←</kbd> 前のタブ（${ctrl}＋Shift＋Tab） ／ <kbd>→</kbd> 次のタブ（${ctrl}＋Tab）。</p><p class="muted">上下は未割当。長押し中はポインター移動が止まり、離すと解除。途中までの動きは次回へ持ち越しません。F・スクロールレイヤーを同時に押すとそちらが優先。通常のShift長押しはZ／右小指の/を使います。タブの順序や対応はアプリに依存します。</p>`;
-  } else if (group === 5) {
-    const directions = os === 'win'
+  const mode = pointerMode ?? ({2:'tabs',5:'windows',6:'scroll'}[group] || 'pointer');
+  const ctrl = os === 'mac' ? '右Ctrl' : '左Ctrl';
+  const directions = items => '<div class="gesture-directions">'+items.map(([arrow,label,keys])=>`<div><b>${arrow}</b><span>${label}</span>${keys?`<small>${keys}</small>`:''}</div>`).join('')+'</div>';
+  if (mode === 'tabs') {
+    panel.innerHTML = `<h4>タブ切替 <span class="pill">L3</span></h4><p class="pointer-trigger">左親指Shiftを200ms長押し ＋ 右ボール</p>`
+      + directions([['←','前のタブ',ctrl+'＋Shift＋Tab'],['→','次のタブ',ctrl+'＋Tab']])
+      + '<details class="technical-notes"><summary>判定・優先順位・確認方法</summary><p>上下は未割当。長押し中はポインター移動が止まり、離すと解除。途中までの動きは次回へ持ち越しません。数字・記号レイヤーでも使えます。F・スクロールレイヤーと同時に押すとそちらが優先です。</p><p>親指は1回押して離すと次の1キーだけShift、2回でCapsを送信します。押したまま別のキーを押すと200msを待たずL3に入り、Shiftは送りません。通常のShift長押しはZ／右小指の/を使います。</p><p>書き込み後は基本・数字・記号レイヤーで左右の切替と右Ctrl／左Ctrlの送信を確認します。OS配列の往復切替、上下が未割当、離した後のポインター復帰、短い動きを次回へ持ち越さないこと、F・Enterの優先も確認してください。実機動作は未確認です。タブの順序・対応はアプリによります。</p></details>';
+  } else if (mode === 'windows') {
+    const keys = os === 'win'
       ? [['↑','最大化','Win＋↑'],['←','左へ配置','Win＋←'],['→','右へ配置','Win＋→'],['↓','最小化など','Win＋↓']]
-      : [['↑','Ctrl＋Caps＋F',''],['←','Ctrl＋Caps＋←',''],['→','Ctrl＋Caps＋→',''],['↓','Ctrl＋Caps＋C','']];
-    panel.innerHTML = '<h3>右ボール：4方向のジェスチャー</h3><p>Spaceの右隣を押したまま動かします。この間はポインター移動が止まります。</p><div class="gesture-directions">'+directions.map(([arrow,label,keys])=>'<div><b>'+arrow+'</b><span>'+label+'</span>'+(keys?'<small>'+keys+'</small>':'')+'</div>').join('')+'</div><p class="muted">方向はポインター座標基準です。'+(os==='mac'?'CapsはCaps Lockの送信キー。<a href="#reference">Globeへの割り当て設定</a>を確認してください。':'')+'</p>';
-  } else if (group === 6) {
-    panel.innerHTML = '<h3>右ボール：スクロール</h3><p><kbd>H</kbd> 縦横自由 ／ <kbd>J</kbd> 縦のみ ／ <kbd>K</kbd> 横のみ。1回押して選択し、Enterを離すまで保持。次回は自由スクロールです。</p><p class="muted">U / O：明るさ−・明るさ＋。M / , / .：音量−・ミュート・音量＋。左ミニトラックパッドはこの軸制限の対象外です。</p>';
-  } else if (group === 0) {
-    panel.innerHTML = '<h3>右ボール：ポインター移動</h3><p><kbd>J＋K</kbd> 左クリック ／ <kbd>K＋L</kbd> 右クリック ／ <kbd>J＋K＋L</kbd> 中クリック。押したまま動かすとドラッグ。</p><p>左親指Shiftを200ms長押し＋ボール左／右で前／次のタブ。短押しShift・2回押しCapsはそのままです。</p><p class="muted">M＋,：戻る ／ ,＋.：進む。押す位置はコンボを選ぶと図に表示します。</p>';
+      : [['↑','画面を埋める','右Ctrl＋Caps＋F'],['←','左へ配置','右Ctrl＋Caps＋←'],['→','右へ配置','右Ctrl＋Caps＋→'],['↓','中央へ配置','右Ctrl＋Caps＋C']];
+    panel.innerHTML = `<h4>ウィンドウ配置 <span class="pill">L${os==='mac'?9:8}</span></h4><p class="pointer-trigger">Spaceの右隣を長押し ＋ 右ボール</p>` + directions(keys)
+      + '<details class="technical-notes"><summary>送信キー・OS側設定</summary><p>方向はポインター座標基準です。長押し中はポインター移動が止まります。</p>'
+      + (os==='mac'?'<p>Capsは送信するCaps Lockキーです。右Ctrl＋CapsをGlobeの組み合わせとして扱う設定が必要です。Capsを入力切替に使う場合は、単独押しと組み合わせを区別してください。<a href="#reference">Mac側の設定</a></p>':'<p>Windowsのウィンドウのスナップを有効にします。下方向の結果はウィンドウの状態によって変わります。</p>')+'</details>';
+  } else if (mode === 'scroll') {
+    panel.innerHTML = `<h4>スクロール <span class="pill">L${os==='mac'?11:10}</span></h4><p class="pointer-trigger">Enterを長押し ＋ 右ボール</p>`
+      + directions([['↕↔','H：自由',''],['↕','J：縦のみ',''],['↔','K：横のみ','']])
+      + '<details class="technical-notes"><summary>保持・速度・メディア操作</summary><p>H／J／Kは1回押して選択し、Enterを離すまで保持。次回は自由スクロールです。速度はWindowsが1/2、Macが1/12。左パッドにはこの軸制限を適用しません。</p><p>U／O：明るさ−／＋。M／,／.：音量−／ミュート／＋。Tab位置：再生・停止。</p></details>';
   } else {
-    panel.innerHTML = '';
+    panel.innerHTML = '<h4>ポインター移動</h4><p class="pointer-trigger">キーを押さずに右ボールを動かす</p><p>クリック・ドラッグ・戻る／進むは下の「コンボ」で押す位置を確認できます。</p><p class="muted">タブ切替・配置・スクロールは上の解説ボタンで確認。</p>';
   }
-  panel.innerHTML += `<div class="trackpad-quick"><div class="visual-heading"><h3>左パッド · なぞるだけ</h3><span class="pill">${os==='mac'?'Mac · 1/8倍':'Win · 1/6倍'}</span></div><div class="quick-swipes"><div><svg viewBox="0 50 468 230" role="img" aria-label="指を縦になぞると縦スクロール"><image href="trackpad-scroll.svg" width="960" height="310"/></svg><b>↕ 縦スクロール</b></div><div><svg viewBox="492 50 468 230" role="img" aria-label="指を横になぞると横スクロール"><image href="trackpad-scroll.svg" width="960" height="310"/></svg><b>↔ 横スクロール</b></div></div><a class="visual-caption" href="#trackpad">キー長押し不要 · 全レイヤー共通 → 速度の図を見る</a></div>`;
-  panel.hidden = !panel.innerHTML;
+  document.querySelectorAll('[data-pointer-mode]').forEach(b => b.setAttribute('aria-pressed',String(b.dataset.pointerMode===mode)));
 }
+
 function render() {
   document.querySelectorAll('[data-os]').forEach(b => b.setAttribute('aria-pressed',String(b.dataset.os===os)));
   const focusedGroup = document.activeElement?.dataset.group;
@@ -161,10 +167,11 @@ function render() {
   os = previousOS;
 }
 document.querySelectorAll('[data-os]').forEach(b => b.addEventListener('click',()=>{os=b.dataset.os;selectedCombo=null;render();}));
-$('#layer-buttons').addEventListener('click',e=>{const b=e.target.closest('[data-group]');if(b&&!b.disabled){group=+b.dataset.group;selectedCombo=null;render();}});
+$('#layer-buttons').addEventListener('click',e=>{const b=e.target.closest('[data-group]');if(b&&!b.disabled){group=+b.dataset.group;selectedCombo=null;pointerMode=null;render();}});
 document.querySelectorAll('[data-scope]').forEach(b => b.addEventListener('click',()=>{comboScope=b.dataset.scope;selectedCombo=null;renderNearby();}));
 $('#nearby-list').addEventListener('click',e=>{const b=e.target.closest('[data-combo]');if(b){const name=b.dataset.combo;selectedCombo=selectedCombo===name?null:name;renderNearby();$(`[data-combo="${name}"]`).focus({preventScroll:true});}});
-$('#combo-preview').addEventListener('click',e=>{const b=e.target.closest('[data-jump]');if(b){group=names.findIndex((_,g)=>layerId(g)===+b.dataset.jump);render();$(`[data-group="${group}"]`).focus({preventScroll:true});}});
+$('#combo-preview').addEventListener('click',e=>{const b=e.target.closest('[data-jump]');if(b){group=names.findIndex((_,g)=>layerId(g)===+b.dataset.jump);pointerMode=null;render();$(`[data-group="${group}"]`).focus({preventScroll:true});}});
+document.querySelectorAll('[data-pointer-mode]').forEach(b => b.addEventListener('click',()=>{pointerMode=b.dataset.pointerMode;renderPointer();}));
 $('#positions').addEventListener('change',e=>{showPositions=e.target.checked;render();});
 $('#print').addEventListener('click',()=>window.print());
 let detailsWasOpen;
