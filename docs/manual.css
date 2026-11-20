@@ -218,3 +218,73 @@ footer span { display: block; }
   .print-layer .keyboard { max-width: 900px; }
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
+
+/* Daily reference: full-width keyboard, then gestures and combos. */
+.explorer-workspace {
+  grid-template-columns: minmax(0,1.15fr) minmax(0,1fr);
+  grid-template-rows: auto auto;
+  grid-template-areas: "keymap keymap" "gestures combos";
+  gap: 24px;
+}
+#main-board .keyboard { max-height: none; max-width: 1240px; margin: auto; }
+.board-help { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.controls .display-note { margin: 0; }
+.combo-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+.combo-list .combo-category { margin-top: 0; min-width: 0; }
+.pointing-device { margin: 0; max-width: none; }
+.device-compare > .pointing-device { display: block; padding: 20px; background: white; }
+.ball-guide { display: grid; gap: 16px; margin: 24px 0; }
+.ball-guide > div { display: flex; gap: 20px; align-items: center; padding: 16px; border-radius: 8px; background: var(--mint); }
+.ball-guide .ball-symbol { flex-shrink: 0; width: 38px; height: 38px; }
+.speed-option { min-width: 0; }
+.speed-option h4 { margin-bottom: 6px; }
+.bluetooth-entry { margin-bottom: 18px; }
+.connection-card { border-top: 4px solid var(--green); }
+.disconnect-card { border-top: 4px solid #315f87; }
+.slots { grid-template-columns: repeat(4,minmax(0,1fr)); }
+.disconnect-slots > div { background: #edf4fa; border-color: #c4d5e4; }
+.disconnect-slots b { color: #315f87; }
+.action-result { font-size: 14px; color: var(--muted); }
+.delete-card { margin-top: 20px; padding: 20px; border: 1px solid #dfc391; border-left: 5px solid var(--amber); }
+.delete-card h3 { color: #72430d; }
+.delete-card p { margin-top: 10px; }
+.delete-actions { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; margin: 16px 0; }
+.delete-actions > div { padding: 12px; background: #fffaf0; border-radius: 6px; }
+.delete-actions dt { font-weight: 650; margin-bottom: 6px; }
+.delete-actions dd { margin: 0; }
+.setup-cards ol { margin-bottom: 0; }
+.setup-notes { font-size: 14px; }
+#dev-notes { border-top: 1px solid var(--line); padding-top: 28px; }
+#dev-notes .position-toggle { margin-bottom: 14px; }
+#dev-notes .technical-notes { overflow-wrap: anywhere; }
+#dev-notes table { display: block; max-width: 100%; overflow-x: auto; }
+@media (max-width:1100px) {
+  .gesture-cards { grid-template-columns: 1fr; gap: 10px; }
+  .gesture-card-heading { align-items: center; flex-direction: row; }
+  .direction-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 3px 8px; }
+  .gesture-trigger { justify-content: start; }
+  .hold-key kbd { font-size: 14px; }
+  .combo-list { grid-template-columns: 1fr; }
+}
+@media (max-width:650px) {
+  .explorer-workspace { grid-template-columns: minmax(0,1fr); grid-template-areas: "keymap" "gestures" "combos"; gap: 20px; }
+  .delete-actions { grid-template-columns: 1fr; }
+  .device-compare > .pointing-device { padding: 14px; }
+  .controls .display-note { order: 3; width: 100%; }
+  .slots { grid-template-columns: repeat(4,minmax(0,1fr)); }
+  nav { gap: 5px 14px; }
+  html { scroll-padding-top: 130px; }
+}
+@media print {
+  .explorer-workspace { grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); grid-template-areas: "keymap keymap" "gestures combos"; gap: 12px; }
+  #main-board .keyboard { max-height: 90mm; min-width: 0; }
+  .gesture-cards { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .combo-list { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .direction-list { display: block; }
+  .gesture-card-heading { flex-direction: row; }
+  .delete-actions { grid-template-columns: 1fr 1fr; }
+  .setup-notes:not([open]), #dev-notes > .section-heading, #dev-notes > details:not(#print-layers) { display: none; }
+  #dev-notes { border: 0; padding: 0; }
+  #print-layers { display: block; border: 0; padding: 0; }
+  #print-layers > summary { display: none; }
+}

@@ -38,7 +38,7 @@ function describe(binding) {
   if (behavior === '&scroll_mode') return {label:['自由 ↕↔','縦のみ ↕','横のみ ↔'][+args[0]],sub:'1回押して選択',kind:'layer'};
   if (behavior === '&none') return {label:'—',sub:'',kind:'inactive'};
   if (behavior === '&kp') return {label:keyName(args[0]),sub:'',kind:''};
-  if (behavior === '&thumb_shift') return {label:'Shift¹ / Caps²',sub:'長押し タブ切替',kind:'layer'};
+  if (behavior === '&thumb_shift') return {label:'Shift¹ / Caps²',sub:'長押し タブ',kind:'layer'};
   if (behavior === '&mt' || behavior === '&z_mt' || behavior === '&slash_mt') return {label:keyName(args[1]),sub:'長押し '+keyName(args[0]),kind:'mod'};
   if (behavior === '&lt' || behavior === '&space_lt') return {label:keyName(args[1]),sub:'長押し L'+args[0],kind:'layer'};
   if (behavior === '&mo') return {label:'L'+args[0],sub:'押している間',kind:'layer'};
@@ -64,7 +64,8 @@ function board(id, selected = [], mini = false) {
     const active = selected.includes(pos);
     const cls = ['key',kind,inherited?'inherited':'',active?'selected':''].join(' ');
     const baseLabel = describe(KEYMAP.layers[base].bindings[pos]).label;
-    keys += `<g class="${cls}" transform="translate(${x},${y})"><title>位置${pos}（${esc(baseLabel)}）: ${esc(raw)}${inherited?' → '+esc(binding):''}</title><rect width="64" height="72" rx="9"/>${showPositions&&!mini?`<text class="key-pos" x="5" y="13">${pos}</text>`:''}${id>1&&!mini?`<text class="key-base" x="59" y="13">${esc(baseLabel)}</text>`:''}<text class="key-label" x="32" y="${sub?32:41}"${label.length>8?' textLength="57" lengthAdjust="spacingAndGlyphs"':''}>${esc(label)}</text>${sub?`<text class="key-sub" x="32" y="55">${esc(sub)}</text>`:''}</g>`;
+    const tip = showPositions ? `位置${pos}（${baseLabel}）: ${raw}${inherited?' → '+binding:''}` : `${baseLabel}：短押し ${label}${sub?'、'+sub:''}${inherited?'（基本配列から引継ぎ）':''}`;
+    keys += `<g class="${cls}" transform="translate(${x},${y})"><title>${esc(tip)}</title><rect width="64" height="72" rx="9"/>${showPositions&&!mini?`<text class="key-pos" x="5" y="13">${pos}</text>`:''}${id>1&&!mini?`<text class="key-base" x="59" y="13">${esc(baseLabel)}</text>`:''}<text class="key-label" x="32" y="${sub?32:41}"${label.length>7?' textLength="57" lengthAdjust="spacingAndGlyphs"':''}>${esc(label)}</text>${sub?`<text class="key-sub" x="32" y="55"${sub.length>6?' textLength="57" lengthAdjust="spacingAndGlyphs"':''}>${esc(sub)}</text>`:''}</g>`;
   }));
   const selectedLabel = selected.map(p => describe(KEYMAP.layers[base].bindings[p]).label).join(' と ');
   return `<svg class="keyboard" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 402" role="img" aria-label="${esc(mini?selectedLabel+' の同時押し位置図':(os==='win'?'Windows':'Mac')+' L'+id+' '+KEYMAP.layers[id].name+' 配列図')}"><text class="hand" x="12" y="16">LEFT</text><text class="hand" x="840" y="16">RIGHT</text>${keys}</svg>`;
@@ -84,12 +85,12 @@ const isCurrentCombo = combo => layerEnabled(layerId()) && combo.layers.includes
 const osCombos = () => KEYMAP.combos.filter(c => c.layers.some(layerVisible));
 const comboKeyNames = c => c.positions.map(p => describe(KEYMAP.layers[+(os==='mac')].bindings[p]).label);
 function comboHint(c) {
-  if (c.name==='question_mark') return 'Zと右小指の/（JISの「・」）を100ms以内に重ねて押すと「？」を直接送ります。押す順序・直前入力の待ち時間は不問。Z＋Enterなどは文字優先・200msです。L2のBluetooth管理とL4／L5の記号レイヤーでは無効です。';
-  if (c.name.endsWith('_close')) return 'Fレイヤーで入力を150ms以上休め、A＋S＋Dを50ms以内にそろえて押します。';
-  if (c.name==='sticky_shift_combo') return 'S＋D＋Fを50ms以内に押して離し、1500ms以内に次のキーを押すとShiftが付きます。待ち時間なし。S＋Fだけなら英数です。';
+  if (c.name==='question_mark') return 'Zと右小指の/（JISの「・」）を重ねて押します。文字として順に打つときは、いったんキーを離してください。';
+  if (c.name.endsWith('_close')) return 'Fキーの配列で入力を止め、A＋S＋Dをほぼ同時に押します。';
+  if (c.name==='sticky_shift_combo') return 'S＋D＋Fを同時に押して離すと、次の1キーにShiftが付きます。S＋Fだけなら英数なので、Dも押してください。';
   if (c.name==='eisu') return '左手の薬指＋人差し指（S＋F）で英数へ。間のDは押しません。';
   if (c.name==='kana') return '右手の人差し指＋薬指（J＋L）でかなへ。間のKは押しません。基本配列ではJ＋K＋Lが中クリックです。';
-  if (c.name==='bt_select_layer') return '入力を200ms以上休めて、4キーを50ms以内にそろえて押し、全部離します。L2では同じコンボで閉じます。';
+  if (c.name==='bt_select_layer') return '入力を止めて4キーをほぼ同時に押し、すべて離します。接続管理では同じコンボで閉じます。';
   if (c.name.startsWith('bt_clear')) return 'J＋K＋L＋EnterでL2を開き、全部離してから同時押し。'+(c.name==='bt_clear_all'?'全スロット':'現在選択中のスロット')+'の登録を削除します。削除後もL2です。EnterかEscで戻ります。';
   if (c.name.endsWith('_layout')) return 'L0・L1の両方で有効。Q＋WでWindows、Q＋W＋EでMacへ。接続先を変えずに配列だけ切り替えます。';
   return '';
@@ -124,7 +125,7 @@ function previewCombo(name) {
   const enabled = combo.layers.filter(layerVisible).map(l=>'L'+l).join('・');
   const target = combo.layers.find(layerVisible);
   const hint = comboHint(combo);
-  $('#combo-preview').innerHTML = `<span>${esc(comboKeyNames(combo).join(' ＋ '))} → <strong>${esc(comboInfo[combo.name][0])}</strong></span>${!isCurrentCombo(combo)?` <span>有効：${enabled}</span> <button type="button" data-jump="${target}">対象の配列を見る</button>`:''}${hint?`<details><summary>押し方・判定条件</summary><p>${esc(hint)}</p></details>`:''}`;
+  $('#combo-preview').innerHTML = `<span>${esc(comboKeyNames(combo).join(' ＋ '))} → <strong>${esc(comboInfo[combo.name][0])}</strong></span>${!isCurrentCombo(combo)?` <span>有効：${enabled}</span> <button type="button" data-jump="${target}">対象の配列を見る</button>`:''}${hint?`<details><summary>押し方</summary><p>${esc(hint)}</p></details>`:''}`;
 }
 function renderPointer() {
   const ctrl = os === 'mac' ? '右Ctrl' : '左Ctrl';
@@ -137,7 +138,7 @@ function renderPointer() {
     ? [['←','左へ配置','Win＋←'],['→','右へ配置','Win＋→'],['↑','最大化','Win＋↑'],['↓','最小化など','Win＋↓']]
     : [['←','左へ配置','右Ctrl＋Caps＋←'],['→','右へ配置','右Ctrl＋Caps＋→'],['↑','画面を埋める','右Ctrl＋Caps＋F'],['↓','中央へ配置','右Ctrl＋Caps＋C']];
   $('#layer-pointer').innerHTML =
-    card('タブ切替',3,hold('左親指Shift','200ms長押し'),directions([['←','前のタブ',ctrl+'＋Shift＋Tab'],['→','次のタブ',ctrl+'＋Tab']])+'<p class="card-note">上下は未割当</p>')
+    card('タブ切替',3,hold('左親指Shift','長押し'),directions([['←','前のタブ',ctrl+'＋Shift＋Tab'],['→','次のタブ',ctrl+'＋Tab']])+'<p class="card-note">上下は未割当</p>')
     + card('ウィンドウ配置',windowLayer,hold('Spaceの右隣','長押し'),directions(windowKeys)+(os==='mac'?'<a class="card-note" href="#reference">Caps → Globeの設定が必要</a>':''))
     + card('スクロール',scrollLayer,hold('Enter','長押し'),directions([['↕↔','H：縦横自由',''],['↕','J：縦のみ',''],['↔','K：横のみ','']])+'<p class="card-note">H／J／Kは1回押して選択</p>');
 }
