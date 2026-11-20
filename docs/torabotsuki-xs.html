@@ -11,49 +11,42 @@
 </head>
 <body>
 <a class="skip" href="#main">本文へ</a>
-<header>
-  <div class="hero"><span class="eyebrow">KEYBOARD FIELD GUIDE</span>
-  <h1>torabotsuki-xs<span>キー配置と操作ガイド</span></h1>
-  <p>OSとレイヤーを選んで、キーとボールの操作を確認。</p>
-  <div class="badges"><span>Windows / Mac</span><span>12 active layers</span><span>28 combos</span><span>オフライン対応</span></div></div>
+<header class="site-header">
+  <div class="header-inner"><h1>torabotsuki-xs <span>操作ガイド</span></h1><nav aria-label="目次"><a href="#layout">操作早見</a><a href="#gestures">ジェスチャー</a><a href="#trackpad">左パッド</a><a href="#bluetooth">接続</a><a href="#reference">OS設定</a></nav></div>
 </header>
-<nav aria-label="目次"><div><a href="#layout">配列を見る</a><a href="#trackpad">左パッド</a><a href="#bluetooth">接続</a><a href="#reference">OSの設定</a></div></nav>
 <main id="main">
 <noscript><p class="notice">配列図とコンボ一覧の表示にはJavaScriptを有効にしてください。基本操作・接続手順はこのまま読めます。</p></noscript>
 <section id="layout">
-  <div class="section-heading"><span>01 / KEYMAP</span><h2>キー・コンボ・ボール操作</h2></div>
-  <div class="explorer card">
-    <div class="controls"><fieldset><legend>表示するOS</legend><button type="button" data-os="win" aria-pressed="true">Windows</button><button type="button" data-os="mac" aria-pressed="false">Mac</button></fieldset><label class="position-toggle"><input id="positions" type="checkbox">位置番号を表示</label><button type="button" id="print">印刷 / PDF</button></div>
-    <p class="muted">実機の配列切替：<kbd>Q＋W</kbd> Windows ／ <kbd>Q＋W＋E</kbd> Mac。この画面のOSボタンは表示だけを切り替えます。</p>
+  <div class="section-heading"><h2>操作早見</h2><p>キーの位置、同時押し、右ボールの動きを一緒に確認。</p></div>
+  <div class="explorer">
+    <div class="controls"><fieldset><legend>表示するOS</legend><button type="button" data-os="win" aria-pressed="true">Windows</button><button type="button" data-os="mac" aria-pressed="false">Mac</button></fieldset><label class="position-toggle"><input id="positions" type="checkbox">キー位置番号</label><button type="button" id="print">印刷 / PDF</button></div>
+    <div id="layer-buttons" class="layer-tabs" role="group" aria-label="表示するキー配列"></div>
     <div class="explorer-workspace">
-      <aside class="layer-rail"><h3>レイヤー一覧</h3><p class="muted">番号・入り方から選ぶ</p><div id="layer-buttons" role="group" aria-label="表示するレイヤー"></div><p class="muted">L2・L3はOS共通。右の解説とコンボは一緒に参照できます。</p></aside>
-      <div class="explorer-content">
+      <section class="keymap-reference" aria-label="選択したキー配列">
         <div id="layer-description" aria-live="polite"></div>
         <div id="main-board" class="board-scroll"></div>
-      </div>
-      <aside class="operation-reference" aria-label="ボール操作とコンボの参照">
-        <section class="pointer-reference" aria-labelledby="pointer-title">
-          <div class="nearby-heading"><h3 id="pointer-title">右ボール</h3><span class="muted">解説を選ぶ</span></div>
-          <div class="pointer-modes" role="group" aria-label="右ボールの操作解説">
-            <button type="button" data-pointer-mode="pointer" aria-pressed="true">移動</button>
-            <button type="button" data-pointer-mode="tabs" aria-pressed="false">タブ切替</button>
-            <button type="button" data-pointer-mode="windows" aria-pressed="false">配置</button>
-            <button type="button" data-pointer-mode="scroll" aria-pressed="false">スクロール</button>
-          </div>
-          <div id="layer-pointer" class="layer-pointer" aria-live="polite"></div>
-          <p class="muted reference-hint">解説だけ切替。配列・コンボの表示は維持します。</p>
-        </section>
-        <section class="nearby-combos" aria-labelledby="nearby-title">
-          <div class="nearby-heading"><h3 id="nearby-title">コンボ</h3><div role="group" aria-label="配列横のコンボ表示"><button type="button" data-scope="current" aria-pressed="true">このレイヤー</button><button type="button" data-scope="all" aria-pressed="false">全レイヤー</button></div></div>
-          <p id="nearby-summary" class="muted" aria-live="polite"></p>
-          <p id="combo-preview" class="combo-preview" aria-live="polite">コンボを選ぶと、配列図で押す位置と操作を確認できます。</p>
-          <div id="nearby-list" class="combo-chips"></div>
-        </section>
-        <div class="trackpad-reference"><strong>左パッド</strong><span>↕ 縦 ／ ↔ 横 · キー操作不要</span><a href="#trackpad">領域・速度を見る</a></div>
+        <div class="legend"><span><i class="dot teal"></i>レイヤー・接続</span><span><i class="dot amber"></i>長押しで修飾</span><span><i class="dot gray"></i>下位配列を引継ぎ</span></div>
+        <div id="combo-preview" class="combo-preview" aria-live="polite">コンボを選ぶと、押すキーが配列上で光ります。</div>
+      </section>
+      <section id="gestures" class="gesture-reference" aria-labelledby="gesture-title">
+        <div class="reference-heading"><h3 id="gesture-title">右ボールのジェスチャー</h3><span>キーを離すと解除</span></div>
+        <div id="layer-pointer" class="gesture-cards" aria-live="polite"></div>
+        <p class="gesture-footnote">キーを押さずに動かすとポインター移動。ジェスチャー中はポインターが止まります。</p>
+        <details class="technical-notes"><summary>同時押しの優先・判定時間・実機での確認</summary>
+          <p>タブ切替はL3、ウィンドウ配置はL8／L9、スクロールはL10／L11。数字・記号レイヤーでも親指Shiftを長押しすればタブ切替を使えます。F・Enterの操作は親指Shiftより優先です。</p>
+          <p>タブ切替の上下は未割当。親指を離すと途中の動きをリセットします。親指は短押しして離すと次の1キーだけShift、2回でCapsを送信。押したまま別のキーを押すと200msを待たずL3に入り、Shiftは送りません。通常のShift長押しはZ／右小指の/を使います。</p>
+          <p>スクロールのH／J／Kは1回押して選択し、Enterを離すまで保持。次回は自由スクロールです。左パッドにはこの軸制限を適用しません。スクロール量はWindowsが1/2、Macが1/12です。</p>
+          <p>書き込み後はWindows／Macの基本・数字・記号レイヤーで、左右のタブ切替、Macの右Ctrl／Windowsの左Ctrl、配列を往復した後の動作を確認します。上下が未割当であること、離した後のポインター復帰、動きのリセット、F・Enterの優先、短押しShift・2回押しCapsも確認してください。実機動作は未確認です。タブの順序・対応はアプリに依存します。</p>
+        </details>
+      </section>
+      <aside class="nearby-combos" aria-labelledby="nearby-title">
+        <div class="reference-heading"><h3 id="nearby-title">同時押しコンボ</h3></div>
+        <div class="combo-filters" role="group" aria-label="コンボの対象"><button type="button" data-scope="current" aria-pressed="true">この配列</button><button type="button" data-scope="all" aria-pressed="false">全配列</button></div>
+        <p id="nearby-summary" class="muted" aria-live="polite"></p>
+        <div id="nearby-list" class="combo-list"></div>
       </aside>
     </div>
-    <div class="legend"><span><i class="dot teal"></i>レイヤー・接続操作</span><span><i class="dot amber"></i>長押しで修飾キー</span><span><i class="dot gray"></i>下位レイヤーから引継ぎ</span></div>
-    <p class="muted">大きな文字は短押し、下の小文字は長押し。右上は基本配列の位置名。点線は引継ぎ、「—」は無効です。図はキー位置の模式図です。文字優先の判定時間はZが200ms、/・Spaceが150ms。通常は短押しで文字・空白（変換）、長押しで左右のShift／数字レイヤーです。「？」はZ＋/（JISの「・」）を100ms以内に重ねて押す専用コンボでも入力できます。</p>
+    <details class="technical-notes"><summary>配列図の読み方</summary><p>大きな文字は短押し、小文字は長押し。右上は基本配列での位置名。点線は下位配列からの引継ぎ、「—」は無効です。図はキー位置の模式図です。Zは200ms、/・Spaceは150msの文字優先判定です。</p></details>
     <details class="technical-notes"><summary>Z・/・「？」の判定と動作確認</summary>
     <p class="muted">Zと/をどちらの順でも100ms以内に重ねて押すと、Shift判定を待たずに「？」（Shift＋/）を直接送ります。入力を休める必要はなく、タイピング途中も有効。L0／L1・L3・L6〜L11で使えます。L2のBluetooth管理とL4／L5の記号レイヤーでは無効です。文字として「z・」を素早く重ねた場合も「？」になるので、文字として打つ場合はZを離してから/を押してください。</p>
     <p class="muted">コンボが成立しない場合のZは <code>tap-preferred</code>・200msです。150msで文字のzがShiftになりやすかったため、Zだけ200msへ戻しています。途中でEnterなどを押しても、その時点でzに確定せず、Zを200ms押し続ければShiftになります。200ms未満でZを離すと文字のzです。100msを超えてZ＋/を押す場合は、Zを200ms保持してから/を短押しします。コンボ待ちでZ／/単独の入力が最大100ms保留される場合があります。</p>
@@ -62,7 +55,7 @@
   </div>
 </section>
 <section id="trackpad">
-  <div class="section-heading"><span>02 / LEFT TRACKPAD</span><h2>なぞるだけで、スクロール。</h2></div>
+  <div class="section-heading"><h2>左パッド</h2><p>右ボールとは独立。キーを押さずにスクロール。</p></div>
   <article class="card trackpad-guide">
     <div class="visual-heading"><h3>左ミニトラックパッド</h3><span class="pill">キー長押し不要 · 全レイヤー共通</span></div>
     <div class="trackpad-diagrams">
@@ -81,7 +74,7 @@
       <div><span class="device-symbol" aria-hidden="true">▤</span><strong>左パッド</strong><span>いつでも縦横スクロール</span></div>
       <div><span class="device-symbol" aria-hidden="true">●</span><strong>右ボール</strong><span><kbd>Enter</kbd> 長押しでスクロール</span></div>
     </div>
-    <p class="visual-caption">矢印は動かす軸の図解です。右ボールのH／J／Kによる軸制限は、左パッドには適用しません。</p>
+    <p class="visual-caption">横スクロールはセンサーのY座標0〜25%の帯から横になぞります。開始後は軸が固定されるので、縦横を変えるときは指を離します。物理的な帯の向きは取り付け方向によります。右ボールのH／J／Kの軸制限は適用しません。</p>
     <details class="technical-notes"><summary>速度の調整・書き込み・動作確認</summary>
     <p class="muted">調整箇所：<code>snippets/input-split-listener/input-split-listener.overlay</code> の通常経路にある <code>&amp;zip_scroll_scaler 1 6</code>（Windows）、<code>mac-scroller</code> 内の <code>&amp;zip_scroll_scaler 1 8</code>（Mac）。数値は分子・分母で、Macでは通常経路に重ねず置き換えて適用します。現在の構成では右側中央のファームウェアを書き換えると反映されます。</p>
     <p class="muted">書き込み後の確認：同じ距離を指でなぞってWindows→Mac→Windowsで速度が変わること、両OSの各レイヤーでも速度を維持することを確認します。縦横の方向・クリック、右ボールの移動・ジェスチャー・スクロールも確認してください。倍率は入力値に対する設定値で、画面上の移動量はOSやアプリにも依存します。今回の速度感は実機未確認です。</p>
@@ -91,7 +84,7 @@
   </article>
 </section>
 <section id="bluetooth">
-  <div class="section-heading"><span>03 / CONNECTION</span><h2>接続先は、7つのスロットに。</h2></div>
+  <div class="section-heading"><h2>接続・切断</h2><p>接続先を選ぶと、その端末用の配列にも切り替わります。</p></div>
   <article class="card"><h3>接続・切断の手順</h3><ol class="connection-steps"><li>基本配列で、入力を200ms以上休める。</li><li><kbd>J</kbd>＋<kbd>K</kbd>＋<kbd>L</kbd>＋<kbd>Enter</kbd> をほぼ同時に押す（4キーを50ms以内）。</li><li>4キーをすべて離してから、下の <kbd>Y / U / I / O / P / H / J</kbd> を1回押す。</li></ol><p>選ぶと接続先とOS配列が切り替わり、基本配列へ戻ります。キャンセルはEnterかEsc。J＋K＋Lだけでは中クリックです。</p>
   <div class="slots"><div><kbd>Y</kbd><b>0</b><span>Windows</span></div><div><kbd>U</kbd><b>1</b><span>Mac</span></div><div><kbd>I</kbd><b>2</b><span>Windows</span></div><div><kbd>O</kbd><b>3</b><span>Mac</span></div><div><kbd>P</kbd><b>4</b><span>Windows</span></div><div><kbd>H</kbd><b>5</b><span>Mac</span></div><div><kbd>J</kbd><b>6</b><span>Windows</span></div></div>
   <div class="two"><div><h3>はじめて接続する</h3><ol><li>PC・タブレットのBluetooth設定を開く。</li><li>J＋K＋L＋Enter → すべて離す → Y/U/I/O/P/H/Jで未登録のスロットを選ぶ。</li><li>接続先でキーボードを選び、ペアリングする。</li></ol><p>登録済みスロットは、その接続先への再接続に使います。</p></div><div><h3>L2で切断する</h3><p>J＋K＋L＋Enterを押して離した後、<kbd>A / S / D / F / G / Z / X</kbd>でスロット0 / 1 / 2 / 3 / 4 / 5 / 6を切断します。登録は保持します。</p><p>切断後はL2に留まります。<kbd>Enter</kbd>か<kbd>Esc</kbd>で元の基本配列へ戻ります。</p></div></div>
@@ -99,7 +92,7 @@
 <p class="muted">設定：中央側の <code>snippets/split-central/split-central.conf</code> で <code>CONFIG_BT_MAX_CONN=8</code>・<code>CONFIG_BT_MAX_PAIRED=8</code>（ホスト7枠＋左右間通信用1枠）。<a href="https://zmk.dev/docs/config/system#bluetooth">ZMK公式設定</a>に基づき、周辺側には適用しません。現在のビルドは右側が中央です。</p><p class="muted">書き込み後の確認：Windows／Macの両基本配列からL2を開き、Hで5（Mac）、Jで6（Windows）を選んで新しい機器とペアリングし、元の0〜4へも戻れることを確認します。Z/Xで5/6を切断した後、Enter/Escで戻れること、左右のキー入力も確認してください。</p>
 </section>
 <section id="reference">
-  <div class="section-heading"><span>04 / SETUP</span><h2>Windows / Macの設定</h2></div>
+  <div class="section-heading"><h2>OS側の設定</h2><p>配列・入力ソース・ウィンドウ操作を確認。</p></div>
   <p>記号の表示は日本語（JIS）配列が前提です。英数・かなの切替はOS・IMEのキー設定に合わせてください。</p>
   <div class="two">
     <article class="card"><h3>Windows</h3><ul>
@@ -109,15 +102,16 @@
     </ul></article>
     <article class="card"><h3>Mac</h3><ul>
       <li>キーボードの種類を<strong>JIS（日本語）</strong>に合わせ、キーボード側は <kbd>Q＋W＋E</kbd> でMac配列へ。</li>
-      <li><strong>この環境の入力切替：</strong>Mac側ソフトで左Ctrl単独とCaps Lockを日本語／英数のトグルに設定。Spaceの右隣を短押しすると左Ctrlを送り、1キーで切り替えられます。長押しはL9です。S＋Fは英数、J＋Lはかなへ直接切り替えます。</li>
-      <li><strong>修飾キーとの使い分け：</strong>タブ切替ジェスチャーは右Ctrlを送ります。左CtrlやCapsの単独押しだけをトグルにし、右Ctrl＋Tabや右Ctrl＋Capsの組み合わせを入力切替に変換しないよう、Mac側ソフトの条件を確認してください。</li>
+      <li><strong>追加ソフトを使わない日英トグル：</strong>ZMKで1キーに <code>&amp;kp RC(SPACE)</code> を割り当てると、右Ctrl＋Spaceを送れます。macOSの「前の入力ソースを選択」を利用する方法です。日本語とABCの2ソースで使い、この標準ショートカットを有効にします。<a href="https://support.apple.com/ja-jp/guide/mac-help/mchlp1406/mac">Appleの入力ソース切替仕様</a></li>
+      <li><strong>現在の配列との差：</strong>Space右隣は短押しで左Ctrl、長押しでL9です。同じ位置を追加ソフト不要にする場合の置換候補は <code>&amp;lt 9 RC(SPACE)</code>。このガイドの修正ではキー割り当ては変更していません。S＋Fの英数・J＋Lのかなは、それぞれ直接指定です。</li>
+      <li><strong>トグルの範囲：</strong>右Ctrl＋Spaceは直前の入力ソースへの切替です。3ソース以上の中から必ず日英だけを往復する保証や、Macの現在の入力モードをZMK側で取得して判定する仕組みではありません。</li>
       <li>ウィンドウ配置ジェスチャー用に、システム設定 → キーボード → キーボードショートカット → 修飾キーで、このキーボードの <strong>Caps Lock → Globe</strong> を設定する想定です。<a href="https://support.apple.com/ja-jp/guide/mac-help/mchlp1011/mac">修飾キーの設定</a></li>
       <li>Capsを入力切替に使う設定とは競合する場合があります。Capsの単独押しと右Ctrl＋Capsを区別できる設定が必要です。親指Shiftの2回押しもCapsを送るので、結果はMac側の設定によって入力切替／Globe／Caps Lockになります。</li>
       <li>画面のズームを使う場合：アクセシビリティ → ズーム機能 →「スクロールジェスチャと修飾キーを使って拡大縮小」を有効にし、使う修飾キーを選ぶ。<a href="https://support.apple.com/ja-jp/guide/mac-help/mh40579/mac">ズームの設定</a></li>
     </ul></article>
   </div>
   <p class="muted"><strong>Globeの直接送信：</strong>ZMKでは <code>&amp;kp GLOBE</code> を送れますが、Apple純正のFn／Globeを完全には再現しません。このキーマップのウィンドウ操作ジェスチャーはCtrl＋Caps Lock＋方向キー等を送る設定なので、上記のCaps Lock → Globeを使います。<a href="https://zmk.dev/docs/keymaps/list-of-keycodes">ZMKのキー仕様</a></p>
-  <p class="muted">キーの動き・送信キーは<a href="#layout">配列横の右ボール解説</a>で確認できます。この欄ではMac側の割り当てだけを設定します。</p>
+  <p class="muted">キーの動き・送信キーは<a href="#gestures">配列直下のジェスチャー一覧</a>で確認できます。この欄ではMac側の割り当てだけを設定します。</p>
 
   <p class="muted">設定元：<a href="../config/keymap.keymap">キーマップ</a> ／ <a href="../boards/shields/torabo_tsuki_lp/torabo_tsuki_lp_right.overlay">右ボール</a> ／ <a href="../README.md">README</a>。Studioで実機を変更した場合は図と異なることがあります。</p>
   <details id="print-layers"><summary>印刷用：使用中の全12レイヤーの配列をまとめて表示</summary><div id="all-layers"></div></details>

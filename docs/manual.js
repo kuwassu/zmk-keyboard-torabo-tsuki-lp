@@ -8,27 +8,18 @@ const rows = [
   [39,40,41,42,43,44,45,46,47,48,49,50],
   [53,54,55,56,57,58,59,60,61,62,63,64]
 ];
-const names = ['基本配列','Bluetooth管理','タブ切替','記号・矢印','数字・テンキー','F・ジェスチャ','スクロール・メディア'];
-const triggers = ['通常入力','J＋K＋L＋Enter → 離す → 選択','左親指Shiftを長押し','右下段Bspcを長押し','Spaceを長押し','Spaceの右隣を長押し','Enterを長押し'];
+const names = ['基本配列','接続先','タブ切替','記号・矢印','数字','Fキー','スクロール'];
+const triggers = ['通常入力','J＋K＋L＋Enter','親指Shift 長押し','Bspc 長押し','Space 長押し','Space右隣 長押し','Enter 長押し'];
 const descriptions = [
-  'Z＋/（・）を100ms以内に重ねて「？」。通常のShift判定は文字優先でZが200ms、/が150ms。S＋D＋Fで次の1キーにShift。親指は1回でShift、2回でCaps、長押しでタブ切替。',
-  'Y/U/I/O/P/H/Jで接続先0〜6、A/S/D/F/G/Z/Xで切断。EnterかEscで戻ります。',
-  '左親指Shiftを200ms長押し＋右ボールで、左：前のタブ、右：次のタブ。親指の長押しではShiftを送りません。',
-  '矢印・編集・記号。Z位置は短押しUndo／長押しShift、/位置は右Shift。R位置はWin：F2、Mac：Enter。',
-  'Spaceは150ms未満で空白・変換、150ms長押しで数字レイヤー。上段に数字、右手にテンキー。ボールは通常のポインター移動です。',
-  'F1〜F12と右ボールのジェスチャー。A＋S＋DでWin：Alt＋F4、Mac：Cmd＋Q。',
-  '右ボールでスクロール。J：縦のみ、K：横のみ、H：縦横自由。Enterを離すと解除。'
+  '短押しで文字を入力。長押しの動作はキー下段に表示。',
+  'Y / U / I / O / P / H / Jで接続先0〜6を選択。EnterかEscで戻る。',
+  'キーは基本配列を引継ぎ。左親指Shiftを離すと解除。',
+  '矢印・記号・編集。ZはUndo／Shift、/は右Shift。RはWin：F2、Mac：Enter。',
+  '上段：1〜0。右手：テンキー。Spaceを離すと基本配列へ。',
+  'F1〜F12とウィンドウ操作。押していた親指キーを離すと解除。',
+  'H：自由、J：縦のみ、K：横のみ。Enterを離すと解除。'
 ];
-const flows = [
-  ['いつもの配列','文字入力・クリックのコンボ','長押しキーやJ＋K＋L＋Enterで別レイヤーへ'],
-  ['入力を200ms休める → J＋K＋L＋Enterを50ms以内に押す → 全部離す','Y/U/I/O/P/H/J：接続先0〜6 ／ A/S/D/F/G/Z/X：切断0〜6','選択すると自動で戻る。切断・削除後はEnterかEscで戻る'],
-  ['左親指Shiftを200ms押したまま','右ボールを左：前のタブ ／ 右：次のタブ','親指を離す。ポインター移動に戻る'],
-  ['右下段Bspcを押したまま','矢印・記号・コピーなどの編集','Bspcを離す'],
-  ['Spaceを押したまま','上段の数字・右手のテンキー','Spaceを離す'],
-  ['Spaceの右隣を押したまま','F1〜F12・ボールでジェスチャ','押していたキーを離す'],
-  ['Enterを押したまま','J：↕ 縦のみ ／ K：↔ 横のみ ／ H：自由','Enterを離す。次回は自由スクロール']
-];
-let os = 'win', group = 0, showPositions = false, comboScope = 'current', selectedCombo = null, pointerMode = null;
+let os = 'win', group = 0, showPositions = false, comboScope = 'current', selectedCombo = null;
 const layerId = (g = group, system = os) => [[0,1],[2,2],[3,3],[4,5],[6,7],[8,9],[10,11]][g][+(system === 'mac')];
 const aliases = {LEFT_SHIFT:'Shift',RIGHT_SHIFT:'Shift',LSHIFT:'Shift',LCTRL:'Ctrl',RCTRL:'右Ctrl',RIGHT_CONTROL:'右Ctrl',LGUI:'Win',LEFT_GUI:'Win',LEFT_ALT:'Alt',LALT:'Alt',BSPC:'Bspc',ENTER:'Enter',SPACE:'Space',TAB:'Tab',ESC:'Esc',DELETE:'Delete',GRAVE:'Grave',HOME:'Home',END:'End',LEFT:'←',RIGHT:'→',UP:'↑',DOWN:'↓',CAPS:'Caps',PRINTSCREEN:'PrtSc',COMMA:',',PERIOD:'.',DOT:'.',FSLH:'/',SLASH:'/',MINUS:'-',EQUAL:'^',LBKT:'@',RIGHT_BRACKET:'[',BSLH:']',INT1:'\\',INT3:'¥',SEMI:';',SEMICOLON:';',APOS:':',LANGUAGE_1:'かな',LANG2:'英数',C_BRI_DN:'明るさ−',C_BRI_UP:'明るさ＋',C_VOL_DN:'音量−',C_VOL_UP:'音量＋',C_MUTE:'ミュート',C_PLAY_PAUSE:'再生/停止'};
 function keyName(code) {
@@ -103,12 +94,23 @@ function comboHint(c) {
   if (c.name.endsWith('_layout')) return 'L0・L1の両方で有効。Q＋WでWindows、Q＋W＋EでMacへ。接続先を変えずに配列だけ切り替えます。';
   return '';
 }
+function comboCategory(combo) {
+  if (combo.name.endsWith('_close')) return 'ウィンドウ';
+  if (combo.name.startsWith('bt_') || combo.name.endsWith('_layout')) return '接続・配列';
+  if (comboInfo[combo.name][1] === 'mouse') return 'クリック・戻る／進む';
+  if (combo.name === 'sticky_shift_combo' || /_(win|ctrl)$/.test(combo.name)) return '修飾キー';
+  return '文字・入力切替';
+}
 function renderNearby() {
   const available = osCombos(), active = available.filter(isCurrentCombo);
-  const priority = ['question_mark','sticky_shift_combo','eisu','kana','left_click','right_click','middle_click','bt_select_layer'];
-  const visible = [...(comboScope==='current' ? active : available)].sort((a,b)=>(priority.includes(a.name)?priority.indexOf(a.name):99)-(priority.includes(b.name)?priority.indexOf(b.name):99));
-  $('#nearby-summary').textContent = `L${layerId()}で有効：${active.length}件。キー名は基本配列での位置名です。`;
-  $('#nearby-list').innerHTML = visible.map(c => `<button type="button" class="combo-chip ${isCurrentCombo(c)?'is-active':'is-other'}" data-combo="${c.name}" aria-pressed="${selectedCombo===c.name}"><span class="chip-keys">${esc(comboKeyNames(c).join(' ＋ '))}</span><span>${esc(comboInfo[c.name][0])}</span><small>${isCurrentCombo(c)?'● L'+layerId()+'で有効':'別レイヤー'}</small></button>`).join('') || '<p class="empty">このレイヤーのコンボはありません。</p>';
+  const visible = comboScope==='current' ? active : available;
+  const categories = ['文字・入力切替','修飾キー','クリック・戻る／進む','接続・配列','ウィンドウ'];
+  $('#nearby-summary').textContent = `L${layerId()}で有効：${active.length}件。キー名は基本配列での位置。`;
+  $('#nearby-list').innerHTML = categories.map(category => {
+    const combos = visible.filter(c => comboCategory(c) === category);
+    if (!combos.length) return '';
+    return `<section class="combo-category"><h4>${category}</h4><div>${combos.map(c => `<button type="button" class="combo-chip ${isCurrentCombo(c)?'is-active':'is-other'}" data-combo="${c.name}" aria-pressed="${selectedCombo===c.name}"><span class="chip-keys">${esc(comboKeyNames(c).join('＋'))}</span><span>${esc(comboInfo[c.name][0])}${!isCurrentCombo(c)?'<small>別配列</small>':''}</span></button>`).join('')}</div></section>`;
+  }).join('') || '<p class="empty">この配列のコンボはありません。</p>';
   document.querySelectorAll('[data-scope]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.scope===comboScope)));
   previewCombo(selectedCombo);
 }
@@ -116,37 +118,28 @@ function previewCombo(name) {
   const combo = KEYMAP.combos.find(c => c.name===name);
   $('#main-board').innerHTML = board(layerId(), combo?combo.positions:[]);
   if (!combo) {
-    $('#combo-preview').textContent = 'コンボを選ぶと、配列図で押す位置と操作を確認できます。';
+    $('#combo-preview').textContent = 'コンボを選ぶと、押すキーが配列上で光ります。';
     return;
   }
   const enabled = combo.layers.filter(layerVisible).map(l=>'L'+l).join('・');
   const target = combo.layers.find(layerVisible);
-  $('#combo-preview').innerHTML = `${esc(comboKeyNames(combo).join(' ＋ '))} → <strong>${esc(comboInfo[combo.name][0])}</strong> ／ ${isCurrentCombo(combo)?'このレイヤーで有効':'現在は無効。有効：'+enabled}。 ${esc(comboHint(combo))}${!isCurrentCombo(combo)?` <button type="button" data-jump="${target}">L${target}の配列を見る</button>`:''}`;
+  const hint = comboHint(combo);
+  $('#combo-preview').innerHTML = `<span>${esc(comboKeyNames(combo).join(' ＋ '))} → <strong>${esc(comboInfo[combo.name][0])}</strong></span>${!isCurrentCombo(combo)?` <span>有効：${enabled}</span> <button type="button" data-jump="${target}">対象の配列を見る</button>`:''}${hint?`<details><summary>押し方・判定条件</summary><p>${esc(hint)}</p></details>`:''}`;
 }
 function renderPointer() {
-  const panel = $('#layer-pointer');
-  const mode = pointerMode ?? ({2:'tabs',5:'windows',6:'scroll'}[group] || 'pointer');
   const ctrl = os === 'mac' ? '右Ctrl' : '左Ctrl';
-  const directions = items => '<div class="gesture-directions">'+items.map(([arrow,label,keys])=>`<div><b>${arrow}</b><span>${label}</span>${keys?`<small>${keys}</small>`:''}</div>`).join('')+'</div>';
-  if (mode === 'tabs') {
-    panel.innerHTML = `<h4>タブ切替 <span class="pill">L3</span></h4><p class="pointer-trigger">左親指Shiftを200ms長押し ＋ 右ボール</p>`
-      + directions([['←','前のタブ',ctrl+'＋Shift＋Tab'],['→','次のタブ',ctrl+'＋Tab']])
-      + '<details class="technical-notes"><summary>判定・優先順位・確認方法</summary><p>上下は未割当。長押し中はポインター移動が止まり、離すと解除。途中までの動きは次回へ持ち越しません。数字・記号レイヤーでも使えます。F・スクロールレイヤーと同時に押すとそちらが優先です。</p><p>親指は1回押して離すと次の1キーだけShift、2回でCapsを送信します。押したまま別のキーを押すと200msを待たずL3に入り、Shiftは送りません。通常のShift長押しはZ／右小指の/を使います。</p><p>書き込み後は基本・数字・記号レイヤーで左右の切替と右Ctrl／左Ctrlの送信を確認します。OS配列の往復切替、上下が未割当、離した後のポインター復帰、短い動きを次回へ持ち越さないこと、F・Enterの優先も確認してください。実機動作は未確認です。タブの順序・対応はアプリによります。</p></details>';
-  } else if (mode === 'windows') {
-    const keys = os === 'win'
-      ? [['↑','最大化','Win＋↑'],['←','左へ配置','Win＋←'],['→','右へ配置','Win＋→'],['↓','最小化など','Win＋↓']]
-      : [['↑','画面を埋める','右Ctrl＋Caps＋F'],['←','左へ配置','右Ctrl＋Caps＋←'],['→','右へ配置','右Ctrl＋Caps＋→'],['↓','中央へ配置','右Ctrl＋Caps＋C']];
-    panel.innerHTML = `<h4>ウィンドウ配置 <span class="pill">L${os==='mac'?9:8}</span></h4><p class="pointer-trigger">Spaceの右隣を長押し ＋ 右ボール</p>` + directions(keys)
-      + '<details class="technical-notes"><summary>送信キー・OS側設定</summary><p>方向はポインター座標基準です。長押し中はポインター移動が止まります。</p>'
-      + (os==='mac'?'<p>Capsは送信するCaps Lockキーです。右Ctrl＋CapsをGlobeの組み合わせとして扱う設定が必要です。Capsを入力切替に使う場合は、単独押しと組み合わせを区別してください。<a href="#reference">Mac側の設定</a></p>':'<p>Windowsのウィンドウのスナップを有効にします。下方向の結果はウィンドウの状態によって変わります。</p>')+'</details>';
-  } else if (mode === 'scroll') {
-    panel.innerHTML = `<h4>スクロール <span class="pill">L${os==='mac'?11:10}</span></h4><p class="pointer-trigger">Enterを長押し ＋ 右ボール</p>`
-      + directions([['↕↔','H：自由',''],['↕','J：縦のみ',''],['↔','K：横のみ','']])
-      + '<details class="technical-notes"><summary>保持・速度・メディア操作</summary><p>H／J／Kは1回押して選択し、Enterを離すまで保持。次回は自由スクロールです。速度はWindowsが1/2、Macが1/12。左パッドにはこの軸制限を適用しません。</p><p>U／O：明るさ−／＋。M／,／.：音量−／ミュート／＋。Tab位置：再生・停止。</p></details>';
-  } else {
-    panel.innerHTML = '<h4>ポインター移動</h4><p class="pointer-trigger">キーを押さずに右ボールを動かす</p><p>クリック・ドラッグ・戻る／進むは下の「コンボ」で押す位置を確認できます。</p><p class="muted">タブ切替・配置・スクロールは上の解説ボタンで確認。</p>';
-  }
-  document.querySelectorAll('[data-pointer-mode]').forEach(b => b.setAttribute('aria-pressed',String(b.dataset.pointerMode===mode)));
+  const windowLayer = os === 'mac' ? 9 : 8;
+  const scrollLayer = os === 'mac' ? 11 : 10;
+  const hold = (key, timing) => `<div class="gesture-trigger"><span class="hold-key"><kbd>${key}</kbd><small>${timing}</small></span><span class="gesture-join">＋</span><span class="ball-symbol" role="img" aria-label="右ボール"></span></div>`;
+  const directions = items => '<dl class="direction-list">'+items.map(([arrow,label,keys])=>`<div><dt>${arrow}</dt><dd>${label}${keys?`<small>${keys}</small>`:''}</dd></div>`).join('')+'</dl>';
+  const card = (title, layer, trigger, content) => `<article class="gesture-card ${layerId()===layer?'is-current':''}" data-gesture-layer="${layer}"><div class="gesture-card-heading"><h4>${title}</h4><span class="pill">L${layer}</span></div>${trigger}${content}</article>`;
+  const windowKeys = os === 'win'
+    ? [['←','左へ配置','Win＋←'],['→','右へ配置','Win＋→'],['↑','最大化','Win＋↑'],['↓','最小化など','Win＋↓']]
+    : [['←','左へ配置','右Ctrl＋Caps＋←'],['→','右へ配置','右Ctrl＋Caps＋→'],['↑','画面を埋める','右Ctrl＋Caps＋F'],['↓','中央へ配置','右Ctrl＋Caps＋C']];
+  $('#layer-pointer').innerHTML =
+    card('タブ切替',3,hold('左親指Shift','200ms長押し'),directions([['←','前のタブ',ctrl+'＋Shift＋Tab'],['→','次のタブ',ctrl+'＋Tab']])+'<p class="card-note">上下は未割当</p>')
+    + card('ウィンドウ配置',windowLayer,hold('Spaceの右隣','長押し'),directions(windowKeys)+(os==='mac'?'<a class="card-note" href="#reference">Caps → Globeの設定が必要</a>':''))
+    + card('スクロール',scrollLayer,hold('Enter','長押し'),directions([['↕↔','H：縦横自由',''],['↕','J：縦のみ',''],['↔','K：横のみ','']])+'<p class="card-note">H／J／Kは1回押して選択</p>');
 }
 
 function render() {
@@ -155,7 +148,7 @@ function render() {
   $('#layer-buttons').innerHTML = names.map((n,g)=>`<button type="button" data-group="${g}" aria-pressed="${group===g}"${layerEnabled(layerId(g))?'':' disabled'}><span><b>L${layerId(g)}</b> ${n}</span><small>${triggers[g]}</small></button>`).join('');
   if (focusedGroup) $(`[data-group="${focusedGroup}"]`).focus({preventScroll:true});
   const id = layerId();
-  $('#layer-description').innerHTML = `<div class="layer-intro"><h3>${names[group]}</h3><span class="pill">L${id} · ${KEYMAP.layers[id].os==='both'?'OS共通':os==='win'?'Windows':'Mac'}</span></div><p>${descriptions[group]}</p>${group ? `<ol class="layer-flow">${flows[group].map((text,i)=>`<li><b>${['入る','使う','戻る'][i]}</b><span>${esc(text)}</span></li>`).join('')}</ol>` : ''}`;
+  $('#layer-description').innerHTML = `<div class="layer-intro"><h3>${names[group]}</h3><span class="pill">L${id} · ${KEYMAP.layers[id].os==='both'?'OS共通':os==='win'?'Windows':'Mac'}</span></div>${group?`<p>${descriptions[group]}</p>`:''}`;
   renderNearby();
   renderPointer();
   const previousOS = os;
@@ -167,11 +160,10 @@ function render() {
   os = previousOS;
 }
 document.querySelectorAll('[data-os]').forEach(b => b.addEventListener('click',()=>{os=b.dataset.os;selectedCombo=null;render();}));
-$('#layer-buttons').addEventListener('click',e=>{const b=e.target.closest('[data-group]');if(b&&!b.disabled){group=+b.dataset.group;selectedCombo=null;pointerMode=null;render();}});
+$('#layer-buttons').addEventListener('click',e=>{const b=e.target.closest('[data-group]');if(b&&!b.disabled){group=+b.dataset.group;selectedCombo=null;render();}});
 document.querySelectorAll('[data-scope]').forEach(b => b.addEventListener('click',()=>{comboScope=b.dataset.scope;selectedCombo=null;renderNearby();}));
 $('#nearby-list').addEventListener('click',e=>{const b=e.target.closest('[data-combo]');if(b){const name=b.dataset.combo;selectedCombo=selectedCombo===name?null:name;renderNearby();$(`[data-combo="${name}"]`).focus({preventScroll:true});}});
-$('#combo-preview').addEventListener('click',e=>{const b=e.target.closest('[data-jump]');if(b){group=names.findIndex((_,g)=>layerId(g)===+b.dataset.jump);pointerMode=null;render();$(`[data-group="${group}"]`).focus({preventScroll:true});}});
-document.querySelectorAll('[data-pointer-mode]').forEach(b => b.addEventListener('click',()=>{pointerMode=b.dataset.pointerMode;renderPointer();}));
+$('#combo-preview').addEventListener('click',e=>{const b=e.target.closest('[data-jump]');if(b){group=names.findIndex((_,g)=>layerId(g)===+b.dataset.jump);render();$(`[data-group="${group}"]`).focus({preventScroll:true});}});
 $('#positions').addEventListener('change',e=>{showPositions=e.target.checked;render();});
 $('#print').addEventListener('click',()=>window.print());
 let detailsWasOpen;
