@@ -11,4 +11,5 @@ description: このリポジトリのZMK設定やキー操作を修正し、docs
 - キーマップ変更後は `python docs/generate-keymap.py` で `docs/keymap-data.js` を再生成する。生成データを手編集しない。
 - Windows / Mac両配列と、透過キーで引き継ぐレイヤーへの影響を確認する。MacのCaps Lock → Globeなど、OS側設定との関係も説明に反映する。
 - `git diff --check`、生成処理、変更内容に応じた確認を行う。ファームウェアをビルドしていない場合、実機動作を確認済みとは書かない。ビルド構成は `build.yaml` と `.github/workflows/build.yml` を参照する。
+- ファームウェアのビルドは `scripts/build-local.ps1` でローカルのDocker環境を使う。キーマップ・C・devicetree・ビルド設定に影響する変更後は、該当する左右構成をビルドして確認する。手順は `docs/local-build.md`。GitHub Actionsは `workflow_dispatch` の手動実行だけにし、自動pushビルドには頼らない。
 - 修正した設定・docs・生成データ・このskillは必ずGit管理し、確認後にコミットして現在のブランチをリモートへプッシュする。Git管理とは追跡するだけでなく、コミット・プッシュまで完了することを指す。新規ファイルの取りこぼしを `git status --short` で確認し、関連する差分をまとめてコミットする。プッシュできない場合は理由と未完了の状態を報告する。

@@ -4,6 +4,8 @@
 * _centralがついているuf2をトラックボールがついている方に、_peripheralを反対側に書き込んでください
 * キーマップはkeymap-editorおよびzmk-studioで編集できます
 
+ローカルビルドはDocker Desktopを起動し、`powershell -ExecutionPolicy Bypass -File .\scripts\build-local.ps1` を実行します。UF2は `.local-build/firmware/` に出力されます。[ローカルビルド手順](docs/local-build.md)に左右の個別ビルド・キャッシュ更新をまとめています。GitHub Actionsは手動実行のみです。
+
 キーバインド・レイヤー・同時押しコンボの図解は [torabotsuki-xs 操作ガイド](docs/torabotsuki-xs.html) をブラウザーで開いて確認できます。配列図を上段の全幅に表示し、下段で右ボールのジェスチャーと同時押しコンボを並べています。ページは操作早見、ポインティング操作、Bluetooth接続・切替、OS初期設定、詳細仕様・開発者メモの順です。判定時間・設定ファイル・書き込み後の検証は末尾の開発者メモに集約しています。構成の根拠と確認項目は [docsのデザイン方針](docs/design-notes.md) にまとめています。
 
 英数は左手の `S + F`、かなは右手の `J + L`。ホームポジションの人差し指と薬指で、間のキーを飛ばして同時押しします（L0 / L1 / L6 / L7で有効）。基本配列では `J + K + L` が中クリックなので、かなの操作ではKを押さないようにします。
