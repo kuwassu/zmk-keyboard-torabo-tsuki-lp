@@ -12,7 +12,7 @@ const names = ['基本配列','接続先','タブ切替','記号・矢印','数�
 const triggers = ['通常入力','J＋K＋L＋Enter','親指Shift 保持','Bspc 長押し','Space 長押し','Space右隣 長押し','Enter 長押し'];
 const descriptions = [
   '短押しで文字を入力。長押しの動作はキー下段に表示。',
-  'Y / U / I / O / P / H / Jで接続先0〜6を選択。EnterかEscで戻る。',
+  'Y / U / I / O / P / H / Jで接続先0〜6を選択。左親指Shift位置でStudio解除。EnterかEscで戻る。',
   'キーは基本配列を引継ぎ。左親指Shiftを離すと解除。',
   '矢印・記号・編集。ZはUndo／Shift、/は右Shift。RはWin：F2、Mac：Enter。',
   '上段：1〜0。右手：テンキー。Spaceを離すと基本配列へ。',
@@ -37,6 +37,7 @@ function describe(binding) {
   const [behavior,...args] = binding.split(' ');
   if (behavior === '&scroll_mode') return {label:['自由 ↕↔','縦のみ ↕','横のみ ↔'][+args[0]],sub:'1回押して選択',kind:'layer'};
   if (behavior === '&none') return {label:'—',sub:'',kind:'inactive'};
+  if (behavior === '&studio_unlock') return {label:'Studio解除',sub:'DYA / ZMK',kind:'layer'};
   if (behavior === '&kp') return {label:keyName(args[0]),sub:'',kind:''};
   if (behavior === '&thumb_shift') return {label:'Shift',sub:'保持＋ボール タブ',kind:'layer'};
   if (behavior === '&mt' || behavior === '&z_mt' || behavior === '&slash_mt') return {label:keyName(args[1]),sub:'長押し '+keyName(args[0]),kind:'mod'};

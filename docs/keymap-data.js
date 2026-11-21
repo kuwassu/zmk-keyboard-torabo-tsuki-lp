@@ -206,7 +206,7 @@ const KEYMAP = {
         "&none",
         "&none",
         "&none",
-        "&none",
+        "&studio_unlock",
         "&none",
         "&none",
         "&none",

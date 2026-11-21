@@ -2,6 +2,8 @@
 
 PowerShell → Docker Desktop（WSL2・Linuxコンテナ）→ ZMKビルド → `.local-build/firmware/*.uf2`
 
+現在はZMK v0.3ベースのDYA対応フォークと、v0.3用の拡張モジュールをコミット固定して使います。v0.4への更新は行いません。[DYA Studioの対応範囲と接続手順](dya-studio.md)。manifest変更時は依存ソースを自動更新します。移行時は `-Pristine` を付けて左右ともビルドします。
+
 ## 使い方
 
 Docker Desktopを起動し、リポジトリのルートで実行します。

@@ -1,4 +1,18 @@
 /{
+    // The mini trackpad emits wheel events directly; never map these from XY again.
+    pad_runtime_input_processor: pad_runtime_input_processor {
+        compatible = "zmk,input-processor-runtime";
+        processor-label = "pad";
+        type = <INPUT_EV_REL>;
+        x-codes = <INPUT_REL_HWHEEL>;
+        y-codes = <INPUT_REL_WHEEL>;
+        scale-multiplier = <1>;
+        scale-divisor = <1>;
+        rotation-degrees = <0>;
+        track-remainders;
+        #input-processor-cells = <0>;
+    };
+
     split_inputs {
         #address-cells = <1>;
         #size-cells = <0>;
@@ -16,7 +30,8 @@
         // Windows/base path: same speed as the previous Mac setting.
         input-processors =
             <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
-            <&zip_scroll_scaler 1 6>;
+            <&zip_scroll_scaler 1 6>,
+            <&pad_runtime_input_processor>;
 
         mac-scroller {
             // L1 stays active under Mac's momentary layers and Bluetooth management.
@@ -24,7 +39,8 @@
             layers = <1>;
             input-processors =
                 <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
-                <&zip_scroll_scaler 1 8>;
+                <&zip_scroll_scaler 1 8>,
+                <&pad_runtime_input_processor>;
         };
      };
 };

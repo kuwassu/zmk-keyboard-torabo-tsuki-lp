@@ -1,4 +1,5 @@
 if(CONFIG_SHIELD_TORABO_TSUKI_LP_LEFT OR CONFIG_SHIELD_TORABO_TSUKI_LP_RIGHT)
+  add_subdirectory(modules/dya-ble-management)
   zephyr_library()
   zephyr_include_directories(${APPLICATION_SOURCE_DIR}/include)
   zephyr_library_sources(src/board.c src/mini_trackpad_init_reg.c)

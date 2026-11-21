@@ -41,6 +41,7 @@
           <div id="main-board" class="board-scroll"></div>
           <div class="legend"><span><i class="dot teal"></i>レイヤー・接続</span><span><i class="dot amber"></i>長押しで修飾</span><span><i class="dot gray"></i>下位配列を引継ぎ</span></div>
           <p class="board-help">大きい文字は短押し、下の小さい文字は長押し。点線のキーは基本配列から引き継ぎます。親指Shiftは押している間だけShift。保持＋文字 → Shift入力、保持＋右ボール左右 → タブ切替。離すと解除します。</p>
+          <p class="board-help">DYA Studioで編集：右側をUSB接続 → <kbd>J＋K＋L＋Enter</kbd> を押して離す → 左親指Shift位置でStudio解除 → <kbd>Enter</kbd> で戻る → <a href="https://studio.dya.cormoran.works/">DYA Studio</a> にUSB接続。</p>
           <div id="combo-preview" class="combo-preview" aria-live="polite">コンボを選ぶと、押すキーが配列上で光ります。</div>
         </section>
         <section id="gestures" class="gesture-reference" aria-labelledby="gesture-title">
@@ -121,6 +122,7 @@
 
   <section id="reference" aria-labelledby="reference-title">
     <div class="section-heading"><h2 id="reference-title">OS側の初期設定</h2><p>使い始めに1回、配列と修飾キーを設定します。</p></div>
+    <details class="setup-notes"><summary>DYA Studioでキー・接続先・ポインターを調整する</summary><p>左右ともDYA対応ファームウェアを書き込み、右側をUSB接続します。接続管理で左親指Shift位置を押してStudio解除、Enterで戻り、Chrome／Edgeから接続します。ポインティング設定は <code>mouse</code>＝右ボール、<code>scroll</code>＝右ボールのスクロール、<code>pad</code>＝左パッド。初期倍率はすべて1で、OS別速度を引き継ぎます。ジェスチャーは専用経路です。</p><p>DYA側の接続先選択では配列は変わりません。WindowsはQ＋W、MacはQ＋W＋Eで切り替えます。<a href="dya-studio.md">対応範囲・移行・保存と実機確認の手順</a>。</p></details>
     <div class="two setup-cards">
       <article class="card"><h3>Windows</h3><ol><li>OSのキーボード配列を<strong>日本語（106/109）</strong>にする。</li><li>キーボードで <kbd>Q＋W</kbd> を押し、Windows配列にする。</li><li>配置ジェスチャーを使う場合は「設定 → システム → マルチタスク」の<strong>ウィンドウのスナップ</strong>を有効にする。</li></ol></article>
       <article class="card"><h3>Mac</h3><ol><li>OSのキーボードの種類を<strong>JIS（日本語）</strong>にし、キーボードで <kbd>Q＋W＋E</kbd> を押す。</li><li>配置ジェスチャー用に「システム設定 → キーボード → キーボードショートカット → 修飾キー」で、このキーボードの<strong>Caps Lock → Globe</strong>を設定する。</li></ol><p class="muted">Capsを入力切替に使うソフトを利用中なら、Globeへの割り当てとの競合を確認してください。</p></article>

@@ -4,6 +4,7 @@
 #include "torabo_tsuki_lp.dtsi"
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
+#include <input/processors/runtime-input-processor.dtsi>
 
 / {
     scroll_axis_filter: scroll_axis_filter {
@@ -12,10 +13,17 @@
     };
 };
 
+// Runtime tuning is relative to the existing per-OS scroll speeds.
+&scroll_runtime_input_processor {
+    scale-multiplier = <1>;
+    scale-divisor = <1>;
+};
+
 &pointing_listener {
     // Keep typing on the base layer while moving the ball; use click combos.
     input-processors =
-        <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>;
+        <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
+        <&mouse_runtime_input_processor>;
 
     win-gesture-mouse {
         layers = <8>;
@@ -39,6 +47,7 @@
             <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_scaler 1 2>,
+            <&scroll_runtime_input_processor>,
             <&scroll_axis_filter>;
     };
 
@@ -48,6 +57,7 @@
             <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_scaler 1 12>,
+            <&scroll_runtime_input_processor>,
             <&scroll_axis_filter>;
     };
 
