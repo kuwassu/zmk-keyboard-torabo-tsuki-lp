@@ -888,14 +888,7 @@ const KEYMAP = {
       ],
       "layers": [
         0,
-        1,
-        3,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11
+        1
       ],
       "timeout-ms": 100,
       "require-prior-idle-ms": 0

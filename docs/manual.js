@@ -85,7 +85,7 @@ const isCurrentCombo = combo => layerEnabled(layerId()) && combo.layers.includes
 const osCombos = () => KEYMAP.combos.filter(c => c.layers.some(layerVisible));
 const comboKeyNames = c => c.positions.map(p => describe(KEYMAP.layers[+(os==='mac')].bindings[p]).label);
 function comboHint(c) {
-  if (c.name==='question_mark') return 'Zと右小指の/（JISの「・」）を重ねて押します。文字として順に打つときは、いったんキーを離してください。';
+  if (c.name==='question_mark') return '基本配列のWindows／Macで使えます。Zと右小指の/（JISの「・」）を重ねて押します。文字として順に打つときは、いったんキーを離してください。';
   if (c.name.endsWith('_close')) return 'Fキーの配列で入力を止め、A＋S＋Dをほぼ同時に押します。';
   if (c.name==='eisu') return '左手の薬指＋人差し指（S＋F）で英数へ。間のDは押しません。';
   if (c.name==='kana') return '右手の人差し指＋薬指（J＋L）でかなへ。間のKは押しません。基本配列ではJ＋K＋Lが中クリックです。';
