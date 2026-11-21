@@ -134,9 +134,9 @@
     <div class="section-heading"><h2 id="dev-title">詳細仕様・開発者向け確認メモ</h2><p>設定変更・ファームウェア検証のときに開いてください。</p></div>
     <details class="technical-notes"><summary>キー・コンボの判定時間と確認項目</summary>
       <label class="position-toggle"><input id="positions" type="checkbox">配列図にキー位置番号を表示</label>
-      <table><caption>現在の判定値</caption><thead><tr><th>操作</th><th>仕様</th></tr></thead><tbody><tr><td>Z／左Shift</td><td>tap-preferred、200ms</td></tr><tr><td>/／右Shift、Space／数字配列</td><td>tap-preferred、150ms</td></tr><tr><td>親指Shift</td><td>押下で左ShiftとL3のジェスチャーを有効化、解放で両方解除。待ち時間・2回押し判定なし。タブ切替中は保持中のShiftをマスク。</td></tr><tr><td>Z＋/の「？」</td><td>100ms以内、直前の待ち時間0ms。L0／L1・L3・L6〜L11で有効。</td></tr><tr><td>S＋D＋Fのsticky Shift</td><td>50ms以内。S＋Fの英数と区別。</td></tr><tr><td>Bluetooth管理を開く</td><td>直前200ms入力なし、4キーを50ms以内。</td></tr><tr><td>F配列のA＋S＋D</td><td>直前150ms入力なし、50ms以内。Win：Alt＋F4、Mac：Cmd＋Q。</td></tr></tbody></table>
+      <table><caption>現在の判定値</caption><thead><tr><th>操作</th><th>仕様</th></tr></thead><tbody><tr><td>Z／左Shift</td><td>tap-preferred、200ms</td></tr><tr><td>/／右Shift、Space／数字配列</td><td>tap-preferred、150ms</td></tr><tr><td>親指Shift</td><td>押下で左ShiftとL3のジェスチャーを有効化、解放で両方解除。専用ビヘイビア（<code>src/thumb_shift.c</code>）で処理し、マクロ・ワンショットShift・2回押し判定なし。タブ切替中は保持中のShiftをマスク。</td></tr><tr><td>Z＋/の「？」</td><td>100ms以内、直前の待ち時間0ms。L0／L1・L3・L6〜L11で有効。</td></tr><tr><td>Bluetooth管理を開く</td><td>直前200ms入力なし、4キーを50ms以内。</td></tr><tr><td>F配列のA＋S＋D</td><td>直前150ms入力なし、50ms以内。Win：Alt＋F4、Mac：Cmd＋Q。</td></tr></tbody></table>
       <p>Z＋/の押下順は不問。単独のZ／/がコンボ待ちで最大100ms保留される場合があります。文字として「z・」を打つときはキーを重ねずに離します。コンボ不成立時はZを200ms保持してから/を短押しするとShift＋/になります。</p>
-      <p>書き込み後の確認：両OSでZ→/と/→Z、各キー単独、Z→A、Z→Enterの短押し／200ms保持を確認します。Zを150〜199msで離したときの文字入力、Spaceの素早い変換と長押し後の数字入力、L2・L4／L5での既存操作、親指を保持してA／Enterを押したShift入力、解放後の通常入力、2回押してもCapsが切り替わらないことも確認してください。実機動作は未確認です。</p>
+      <p>書き込み後の確認：両OSでZ→/と/→Z、各キー単独、Z→A、Z→Enterの短押し／200ms保持を確認します。Zを150〜199msで離したときの文字入力、Spaceの素早い変換と長押し後の数字入力、L2・L4／L5での既存操作、親指を保持してA／Enterを押したShift入力、解放後の通常入力、2回押してもCapsが切り替わらないこと、親指の解放後にShiftが残らないこと、S＋D＋FでワンショットShiftにならずS＋Fの英数コンボが使えることも確認してください。実機動作は未確認です。</p>
     </details>
     <details class="technical-notes"><summary>ジェスチャー・スクロールの仕様と確認項目</summary>
       <p>タブ切替はL3、ウィンドウ配置はL8／L9、スクロールはL10／L11。数字・記号配列でも親指Shift保持でタブ切替を使えます。F・Enterの操作は親指Shiftより優先。タブ切替の上下は未割当で、解除時に途中の動きをリセットします。</p>

@@ -73,7 +73,6 @@ function board(id, selected = [], mini = false) {
 const comboInfo = {
   question_mark:['? を入力','symbol'],
   win_close:['ウィンドウを閉じる（Alt＋F4）','system'],mac_close:['アプリを終了（Cmd＋Q）','system'],
-  sticky_shift_combo:['次の1キーにShift','system'],
   bt_select_layer:['Bluetooth管理を開く／閉じる','system'],
   bt_clear:['現在のBT登録を削除','system'],bt_clear_all:['すべてのBT登録を削除','system'],mac_layout:['Mac配列へ切替','system'],win_layout:['Windows配列へ切替','system'],
   left_kakko:['( を入力','symbol'],right_kakko:[') を入力','symbol'],left_namikakko:['{ を入力','symbol'],right_namikakko:['} を入力','symbol'],left_kakukakko:['[ を入力','symbol'],right_kakukako:['] を入力','symbol'],plus:['+ を入力','symbol'],asterisk:['* を入力','symbol'],
@@ -87,7 +86,6 @@ const comboKeyNames = c => c.positions.map(p => describe(KEYMAP.layers[+(os==='m
 function comboHint(c) {
   if (c.name==='question_mark') return 'Zと右小指の/（JISの「・」）を重ねて押します。文字として順に打つときは、いったんキーを離してください。';
   if (c.name.endsWith('_close')) return 'Fキーの配列で入力を止め、A＋S＋Dをほぼ同時に押します。';
-  if (c.name==='sticky_shift_combo') return 'S＋D＋Fを同時に押して離すと、次の1キーにShiftが付きます。S＋Fだけなら英数なので、Dも押してください。';
   if (c.name==='eisu') return '左手の薬指＋人差し指（S＋F）で英数へ。間のDは押しません。';
   if (c.name==='kana') return '右手の人差し指＋薬指（J＋L）でかなへ。間のKは押しません。基本配列ではJ＋K＋Lが中クリックです。';
   if (c.name==='bt_select_layer') return '入力を止めて4キーをほぼ同時に押し、すべて離します。接続管理では同じコンボで閉じます。';
@@ -99,7 +97,7 @@ function comboCategory(combo) {
   if (combo.name.endsWith('_close')) return 'ウィンドウ';
   if (combo.name.startsWith('bt_') || combo.name.endsWith('_layout')) return '接続・配列';
   if (comboInfo[combo.name][1] === 'mouse') return 'クリック・戻る／進む';
-  if (combo.name === 'sticky_shift_combo' || /_(win|ctrl)$/.test(combo.name)) return '修飾キー';
+  if (/_(win|ctrl)$/.test(combo.name)) return '修飾キー';
   return '文字・入力切替';
 }
 function renderNearby() {

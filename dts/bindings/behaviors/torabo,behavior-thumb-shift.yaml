@@ -1,0 +1,11 @@
+description: Hold ordinary left Shift and enable pointing gestures until release
+compatible: "torabo,behavior-thumb-shift"
+include: zero_param.yaml
+
+properties:
+  gesture-layer:
+    type: int
+    required: true
+  gesture-behavior:
+    type: phandle
+    required: true
