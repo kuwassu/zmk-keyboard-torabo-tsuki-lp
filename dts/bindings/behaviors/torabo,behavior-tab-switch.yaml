@@ -8,6 +8,5 @@ properties:
     required: true
     description: Mac base layer, including when covered by momentary layers
 
-binding-cells:
-  - windows-keycode
-  - mac-keycode
+# Inherit param1 / param2 from two_param.yaml; Zephyr forbids renaming them.
+# param1: Windows shortcut, param2: Mac shortcut.

@@ -141,6 +141,7 @@
     <details class="technical-notes"><summary>ジェスチャー・スクロールの仕様と確認項目</summary>
       <p>タブ切替はL3、ウィンドウ配置はL8／L9、スクロールはL10／L11。数字・記号配列でも親指Shift保持でタブ切替を使えます。F・Enterの操作は親指Shiftより優先。タブ切替の上下は未割当で、解除時に途中の動きをリセットします。</p>
       <p>ジェスチャーは <code>stroke-size=100</code>、<code>gesture-cooldown-ms=100</code>、eager mode。右ボールの処理は <code>boards/shields/torabo_tsuki_lp/torabo_tsuki_lp_right.overlay</code>、送信キーは <code>config/keymap.keymap</code> を参照します。</p>
+      <p>タブ切替ビヘイビアの引数は <code>two_param.yaml</code> から継承する <code>param1</code>（Windows）と <code>param2</code>（Mac）です。<code>binding-cells</code> の名前を上書きするとZephyrのdevicetree生成で失敗します。</p>
       <p>H／J／Kの軸選択はEnterを離すまで保持し、次回は自由に戻ります。U／Oは明るさ−／＋、M／,／.は音量−／ミュート／＋、Tab位置は再生・停止です。</p>
       <p>書き込み後の確認：Windows／Macの基本・数字・記号配列で左右のタブ切替、Macの右Ctrl／Windowsの左Ctrl送信、配列の往復切替後の動作を確認します。未割当の上下、解除後のポインター復帰、途中の動きのリセット、F・Enterの優先、H／J／Kの保持と解除、左パッドが軸制限の影響を受けないことも確認します。実機動作は未確認です。</p>
     </details>
