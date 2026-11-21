@@ -66,7 +66,7 @@ function board(id, selected = [], mini = false) {
     const cls = ['key',kind,inherited?'inherited':'',active?'selected':''].join(' ');
     const baseLabel = describe(KEYMAP.layers[base].bindings[pos]).label;
     const tip = showPositions ? `位置${pos}（${baseLabel}）: ${raw}${inherited?' → '+binding:''}` : `${baseLabel}：短押し ${label}${sub?'、'+sub:''}${inherited?'（基本配列から引継ぎ）':''}`;
-    keys += `<g class="${cls}" transform="translate(${x},${y})"><title>${esc(tip)}</title><rect width="64" height="72" rx="9"/>${showPositions&&!mini?`<text class="key-pos" x="5" y="13">${pos}</text>`:''}${id>1&&!mini?`<text class="key-base" x="59" y="13">${esc(baseLabel)}</text>`:''}<text class="key-label" x="32" y="${sub?32:41}"${label.length>7?' textLength="57" lengthAdjust="spacingAndGlyphs"':''}>${esc(label)}</text>${sub?`<text class="key-sub" x="32" y="55"${sub.length>6?' textLength="57" lengthAdjust="spacingAndGlyphs"':''}>${esc(sub)}</text>`:''}</g>`;
+    keys += `<g class="${cls}" data-position="${pos}" transform="translate(${x},${y})"><title>${esc(tip)}</title><rect width="64" height="72" rx="9"/>${showPositions&&!mini?`<text class="key-pos" x="5" y="13">${pos}</text>`:''}${id>1&&!mini?`<text class="key-base" x="59" y="13">${esc(baseLabel)}</text>`:''}<text class="key-label" x="32" y="${sub?32:41}"${label.length>7?' textLength="57" lengthAdjust="spacingAndGlyphs"':''}>${esc(label)}</text>${sub?`<text class="key-sub" x="32" y="55"${sub.length>6?' textLength="57" lengthAdjust="spacingAndGlyphs"':''}>${esc(sub)}</text>`:''}</g>`;
   }));
   const selectedLabel = selected.map(p => describe(KEYMAP.layers[base].bindings[p]).label).join(' と ');
   return `<svg class="keyboard" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 402" role="img" aria-label="${esc(mini?selectedLabel+' の同時押し位置図':(os==='win'?'Windows':'Mac')+' L'+id+' '+KEYMAP.layers[id].name+' 配列図')}"><text class="hand" x="12" y="16">LEFT</text><text class="hand" x="840" y="16">RIGHT</text>${keys}</svg>`;
@@ -105,26 +105,57 @@ function renderNearby() {
   const available = osCombos(), active = available.filter(isCurrentCombo);
   const visible = comboScope==='current' ? active : available;
   const categories = ['文字・入力切替','修飾キー','クリック・戻る／進む','接続・配列','ウィンドウ'];
-  $('#nearby-summary').textContent = `L${layerId()}で有効：${active.length}件。キー名は基本配列での位置。`;
+  $('#nearby-summary').textContent = `${comboScope==='all'?`全配列：${visible.length}件 · `:''}L${layerId()}で有効：${active.length}件。キー名は基本配列での位置。`;
   $('#nearby-list').innerHTML = categories.map(category => {
     const combos = visible.filter(c => comboCategory(c) === category);
     if (!combos.length) return '';
-    return `<section class="combo-category"><h4>${category}</h4><div>${combos.map(c => `<button type="button" class="combo-chip ${isCurrentCombo(c)?'is-active':'is-other'}" data-combo="${c.name}" aria-pressed="${selectedCombo===c.name}"><span class="chip-keys">${esc(comboKeyNames(c).join('＋'))}</span><span>${esc(comboInfo[c.name][0])}${!isCurrentCombo(c)?'<small>別配列</small>':''}</span></button>`).join('')}</div></section>`;
+    return `<section class="combo-category"><h4>${category}</h4><div>${combos.map(c => `<button type="button" class="combo-chip ${isCurrentCombo(c)?'is-active':'is-other'} ${c.name.startsWith('bt_clear')?'is-destructive':''}" data-combo="${c.name}" aria-pressed="${selectedCombo===c.name}"><span class="chip-keys">${esc(comboKeyNames(c).join('＋'))}</span><span>${esc(comboInfo[c.name][0])}${!isCurrentCombo(c)?'<small>別配列</small>':''}</span></button>`).join('')}</div></section>`;
   }).join('') || '<p class="empty">この配列のコンボはありません。</p>';
   document.querySelectorAll('[data-scope]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.scope===comboScope)));
   previewCombo(selectedCombo);
 }
-function previewCombo(name) {
-  const combo = KEYMAP.combos.find(c => c.name===name);
-  $('#main-board').innerHTML = board(layerId(), combo?combo.positions:[]);
+function previewCombo(name, announce = true) {
+  const combo = osCombos().find(c => c.name === name);
+  const boardElement = $('#main-board');
+  const boardState = `${os}-${layerId()}-${showPositions}`;
+  if (boardElement.dataset.renderState !== boardState) {
+    boardElement.innerHTML = board(layerId());
+    boardElement.dataset.renderState = boardState;
+  }
+  boardElement.querySelectorAll('[data-position]').forEach(key => {
+    key.classList.toggle('selected', Boolean(combo?.positions.includes(+key.dataset.position)));
+  });
+  document.querySelectorAll('[data-combo]').forEach(button => {
+    button.classList.toggle('is-preview', button.dataset.combo === combo?.name);
+  });
+  const preview = $('#combo-preview');
+  preview.setAttribute('aria-live', announce ? 'polite' : 'off');
+  preview.classList.toggle('has-preview', Boolean(combo));
+  preview.classList.toggle('is-destructive', Boolean(combo?.name.startsWith('bt_clear')));
+  $('#combo-board-link').hidden = !combo;
   if (!combo) {
-    $('#combo-preview').textContent = 'コンボを選ぶと、押すキーが配列上で光ります。';
+    preview.textContent = 'コンボに触れると、押すキーが配列上で光ります。クリックで固定、Escで解除。';
     return;
   }
   const enabled = combo.layers.filter(layerVisible).map(l=>'L'+l).join('・');
   const target = combo.layers.find(layerVisible);
   const hint = comboHint(combo);
-  $('#combo-preview').innerHTML = `<span>${esc(comboKeyNames(combo).join(' ＋ '))} → <strong>${esc(comboInfo[combo.name][0])}</strong></span>${!isCurrentCombo(combo)?` <span>有効：${enabled}</span> <button type="button" data-jump="${target}">対象の配列を見る</button>`:''}${hint?`<details><summary>押し方</summary><p>${esc(hint)}</p></details>`:''}`;
+  preview.innerHTML = `<span class="preview-shortcut"><span class="preview-keys">${esc(comboKeyNames(combo).join(' ＋ '))}</span><span class="preview-arrow" aria-hidden="true">→</span><strong class="preview-result">${esc(comboInfo[combo.name][0])}</strong></span>${!isCurrentCombo(combo)?` <span>有効：${enabled}</span> <button type="button" data-jump="${target}">対象の配列を見る</button>`:''}${selectedCombo?'<button type="button" class="preview-clear" data-clear-combo>固定を解除 ×</button>':''}${hint?`<details><summary>押し方</summary><p>${esc(hint)}</p></details>`:''}`;
+}
+function restorePreview() {
+  const focused = document.activeElement?.closest('#nearby-list [data-combo]');
+  previewCombo(focused?.dataset.combo || selectedCombo);
+}
+function updateComboOverflow() {
+  const list = $('#nearby-list');
+  const desktop = window.matchMedia('(min-width: 1180px)').matches;
+  $('#combo-scroll-hint').hidden = !desktop || list.scrollHeight <= list.clientHeight + 1;
+}
+function animateWorkspace() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const element = $('#main-board');
+  element.classList.remove('workspace-change');
+  requestAnimationFrame(() => element.classList.add('workspace-change'));
 }
 function renderPointer() {
   const ctrl = os === 'mac' ? '右Ctrl' : '左Ctrl';
@@ -151,6 +182,7 @@ function render() {
   $('#layer-description').innerHTML = `<div class="layer-intro"><h3>${names[group]}</h3><span class="pill">L${id} · ${KEYMAP.layers[id].os==='both'?'OS共通':os==='win'?'Windows':'Mac'}</span></div>${group?`<p>${descriptions[group]}</p>`:''}`;
   renderNearby();
   renderPointer();
+  animateWorkspace();
   const previousOS = os;
   $('#all-layers').innerHTML = KEYMAP.layers.map((layer,id) => {
     if (!layerEnabled(id)) return '';
@@ -163,10 +195,69 @@ document.querySelectorAll('[data-os]').forEach(b => b.addEventListener('click',(
 $('#layer-buttons').addEventListener('click',e=>{const b=e.target.closest('[data-group]');if(b&&!b.disabled){group=+b.dataset.group;selectedCombo=null;render();}});
 document.querySelectorAll('[data-scope]').forEach(b => b.addEventListener('click',()=>{comboScope=b.dataset.scope;selectedCombo=null;renderNearby();}));
 $('#nearby-list').addEventListener('click',e=>{const b=e.target.closest('[data-combo]');if(b){const name=b.dataset.combo;selectedCombo=selectedCombo===name?null:name;renderNearby();$(`[data-combo="${name}"]`).focus({preventScroll:true});}});
-$('#combo-preview').addEventListener('click',e=>{const b=e.target.closest('[data-jump]');if(b){group=names.findIndex((_,g)=>layerId(g)===+b.dataset.jump);render();$(`[data-group="${group}"]`).focus({preventScroll:true});}});
+$('#nearby-list').addEventListener('pointerover', e => {
+  const button = e.target.closest('[data-combo]');
+  if (button && e.pointerType !== 'touch' && !button.contains(e.relatedTarget)) previewCombo(button.dataset.combo, false);
+});
+$('#nearby-list').addEventListener('pointerleave', restorePreview);
+$('#nearby-list').addEventListener('focusin', e => {
+  const button = e.target.closest('[data-combo]');
+  if (button) previewCombo(button.dataset.combo);
+});
+$('#nearby-list').addEventListener('focusout', () => requestAnimationFrame(restorePreview));
+function clearCombo() {
+  selectedCombo = null;
+  renderNearby();
+  $(`[data-scope="${comboScope}"]`).focus({preventScroll:true});
+}
+$('#combo-preview').addEventListener('click',e=>{
+  if (e.target.closest('[data-clear-combo]')) { clearCombo(); return; }
+  const b=e.target.closest('[data-jump]');
+  if(b){group=names.findIndex((_,g)=>layerId(g)===+b.dataset.jump);render();$(`[data-group="${group}"]`).focus({preventScroll:true});}
+});
+$('.explorer').addEventListener('keydown', e => {
+  if (e.key === 'Escape') { clearCombo(); e.preventDefault(); }
+});
+// Native buttons retain Tab/Enter/Space, with arrow navigation as a convenience.
+function choiceKeyboard(container, selector) {
+  container.addEventListener('keydown', event => {
+    if (!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
+    const buttons = [...container.querySelectorAll(selector)].filter(button => !button.disabled);
+    const current = buttons.indexOf(event.target.closest(selector));
+    if (current < 0) return;
+    const index = event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length-1
+      : (current + (event.key === 'ArrowRight' ? 1 : -1) + buttons.length) % buttons.length;
+    event.preventDefault();
+    buttons[index].click();
+    [...container.querySelectorAll(selector)].filter(button => !button.disabled)[index].focus({preventScroll:true});
+  });
+}
+choiceKeyboard($('.os-switch'), '[data-os]');
+choiceKeyboard($('#layer-buttons'), '[data-group]');
+choiceKeyboard($('.combo-filters'), '[data-scope]');
 $('#positions').addEventListener('change',e=>{showPositions=e.target.checked;render();});
 $('#print').addEventListener('click',()=>window.print());
-let detailsWasOpen;
-window.addEventListener('beforeprint',()=>{const d=$('#print-layers');detailsWasOpen=d.open;d.open=true;});
-window.addEventListener('afterprint',()=>{$('#print-layers').open=detailsWasOpen;});
+let printDetailsState;
+window.addEventListener('beforeprint',()=>{
+  if (printDetailsState) return;
+  printDetailsState = [$('#dev-disclosure'),$('#print-layers')].map(details => [details, details.open]);
+  printDetailsState.forEach(([details]) => { details.open = true; });
+});
+window.addEventListener('afterprint',()=>{
+  printDetailsState?.forEach(([details, open]) => { details.open = open; });
+  printDetailsState = null;
+});
+function revealHash() {
+  const target = document.getElementById(location.hash.slice(1));
+  if (!target) return;
+  if (target.id === 'dev-notes') $('#dev-disclosure').open = true;
+  let ancestor = target;
+  while (ancestor) {
+    if (ancestor.tagName === 'DETAILS') ancestor.open = true;
+    ancestor = ancestor.parentElement;
+  }
+}
+window.addEventListener('hashchange', revealHash);
+new ResizeObserver(updateComboOverflow).observe($('#nearby-list'));
 render();
+revealHash();

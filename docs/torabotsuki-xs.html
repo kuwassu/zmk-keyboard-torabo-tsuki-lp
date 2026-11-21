@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
   <meta name="description" content="torabotsuki-xs のキー配列、ジェスチャー、コンボ、ポインティング操作、Bluetooth接続を確認する操作ガイド。">
   <title>torabotsuki-xs｜操作ガイド</title>
   <link rel="stylesheet" href="manual.css">
@@ -19,7 +20,6 @@
       <a href="#pointing">ポインティング</a>
       <a href="#bluetooth">Bluetooth</a>
       <a href="#reference">初期設定</a>
-      <a href="#dev-notes">詳細・開発者メモ</a>
     </nav>
   </div>
 </header>
@@ -27,34 +27,39 @@
   <noscript><p class="notice">配列図・ジェスチャー・コンボの表示にはJavaScriptが必要です。ポインティング操作・接続・初期設定はこのまま読めます。</p></noscript>
 
   <section id="layout" aria-labelledby="layout-title">
-    <div class="section-heading"><h2 id="layout-title">操作早見</h2><p>配列を選び、キーとボールの操作を確認。</p></div>
+    <div class="guide-intro">
+      <div class="section-heading"><h2 id="layout-title">操作早見</h2><p>OSと配列を選んで、手元の操作を確認。</p></div>
+      <nav class="getting-started" aria-label="はじめて使う方へ"><span>はじめて使う方へ</span><a href="#reference">OSの初期設定 <span aria-hidden="true">↗</span></a><a href="#bluetooth">Bluetooth接続 <span aria-hidden="true">↗</span></a></nav>
+    </div>
     <div class="explorer">
       <div class="controls">
-        <fieldset><legend>表示するOS</legend><button type="button" data-os="win" aria-pressed="true">Windows</button><button type="button" data-os="mac" aria-pressed="false">Mac</button></fieldset>
+        <fieldset class="segmented os-switch"><legend>表示するOS</legend><button type="button" data-os="win" aria-pressed="true">Windows</button><button type="button" data-os="mac" aria-pressed="false">Mac</button></fieldset>
         <span class="display-note">画面の表示だけを切り替えます。</span>
-        <button type="button" id="print">印刷 / PDF</button>
+        <button type="button" id="print" class="quiet-button"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7V2.5h10V7M5 14H2.5V7h15v7H15M5 11.5h10v6H5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>印刷 / PDF</button>
       </div>
-      <div id="layer-buttons" class="layer-tabs" role="group" aria-label="表示するキー配列"></div>
+      <p class="control-label" id="layer-control-label">表示するレイヤー</p>
+      <div id="layer-buttons" class="layer-tabs" role="group" aria-label="表示するキー配列" aria-describedby="layer-control-label"></div>
       <div class="explorer-workspace">
         <section class="keymap-reference" aria-label="選択したキー配列">
-          <div id="layer-description" aria-live="polite"></div>
-          <div id="main-board" class="board-scroll"></div>
-          <div class="legend"><span><i class="dot teal"></i>レイヤー・接続</span><span><i class="dot amber"></i>長押しで修飾</span><span><i class="dot gray"></i>下位配列を引継ぎ</span></div>
-          <p class="board-help">大きい文字は短押し、下の小さい文字は長押し。点線のキーは基本配列から引き継ぎます。親指Shiftは押している間だけShift。保持＋文字 → Shift入力、保持＋右ボール左右 → タブ切替。離すと解除します。</p>
-          <p class="board-help">DYA Studioで編集：右側をUSB接続 → <kbd>J＋K＋L＋Enter</kbd> を押して離す → 左親指Shift位置でStudio解除 → <kbd>Enter</kbd> で戻る → <a href="https://studio.dya.cormoran.works/">DYA Studio</a> にUSB接続。</p>
-          <div id="combo-preview" class="combo-preview" aria-live="polite">コンボを選ぶと、押すキーが配列上で光ります。</div>
+          <div class="board-toolbar"><div id="layer-description" aria-live="polite" aria-atomic="true"></div><label class="position-toggle"><input id="positions" type="checkbox">キー位置番号</label></div>
+          <div id="main-board" class="board-scroll" tabindex="0" role="region" aria-label="キー配列図。狭い画面では横にスクロールできます"></div><p class="board-pan-hint">配列図は左右にスクロールできます ↔</p>
+          <div class="board-caption"><div class="legend"><span><i class="dot teal" aria-hidden="true"></i>レイヤー・接続</span><span><i class="dot amber" aria-hidden="true"></i>修飾キー</span><span><i class="dot gray" aria-hidden="true"></i>基本配列を引継ぎ</span></div><p class="board-help"><span class="input-badge">大きい文字</span> 短押し <span class="caption-separator">/</span> <span class="input-badge secondary">下の小さい文字</span> 長押し</p></div>
+          <div class="thumb-hint" aria-label="親指Shiftの使い方"><kbd>親指Shift 保持</kbd><span>＋ 文字 <b>→ Shift入力</b></span><span>＋ 右ボール左右 <b>→ タブ切替</b></span></div>
+          <div id="combo-preview" class="combo-preview" aria-live="polite" aria-atomic="true">コンボに触れると、押すキーが配列上で光ります。</div>
         </section>
+        <aside class="nearby-combos" aria-labelledby="nearby-title">
+          <div class="reference-heading"><h3 id="nearby-title">同時押しコンボ</h3><a id="combo-board-link" href="#main-board" hidden>配列図で確認 ↑</a></div>
+          <div class="combo-filters segmented" role="group" aria-label="コンボの対象"><button type="button" data-scope="current" aria-pressed="true">この配列</button><button type="button" data-scope="all" aria-pressed="false">全配列</button></div>
+          <p class="combo-instruction">ホバー・フォーカスで位置を確認。クリックで固定。</p>
+          <p id="nearby-summary" class="muted" aria-live="polite"></p>
+          <div id="nearby-list" class="combo-list"></div>
+          <p id="combo-scroll-hint" class="combo-scroll-hint" aria-hidden="true" hidden>一覧をスクロールして確認 ↕</p>
+        </aside>
         <section id="gestures" class="gesture-reference" aria-labelledby="gesture-title">
-          <div class="reference-heading"><h3 id="gesture-title">右ボールのジェスチャー</h3><span>キーを離すと解除</span></div>
+          <div class="reference-heading"><h3 id="gesture-title">右ボールのジェスチャー</h3><span>保持 → ボール操作 → 離して解除</span></div>
           <div id="layer-pointer" class="gesture-cards" aria-live="polite"></div>
           <p class="gesture-footnote">キーを押さずに動かすとポインター移動。ジェスチャー中はポインターが止まります。</p>
         </section>
-        <aside class="nearby-combos" aria-labelledby="nearby-title">
-          <div class="reference-heading"><h3 id="nearby-title">同時押しコンボ</h3></div>
-          <div class="combo-filters" role="group" aria-label="コンボの対象"><button type="button" data-scope="current" aria-pressed="true">この配列</button><button type="button" data-scope="all" aria-pressed="false">全配列</button></div>
-          <p id="nearby-summary" class="muted" aria-live="polite"></p>
-          <div id="nearby-list" class="combo-list"></div>
-        </aside>
       </div>
     </div>
   </section>
@@ -74,10 +79,10 @@
       <article class="card pointing-device">
         <div class="visual-heading"><h3>右トラックボール</h3><span class="pill">移動・スクロール</span></div>
         <div class="ball-guide" aria-label="キーなしで右ボールを動かすとポインター移動。Enterを保持して動かすとスクロール。">
-          <div><span class="ball-symbol device-symbol" aria-hidden="true"></span><span><strong>キーなし ＋ ボール</strong><br>ポインターを動かす</span></div>
-          <div><kbd>Enter</kbd><span>長押し ＋ ボール<br><strong>スクロールする</strong></span></div>
+          <div class="operation-row"><span class="operation-input"><span class="ball-symbol device-symbol" aria-hidden="true"></span><span>キーなし<br><small>ボールを動かす</small></span></span><span class="result-arrow" aria-hidden="true">→</span><strong>ポインター移動</strong></div>
+          <div class="operation-row"><span class="operation-input"><kbd>Enter</kbd><span>長押し<br><small>＋ ボールを動かす</small></span></span><span class="result-arrow" aria-hidden="true">→</span><strong>スクロール</strong></div>
         </div>
-        <p>スクロール中は <kbd>H</kbd> で縦横自由、<kbd>J</kbd> で縦のみ、<kbd>K</kbd> で横のみ。1回押して選び、Enterを離すまで保持します。</p>
+        <div class="axis-options" aria-label="Enter保持中のスクロール軸"><div><kbd>H</kbd><b aria-hidden="true">↕↔</b><span>縦横自由</span></div><div><kbd>J</kbd><b aria-hidden="true">↕</b><span>縦のみ</span></div><div><kbd>K</kbd><b aria-hidden="true">↔</b><span>横のみ</span></div></div><p class="visual-caption">H／J／Kは1回押して選択。Enterを離すと解除。</p>
         <p>クリック・ドラッグは<a href="#layout">操作早見のコンボ一覧</a>、タブ切替・ウィンドウ配置は<a href="#gestures">ジェスチャー一覧</a>で確認できます。</p>
       </article>
     </div>
@@ -113,7 +118,7 @@
       </article>
     </div>
     <article class="notice warning delete-card" aria-labelledby="delete-title">
-      <h3 id="delete-title">登録削除：ペアリングをやり直すときだけ</h3>
+      <h3 id="delete-title"><span class="destructive-symbol" aria-hidden="true">!</span> 登録を削除する</h3><p class="destructive-label">ペアリングをやり直すときだけ</p>
       <p>接続管理を開き、すべてのキーを離してから操作します。<strong>切断するだけなら、上の切断キーを使ってください。</strong></p>
       <dl class="delete-actions"><div><dt>現在の接続先を削除</dt><dd>左下段の修飾キー3つを同時押し</dd></div><div><dt>すべての接続先を削除</dt><dd><kbd>Q＋W＋E＋R</kbd> を同時押し</dd></div></dl>
       <p>削除後はEnterまたはEscで戻ります。再接続には、接続先側でも登録を削除してペアリングし直します。特定のスロットを消す場合は、その接続先を一度選んでから接続管理を開き直してください。</p>
@@ -133,10 +138,9 @@
   </section>
 
   <section id="dev-notes" aria-labelledby="dev-title">
-    <div class="section-heading"><h2 id="dev-title">詳細仕様・開発者向け確認メモ</h2><p>設定変更・ファームウェア検証のときに開いてください。</p></div>
+    <details id="dev-disclosure" class="developer-disclosure"><summary><h2 id="dev-title"><span class="eyebrow">必要なときに</span>詳細仕様・開発者メモ</h2><span class="disclosure-caption">判定時間・設定元・検証</span></summary><div class="developer-content">
     <p>ビルドはDocker Desktopを起動して <code>powershell -ExecutionPolicy Bypass -File .\scripts\build-local.ps1</code> を実行。UF2は <code>.local-build/firmware/</code> に出力されます。<a href="local-build.md">個別ビルドとキャッシュ更新の手順</a>。GitHub Actionsは手動実行のみです。</p>
     <details class="technical-notes"><summary>キー・コンボの判定時間と確認項目</summary>
-      <label class="position-toggle"><input id="positions" type="checkbox">配列図にキー位置番号を表示</label>
       <table><caption>現在の判定値</caption><thead><tr><th>操作</th><th>仕様</th></tr></thead><tbody><tr><td>Z／左Shift</td><td>tap-preferred、200ms</td></tr><tr><td>/／右Shift、Space／数字配列</td><td>tap-preferred、150ms</td></tr><tr><td>親指Shift</td><td>押下で左ShiftとL3のジェスチャーを有効化、解放で両方解除。専用ビヘイビア（<code>src/thumb_shift.c</code>）で処理し、マクロ・ワンショットShift・2回押し判定なし。タブ切替中は保持中のShiftをマスク。</td></tr><tr><td>Z＋/の「？」</td><td>100ms以内、直前の待ち時間0ms。L0／L1・L3・L6〜L11で有効。</td></tr><tr><td>Bluetooth管理を開く</td><td>直前200ms入力なし、4キーを50ms以内。</td></tr><tr><td>F配列のA＋S＋D</td><td>直前150ms入力なし、50ms以内。Win：Alt＋F4、Mac：Cmd＋Q。</td></tr></tbody></table>
       <p>Z＋/の押下順は不問。単独のZ／/がコンボ待ちで最大100ms保留される場合があります。文字として「z・」を打つときはキーを重ねずに離します。コンボ不成立時はZを200ms保持してから/を短押しするとShift＋/になります。</p>
       <p>書き込み後の確認：両OSでZ→/と/→Z、各キー単独、Z→A、Z→Enterの短押し／200ms保持を確認します。Zを150〜199msで離したときの文字入力、Spaceの素早い変換と長押し後の数字入力、L2・L4／L5での既存操作、親指を保持してA／Enterを押したShift入力、解放後の通常入力、2回押してもCapsが切り替わらないこと、親指の解放後にShiftが残らないこと、S＋D＋FでワンショットShiftにならずS＋Fの英数コンボが使えることも確認してください。実機動作は未確認です。</p>
@@ -162,8 +166,9 @@
     </details>
     <details class="technical-notes"><summary>設定元・ビルド・資料</summary><p>操作ガイドは <code>config/keymap.keymap</code> を元にしています。配列・コンボ変更時は <code>python docs/generate-keymap.py</code> で <code>docs/keymap-data.js</code> を再生成します。生成データは手編集しません。</p><p>ビルド構成は <code>build.yaml</code> と <code>.github/workflows/build.yml</code>。ファームウェアのビルド・実機検証と、HTMLの表示確認は別の検証です。Studioで実機を変更した場合は図と異なることがあります。</p><p><a href="../config/keymap.keymap">キーマップ</a> ／ <a href="../README.md">README</a> ／ <a href="design-notes.md">ガイドのデザイン方針</a></p></details>
     <details id="print-layers"><summary>印刷用：使用中の全12レイヤー</summary><div id="all-layers"></div></details>
+    </div></details>
   </section>
 </main>
-<footer>torabotsuki-xs · 操作ガイド <span>このHTMLをブラウザーで開いて使えます。</span></footer>
+<footer><div><strong>torabotsuki-xs</strong><span>操作ガイド · オフラインでも利用できます</span></div><a href="#dev-notes">詳細仕様・開発者メモ <span aria-hidden="true">↗</span></a><a href="#main">先頭へ ↑</a></footer>
 </body>
 </html>
