@@ -40,7 +40,7 @@
           <div id="layer-description" aria-live="polite"></div>
           <div id="main-board" class="board-scroll"></div>
           <div class="legend"><span><i class="dot teal"></i>レイヤー・接続</span><span><i class="dot amber"></i>長押しで修飾</span><span><i class="dot gray"></i>下位配列を引継ぎ</span></div>
-          <p class="board-help">大きい文字は短押し、下の小さい文字は長押し。点線のキーは基本配列から引き継ぎます。親指Shiftは1回押して離すと次のキーだけShift、2回でCapsです。</p>
+          <p class="board-help">大きい文字は短押し、下の小さい文字は長押し。点線のキーは基本配列から引き継ぎます。親指Shiftは押している間だけShift。保持＋文字 → Shift入力、保持＋右ボール左右 → タブ切替。離すと解除します。</p>
           <div id="combo-preview" class="combo-preview" aria-live="polite">コンボを選ぶと、押すキーが配列上で光ります。</div>
         </section>
         <section id="gestures" class="gesture-reference" aria-labelledby="gesture-title">
@@ -125,7 +125,7 @@
       <article class="card"><h3>Windows</h3><ol><li>OSのキーボード配列を<strong>日本語（106/109）</strong>にする。</li><li>キーボードで <kbd>Q＋W</kbd> を押し、Windows配列にする。</li><li>配置ジェスチャーを使う場合は「設定 → システム → マルチタスク」の<strong>ウィンドウのスナップ</strong>を有効にする。</li></ol></article>
       <article class="card"><h3>Mac</h3><ol><li>OSのキーボードの種類を<strong>JIS（日本語）</strong>にし、キーボードで <kbd>Q＋W＋E</kbd> を押す。</li><li>配置ジェスチャー用に「システム設定 → キーボード → キーボードショートカット → 修飾キー」で、このキーボードの<strong>Caps Lock → Globe</strong>を設定する。</li></ol><p class="muted">Capsを入力切替に使うソフトを利用中なら、Globeへの割り当てとの競合を確認してください。</p></article>
     </div>
-    <details class="setup-notes"><summary>日英切替の補足と代替案</summary><p>現在の配列では、S＋Fで英数、J＋Lでかなへ直接切り替えます。MacのSpace右隣は、短押しで左Ctrl、長押しでFキーの配列です。</p><p>追加ソフトを使わない代替案として、ZMKから右Ctrl＋Spaceを送る <code>&amp;lt 9 RC(SPACE)</code> があります。ただしmacOSの入力ソース切替を呼ぶ方法で、選択表示や待ちが生じます。Windowsの半角／全角と同じ即時トグルの代替にはなりません。現在のキーマップには適用していません。</p><p>macOS標準のCapsによる入力切替も利用できますが、上のCaps → Globeとの併用は割り当てを調整する必要があります。親指Shiftの2回押しもCapsを送るので、結果はMac側設定によります。</p></details>
+    <details class="setup-notes"><summary>日英切替の補足と代替案</summary><p>現在の配列では、S＋Fで英数、J＋Lでかなへ直接切り替えます。MacのSpace右隣は、短押しで左Ctrl、長押しでFキーの配列です。</p><p>追加ソフトを使わない代替案として、ZMKから右Ctrl＋Spaceを送る <code>&amp;lt 9 RC(SPACE)</code> があります。ただしmacOSの入力ソース切替を呼ぶ方法で、選択表示や待ちが生じます。Windowsの半角／全角と同じ即時トグルの代替にはなりません。現在のキーマップには適用していません。</p><p>macOS標準のCapsによる入力切替も利用できますが、上のCaps → Globeとの併用は割り当てを調整する必要があります。親指ShiftからCapsは送信しません。</p></details>
     <details class="setup-notes"><summary>画面ズームを使う場合</summary><p>Macの「システム設定 → アクセシビリティ → ズーム機能」で「スクロールジェスチャと修飾キーを使って拡大縮小」を有効にし、使用する修飾キーを選びます。</p></details>
     <details class="setup-notes"><summary>Globeキーとショートカットの補足</summary><p>配置ジェスチャーは右Ctrl＋Capsと方向キーなどを送信します。Caps → Globeの割り当てを使う前提です。ZMKの <code>&amp;kp GLOBE</code> はApple純正のFn／Globeを完全には再現しません。</p><p><a href="https://support.apple.com/ja-jp/guide/mac-help/mchlp1011/mac">Apple：修飾キーの設定</a> ／ <a href="https://zmk.dev/docs/keymaps/list-of-keycodes">ZMK：キー仕様</a></p></details>
   </section>
@@ -134,12 +134,12 @@
     <div class="section-heading"><h2 id="dev-title">詳細仕様・開発者向け確認メモ</h2><p>設定変更・ファームウェア検証のときに開いてください。</p></div>
     <details class="technical-notes"><summary>キー・コンボの判定時間と確認項目</summary>
       <label class="position-toggle"><input id="positions" type="checkbox">配列図にキー位置番号を表示</label>
-      <table><caption>現在の判定値</caption><thead><tr><th>操作</th><th>仕様</th></tr></thead><tbody><tr><td>Z／左Shift</td><td>tap-preferred、200ms</td></tr><tr><td>/／右Shift、Space／数字配列</td><td>tap-preferred、150ms</td></tr><tr><td>親指Shift</td><td>hold-preferred、200ms。別キーの押下でもholdへ移行。2回押しの判定200ms、確定後のsticky Shiftは1500ms。</td></tr><tr><td>Z＋/の「？」</td><td>100ms以内、直前の待ち時間0ms。L0／L1・L3・L6〜L11で有効。</td></tr><tr><td>S＋D＋Fのsticky Shift</td><td>50ms以内。S＋Fの英数と区別。</td></tr><tr><td>Bluetooth管理を開く</td><td>直前200ms入力なし、4キーを50ms以内。</td></tr><tr><td>F配列のA＋S＋D</td><td>直前150ms入力なし、50ms以内。Win：Alt＋F4、Mac：Cmd＋Q。</td></tr></tbody></table>
+      <table><caption>現在の判定値</caption><thead><tr><th>操作</th><th>仕様</th></tr></thead><tbody><tr><td>Z／左Shift</td><td>tap-preferred、200ms</td></tr><tr><td>/／右Shift、Space／数字配列</td><td>tap-preferred、150ms</td></tr><tr><td>親指Shift</td><td>押下で左ShiftとL3のジェスチャーを有効化、解放で両方解除。待ち時間・2回押し判定なし。タブ切替中は保持中のShiftをマスク。</td></tr><tr><td>Z＋/の「？」</td><td>100ms以内、直前の待ち時間0ms。L0／L1・L3・L6〜L11で有効。</td></tr><tr><td>S＋D＋Fのsticky Shift</td><td>50ms以内。S＋Fの英数と区別。</td></tr><tr><td>Bluetooth管理を開く</td><td>直前200ms入力なし、4キーを50ms以内。</td></tr><tr><td>F配列のA＋S＋D</td><td>直前150ms入力なし、50ms以内。Win：Alt＋F4、Mac：Cmd＋Q。</td></tr></tbody></table>
       <p>Z＋/の押下順は不問。単独のZ／/がコンボ待ちで最大100ms保留される場合があります。文字として「z・」を打つときはキーを重ねずに離します。コンボ不成立時はZを200ms保持してから/を短押しするとShift＋/になります。</p>
-      <p>書き込み後の確認：両OSでZ→/と/→Z、各キー単独、Z→A、Z→Enterの短押し／200ms保持を確認します。Zを150〜199msで離したときの文字入力、Spaceの素早い変換と長押し後の数字入力、L2・L4／L5での既存操作、親指の1回／2回押しも確認してください。実機動作は未確認です。</p>
+      <p>書き込み後の確認：両OSでZ→/と/→Z、各キー単独、Z→A、Z→Enterの短押し／200ms保持を確認します。Zを150〜199msで離したときの文字入力、Spaceの素早い変換と長押し後の数字入力、L2・L4／L5での既存操作、親指を保持してA／Enterを押したShift入力、解放後の通常入力、2回押してもCapsが切り替わらないことも確認してください。実機動作は未確認です。</p>
     </details>
     <details class="technical-notes"><summary>ジェスチャー・スクロールの仕様と確認項目</summary>
-      <p>タブ切替はL3、ウィンドウ配置はL8／L9、スクロールはL10／L11。数字・記号配列でも親指Shift長押しでタブ切替を使えます。F・Enterの操作は親指Shiftより優先。タブ切替の上下は未割当で、解除時に途中の動きをリセットします。</p>
+      <p>タブ切替はL3、ウィンドウ配置はL8／L9、スクロールはL10／L11。数字・記号配列でも親指Shift保持でタブ切替を使えます。F・Enterの操作は親指Shiftより優先。タブ切替の上下は未割当で、解除時に途中の動きをリセットします。</p>
       <p>ジェスチャーは <code>stroke-size=100</code>、<code>gesture-cooldown-ms=100</code>、eager mode。右ボールの処理は <code>boards/shields/torabo_tsuki_lp/torabo_tsuki_lp_right.overlay</code>、送信キーは <code>config/keymap.keymap</code> を参照します。</p>
       <p>H／J／Kの軸選択はEnterを離すまで保持し、次回は自由に戻ります。U／Oは明るさ−／＋、M／,／.は音量−／ミュート／＋、Tab位置は再生・停止です。</p>
       <p>書き込み後の確認：Windows／Macの基本・数字・記号配列で左右のタブ切替、Macの右Ctrl／Windowsの左Ctrl送信、配列の往復切替後の動作を確認します。未割当の上下、解除後のポインター復帰、途中の動きのリセット、F・Enterの優先、H／J／Kの保持と解除、左パッドが軸制限の影響を受けないことも確認します。実機動作は未確認です。</p>
