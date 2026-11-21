@@ -291,7 +291,7 @@
                 <&macro_release>,
                 <&kp RC(CAPS)>;
 
-            label = "MAC_WINDOWS_LARGE";
+            label = "MAC_WINDOW_LARGE";
         };
 
         mac_window_left: mac_window_left {
@@ -305,7 +305,7 @@
                 <&macro_release>,
                 <&kp RC(CAPS)>;
 
-            label = "MAC_WINDOWS_LEFT";
+            label = "MAC_WINDOW_LEFT";
         };
 
         mac_window_right: mac_window_right {
@@ -319,7 +319,7 @@
                 <&macro_release>,
                 <&kp RC(CAPS)>;
 
-            label = "MAC_WINDOWS_RIGHT";
+            label = "MAC_WINDOW_RIGHT";
         };
 
         mac_window_small: mac_window_small {
@@ -333,7 +333,7 @@
                 <&macro_release>,
                 <&kp RC(CAPS)>;
 
-            label = "MAC_WINDOWS_SMALL";
+            label = "MAC_WINDOW_SMALL";
         };
 
         win_bt0: win_bt0 {
