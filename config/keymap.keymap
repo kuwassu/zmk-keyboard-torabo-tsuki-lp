@@ -280,7 +280,7 @@
                 <&kp LEFT_SHIFT>;
         };
 
-        mac_windows_large: mac_windows_large {
+        mac_window_large: mac_window_large {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
@@ -294,7 +294,7 @@
             label = "MAC_WINDOWS_LARGE";
         };
 
-        mac_windows_left: mac_windows_left {
+        mac_window_left: mac_window_left {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
@@ -308,7 +308,7 @@
             label = "MAC_WINDOWS_LEFT";
         };
 
-        mac_windows_right: mac_windows_right {
+        mac_window_right: mac_window_right {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
@@ -322,7 +322,7 @@
             label = "MAC_WINDOWS_RIGHT";
         };
 
-        mac_windows_small: mac_windows_small {
+        mac_window_small: mac_window_small {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
@@ -626,22 +626,22 @@
 
     window_left {
         pattern = <GESTURE_LEFT>;
-        bindings = <&mac_windows_left>;
+        bindings = <&mac_window_left>;
     };
 
     window_right {
         pattern = <GESTURE_RIGHT>;
-        bindings = <&mac_windows_right>;
+        bindings = <&mac_window_right>;
     };
 
     window_small {
         pattern = <GESTURE_DOWN>;
-        bindings = <&mac_windows_small>;
+        bindings = <&mac_window_small>;
     };
 
     window_large {
         pattern = <GESTURE_UP>;
-        bindings = <&mac_windows_large>;
+        bindings = <&mac_window_large>;
     };
 };
 
