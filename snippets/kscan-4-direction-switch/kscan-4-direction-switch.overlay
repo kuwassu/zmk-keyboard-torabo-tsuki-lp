@@ -36,11 +36,3 @@
 &physical_layout_s {
     kscan = <&kscan_4_direction_switch_composite>;
 };
-
-&physical_layout_m {
-    kscan = <&kscan_4_direction_switch_composite>;
-};
-
-&physical_layout_l {
-    kscan = <&kscan_4_direction_switch_composite>;
-};

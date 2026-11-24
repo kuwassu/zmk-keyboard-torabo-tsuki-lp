@@ -52,14 +52,6 @@
     kscan = <&kscan_hires_dial_composite>;
 };
 
-&physical_layout_m {
-    kscan = <&kscan_hires_dial_composite>;
-};
-
-&physical_layout_l {
-    kscan = <&kscan_hires_dial_composite>;
-};
-
 &i2c0 {
     status = "okay";
     compatible = "nordic,nrf-twim";

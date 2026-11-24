@@ -8,12 +8,12 @@ source = (ROOT / "config/keymap.keymap").read_text(encoding="utf-8")
 source = re.sub(r"//[^\n]*", "", source)
 layers = []
 for name, body in re.findall(r"(L\d+_\w+)\s*\{\s*bindings\s*=\s*<(.*?)>;", source, re.S):
-    # Optional switch/dial bindings are outside the 66-position main matrix.
+    # Optional switch/dial bindings are outside the 42-position main matrix.
     body = body.split("#if")[0]
     bindings = re.findall(r"&\w+(?:\s+[^&]+)?", body)
     bindings = [" ".join(binding.split()) for binding in bindings]
-    if len(bindings) != 66:
-        raise ValueError(f"{name}: expected 66 bindings, found {len(bindings)}")
+    if len(bindings) != 42:
+        raise ValueError(f"{name}: expected 42 bindings, found {len(bindings)}")
     enabled = not name.endswith("_reserved")
     system = "win" if re.match(r"L\d+_win_", name) else "mac" if re.match(r"L\d+_mac_", name) else "both"
     layers.append({"name": name, "bindings": bindings, "enabled": enabled, "os": system})

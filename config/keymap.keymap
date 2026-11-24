@@ -81,7 +81,7 @@
 
         question_mark {
             bindings = <&kp LS(FSLH)>;
-            key-positions = <39 50>;
+            key-positions = <20 31>;
             layers = <0 1>;
             timeout-ms = <100>;
             // Allow the combo during typing; keep the normal Z hold-tap unchanged.
@@ -90,7 +90,7 @@
 
         win_close {
             bindings = <&kp LA(F4)>;
-            key-positions = <25 26 27>;
+            key-positions = <10 11 12>;
             layers = <8>;
             timeout-ms = <50>;
             require-prior-idle-ms = <150>;
@@ -98,7 +98,7 @@
 
         mac_close {
             bindings = <&kp LG(Q)>;
-            key-positions = <25 26 27>;
+            key-positions = <10 11 12>;
             layers = <9>;
             timeout-ms = <50>;
             require-prior-idle-ms = <150>;
@@ -106,7 +106,7 @@
 
         bt_select_layer {
             bindings = <&tog 2>;
-            key-positions = <33 34 35 36>;
+            key-positions = <16 17 18 19>;
             layers = <0 1 2>;
             timeout-ms = <50>;
             require-prior-idle-ms = <200>;
@@ -114,151 +114,151 @@
 
         bt_clear {
             bindings = <&bt BT_CLR>;
-            key-positions = <53 54 55>;
+            key-positions = <32 33 34>;
             layers = <2>;
         };
 
         bt_clear_all {
             bindings = <&bt BT_CLR_ALL>;
-            key-positions = <13 14 15 16>;
+            key-positions = <0 1 2 3>;
             layers = <2>;
         };
 
         mac_layout {
             bindings = <&to 1>;
-            key-positions = <13 14 15>;
+            key-positions = <0 1 2>;
             layers = <0 1>;
         };
 
         win_layout {
             bindings = <&to 0>;
-            key-positions = <13 14>;
+            key-positions = <0 1>;
             layers = <0 1>;
         };
 
         left_kakko {
             bindings = <&kp LS(N8)>;
-            key-positions = <19 20>;
+            key-positions = <6 7>;
             layers = <0 1>;
         };
 
         right_kakko {
             bindings = <&kp LS(N9)>;
-            key-positions = <20 21>;
+            key-positions = <7 8>;
             layers = <0 1>;
         };
 
         left_namikakko {
             bindings = <&kp LS(RIGHT_BRACKET)>;
-            key-positions = <19 20>;
+            key-positions = <6 7>;
             layers = <4 5>;
         };
 
         right_namikakko {
             bindings = <&kp LS(BSLH)>;
-            key-positions = <20 21>;
+            key-positions = <7 8>;
             layers = <4 5>;
         };
 
         left_kakukakko {
             bindings = <&kp RIGHT_BRACKET>;
-            key-positions = <47 48>;
+            key-positions = <28 29>;
             layers = <4 5>;
         };
 
         right_kakukako {
             bindings = <&kp BSLH>;
-            key-positions = <48 49>;
+            key-positions = <29 30>;
             layers = <4 5>;
         };
 
         //        semicolon {
         //            bindings = <&kp SEMI>;
-        //            key-positions = <33 34>;
+        //            key-positions = <16 17>;
         //            layers = <10 11>;
         //        };
         //
         //        colon {
         //            bindings = <&kp APOS>;
-        //            key-positions = <34 35>;
+        //            key-positions = <17 18>;
         //            layers = <10 11>;
         //        };
 
         plus {
             bindings = <&kp LS(SEMI)>;
-            key-positions = <33 34>;
+            key-positions = <16 17>;
             layers = <4 5 6 7>;
         };
 
         asterisk {
             bindings = <&kp LS(APOS)>;
-            key-positions = <34 35>;
+            key-positions = <17 18>;
             layers = <4 5 6 7>;
         };
 
         left_click {
             bindings = <&mkp LCLK>;
-            key-positions = <33 34>;
+            key-positions = <16 17>;
             layers = <0 1>;
         };
 
         right_click {
             bindings = <&mkp RCLK>;
-            key-positions = <34 35>;
+            key-positions = <17 18>;
             layers = <0 1>;
         };
 
         middle_click {
             bindings = <&mkp MCLK>;
-            key-positions = <33 34 35>;
+            key-positions = <16 17 18>;
             layers = <0 1>;
         };
 
         undo_click {
             bindings = <&mkp MB4>;
-            key-positions = <47 48>;
+            key-positions = <28 29>;
             layers = <0 1>;
         };
 
         redo_click {
             bindings = <&mkp MB5>;
-            key-positions = <48 49>;
+            key-positions = <29 30>;
             layers = <0 1>;
         };
 
         kana {
             bindings = <&kp LANGUAGE_1>;
-            key-positions = <33 35>;
+            key-positions = <16 18>;
             layers = <0 1 6 7>;
         };
 
         eisu {
             bindings = <&kp LANG2>;
-            key-positions = <26 28>;
+            key-positions = <11 13>;
             layers = <0 1 6 7>;
         };
 
         left_win_win {
             bindings = <&kp LGUI>;
-            key-positions = <14 15 16>;
+            key-positions = <1 2 3>;
             layers = <0 4 6 8>;
         };
 
         left_mac_ctrl {
             bindings = <&kp RCTRL>;
-            key-positions = <14 15 16>;
+            key-positions = <1 2 3>;
             layers = <1 5 7 9>;
         };
 
         right_win_win {
             bindings = <&kp LEFT_GUI>;
-            key-positions = <19 20 21>;
+            key-positions = <6 7 8>;
             layers = <0 4 6 8>;
         };
 
         right_mac_ctrl {
             bindings = <&kp RCTRL>;
-            key-positions = <19 20 21>;
+            key-positions = <6 7 8>;
             layers = <1 5 7 9>;
         };
     };
@@ -370,16 +370,16 @@
         };
     };
 
+    // 42 keys: S layout minus the two bottom-right trackball positions.
     keymap {
         compatible = "zmk,keymap";
 
         L0_win_default {
             bindings = <
-&none  &none             &none     &none     &none                &none                                    &none       &none  &none      &none     &none                 &none
-&none  &kp Q             &kp W     &kp E     &kp R                &kp T                                    &kp Y       &kp U  &kp I      &kp O     &kp P                 &none
-&none  &kp A             &kp S     &kp D     &kp F                &kp G        &none        &none          &kp H       &kp J  &kp K      &kp L     &lt 10 ENTER          &none
-&none  &z_mt LEFT_SHIFT Z  &kp X     &kp C     &kp V                &kp B        &kp ESC      &kp DELETE     &kp N       &kp M  &kp COMMA  &kp DOT   &slash_mt RIGHT_SHIFT FSLH  &none
-&none  &kp LCTRL         &kp LGUI  &kp LALT  &thumb_shift  &space_lt 6 SPACE  &lt 8 GRAVE  &mt RCTRL TAB  &lt 4 BSPC  &none  &none      &kp HOME  &kp END               &none
+&kp Q                      &kp W                      &kp E                      &kp R                      &kp T                          &kp Y                      &kp U                      &kp I                      &kp O                      &kp P
+&kp A                      &kp S                      &kp D                      &kp F                      &kp G                          &kp H                      &kp J                      &kp K                      &kp L                      &lt 10 ENTER
+&z_mt LEFT_SHIFT Z         &kp X                      &kp C                      &kp V                      &kp B                      &kp ESC                        &kp DELETE                 &kp N                      &kp M                      &kp COMMA                  &kp DOT                    &slash_mt RIGHT_SHIFT FSLH
+&kp LCTRL                  &kp LGUI                   &kp LALT                   &thumb_shift               &space_lt 6 SPACE          &lt 8 GRAVE                    &mt RCTRL TAB              &lt 4 BSPC                                                                       &kp HOME                   &kp END
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
 &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
 #elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
@@ -390,11 +390,10 @@
 
         L1_mac_default {
             bindings = <
-&none  &none             &none     &none              &none                &none                                       &none       &none  &none      &none         &none                 &none
-&none  &kp Q             &kp W     &kp E              &kp R                &kp T                                       &kp Y       &kp U  &kp I      &kp O         &kp P                 &none
-&none  &kp A             &kp S     &kp D              &kp F                &kp G        &none        &none             &kp H       &kp J  &kp K      &kp L         &lt 11 ENTER          &none
-&none  &z_mt LEFT_SHIFT Z  &kp X     &kp C              &kp V                &kp B        &kp ESC      &kp LG(BSPC)      &kp N       &kp M  &kp COMMA  &kp DOT       &slash_mt RIGHT_SHIFT FSLH  &none
-&none  &kp LGUI          &kp LALT  &kp RIGHT_CONTROL  &thumb_shift  &space_lt 7 SPACE  &lt 9 LCTRL  &mt LEFT_GUI TAB  &lt 5 BSPC  &none  &none      &kp LG(LEFT)  &kp LG(RIGHT)         &none
+&kp Q                      &kp W                      &kp E                      &kp R                      &kp T                          &kp Y                      &kp U                      &kp I                      &kp O                      &kp P
+&kp A                      &kp S                      &kp D                      &kp F                      &kp G                          &kp H                      &kp J                      &kp K                      &kp L                      &lt 11 ENTER
+&z_mt LEFT_SHIFT Z         &kp X                      &kp C                      &kp V                      &kp B                      &kp ESC                        &kp LG(BSPC)               &kp N                      &kp M                      &kp COMMA                  &kp DOT                    &slash_mt RIGHT_SHIFT FSLH
+&kp LGUI                   &kp LALT                   &kp RIGHT_CONTROL          &thumb_shift               &space_lt 7 SPACE          &lt 9 LCTRL                    &mt LEFT_GUI TAB           &lt 5 BSPC                                                                       &kp LG(LEFT)               &kp LG(RIGHT)
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
 &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
 #elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
@@ -407,11 +406,10 @@
         // No transparent bindings: unrelated keys cannot type or click here.
         L2_bt_select {
             bindings = <
-&none  &none  &none  &none  &none  &none                  &none     &none     &none     &none     &none     &none
-&none  &none  &none  &none  &none  &none                  &win_bt0  &mac_bt1  &win_bt2  &mac_bt3  &win_bt4  &none
-&none  &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &bt BT_DISC 4  &none &none &mac_bt5 &win_bt6 &none &none &tog 2 &none
-&none  &bt BT_DISC 5  &bt BT_DISC 6  &none  &none  &none  &tog 2  &none   &none    &none     &none     &none     &none     &none
-&none  &none  &none  &none  &studio_unlock  &none  &none   &none   &none    &none     &none     &none     &none  &none
+&none                      &none                      &none                      &none                      &none                          &win_bt0                   &mac_bt1                   &win_bt2                   &mac_bt3                   &win_bt4
+&bt BT_DISC 0              &bt BT_DISC 1              &bt BT_DISC 2              &bt BT_DISC 3              &bt BT_DISC 4                  &mac_bt5                   &win_bt6                   &none                      &none                      &tog 2
+&bt BT_DISC 5              &bt BT_DISC 6              &none                      &none                      &none                      &tog 2                         &none                      &none                      &none                      &none                      &none                      &none
+&none                      &none                      &none                      &studio_unlock             &none                      &none                          &none                      &none                                                                            &none                      &none
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
 &none &none &none &none &none
 #elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
@@ -423,11 +421,10 @@
         // Thumb hold enables tab gestures; typing inherits the active OS/layers.
         L3_tab_gesture {
             bindings = <
-&trans &trans &trans &trans &trans &trans             &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans             &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans                     &trans                     &trans                     &trans                     &trans                         &trans                     &trans                     &trans                     &trans                     &trans
+&trans                     &trans                     &trans                     &trans                     &trans                         &trans                     &trans                     &trans                     &trans                     &trans
+&trans                     &trans                     &trans                     &trans                     &trans                     &trans                         &trans                     &trans                     &trans                     &trans                     &trans                     &trans
+&trans                     &trans                     &trans                     &trans                     &trans                     &trans                         &trans                     &trans                                                                           &trans                     &trans
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
 &trans &trans &trans &trans &trans
 #elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
@@ -438,11 +435,10 @@
 
         L4_win_right_thumb {
             bindings = <
-&none  &none                 &none       &none       &none      &none                                       &none       &none         &none     &none      &none            &none
-&none  &kp LS(N1)            &kp LC(W)   &kp F7      &kp F2     &kp LS(EQUAL)                               &kp LC(Y)   &kp LS(INT1)  &kp UP    &kp MINUS  &kp LS(N5)       &none
-&none  &kp LS(N6)            &kp LS(N7)  &kp LS(N2)  &kp BSPC   &kp LBKT       &none              &none     &kp EQUAL   &kp LEFT      &kp DOWN  &kp RIGHT  &kp F10          &none
-&none  &mt LEFT_SHIFT LC(Z)  &kp LC(X)   &kp LC(C)   &kp LC(V)  &kp INT3       &kp RIGHT_BRACKET  &kp BSLH  &kp LS(N3)  &kp LS(N4)    &kp SEMI  &kp APOS   &kp RIGHT_SHIFT  &none
-&none  &trans                &trans      &trans      &trans     &kp LS(SPACE)  &trans             &trans    &trans      &none         &none     &trans     &trans           &none
+&kp LS(N1)                 &kp LC(W)                  &kp F7                     &kp F2                     &kp LS(EQUAL)                  &kp LC(Y)                  &kp LS(INT1)               &kp UP                     &kp MINUS                  &kp LS(N5)
+&kp LS(N6)                 &kp LS(N7)                 &kp LS(N2)                 &kp BSPC                   &kp LBKT                       &kp EQUAL                  &kp LEFT                   &kp DOWN                   &kp RIGHT                  &kp F10
+&mt LEFT_SHIFT LC(Z)       &kp LC(X)                  &kp LC(C)                  &kp LC(V)                  &kp INT3                   &kp RIGHT_BRACKET              &kp BSLH                   &kp LS(N3)                 &kp LS(N4)                 &kp SEMI                   &kp APOS                   &kp RIGHT_SHIFT
+&trans                     &trans                     &trans                     &trans                     &kp LS(SPACE)              &trans                         &trans                     &trans                                                                           &trans                     &trans
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
 &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
 #elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
@@ -453,11 +449,10 @@
 
         L5_mac_right_thumb {
             bindings = <
-&none  &none                 &none       &none       &none      &none                                       &none          &none         &none     &none      &none            &none
-&none  &kp LS(N1)            &kp LG(W)   &kp F7      &kp ENTER     &kp LS(EQUAL)                               &kp LG(LS(Z))  &kp LS(INT1)  &kp UP    &kp MINUS  &kp LS(N5)       &none
-&none  &kp LS(N6)            &kp LS(N7)  &kp LS(N2)  &kp BSPC   &kp LBKT       &none              &none     &kp EQUAL      &kp LEFT      &kp DOWN  &kp RIGHT  &kp F10          &none
-&none  &mt LEFT_SHIFT LG(Z)  &kp LG(X)   &kp LG(C)   &kp LG(V)  &kp INT3       &kp RIGHT_BRACKET  &kp BSLH  &kp LS(N3)     &kp LS(N4)    &kp SEMI  &kp APOS   &kp RIGHT_SHIFT  &none
-&none  &trans                &trans      &trans      &trans     &kp LS(SPACE)  &trans             &trans    &trans         &none         &none     &trans     &trans           &none
+&kp LS(N1)                 &kp LG(W)                  &kp F7                     &kp ENTER                  &kp LS(EQUAL)                  &kp LG(LS(Z))              &kp LS(INT1)               &kp UP                     &kp MINUS                  &kp LS(N5)
+&kp LS(N6)                 &kp LS(N7)                 &kp LS(N2)                 &kp BSPC                   &kp LBKT                       &kp EQUAL                  &kp LEFT                   &kp DOWN                   &kp RIGHT                  &kp F10
+&mt LEFT_SHIFT LG(Z)       &kp LG(X)                  &kp LG(C)                  &kp LG(V)                  &kp INT3                   &kp RIGHT_BRACKET              &kp BSLH                   &kp LS(N3)                 &kp LS(N4)                 &kp SEMI                   &kp APOS                   &kp RIGHT_SHIFT
+&trans                     &trans                     &trans                     &trans                     &kp LS(SPACE)              &trans                         &trans                     &trans                                                                           &trans                     &trans
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
 &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
 #elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
@@ -468,11 +463,10 @@
 
         L6_win_left_thumb2 {
             bindings = <
-&none  &none         &none             &none         &none              &none                       &none              &none   &none   &none   &none         &none
-&none  &kp N1        &kp N2            &kp N3        &kp N4             &kp N5                      &kp N6             &kp N7  &kp N8  &kp N9  &kp N0        &none
-&none  &kp LC(LBKT)  &kp LS(TAB)       &kp LEFT_ALT  &kp TAB            &trans  &none   &none       &kp MINUS          &kp N4  &kp N5  &kp N6  &trans        &none
-&none  &trans        &kp LG(LC(LEFT))  &kp LG(TAB)   &kp LG(LC(RIGHT))  &trans  &trans  &kp PERIOD  &kp LS(SEMICOLON)  &kp N1  &kp N2  &kp N3  &kp SLASH     &none
-&none  &trans        &trans            &trans        &trans             &trans  &trans  &trans      &trans             &none   &none   &kp N0  &kp LS(APOS)  &none
+&kp N1                     &kp N2                     &kp N3                     &kp N4                     &kp N5                         &kp N6                     &kp N7                     &kp N8                     &kp N9                     &kp N0
+&kp LC(LBKT)               &kp LS(TAB)                &kp LEFT_ALT               &kp TAB                    &trans                         &kp MINUS                  &kp N4                     &kp N5                     &kp N6                     &trans
+&trans                     &kp LG(LC(LEFT))           &kp LG(TAB)                &kp LG(LC(RIGHT))          &trans                     &trans                         &kp PERIOD                 &kp LS(SEMICOLON)          &kp N1                     &kp N2                     &kp N3                     &kp SLASH
+&trans                     &trans                     &trans                     &trans                     &trans                     &trans                         &trans                     &trans                                                                           &kp N0                     &kp LS(APOS)
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
 &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
 #elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
@@ -483,11 +477,10 @@
 
         L7_mac_left_thumb2 {
             bindings = <
-&none  &none         &none         &none         &none          &none                       &none              &none   &none   &none   &none         &none
-&none  &kp N1        &kp N2        &kp N3        &kp N4         &kp N5                      &kp N6             &kp N7  &kp N8  &kp N9  &kp N0        &none
-&none  &kp RC(LBKT)  &kp LSHIFT    &kp LEFT_ALT  &kp TAB        &trans  &none   &none       &kp MINUS          &kp N4  &kp N5  &kp N6  &trans        &none
-&none  &trans        &kp RC(LEFT)  &kp RC(UP)    &kp RC(RIGHT)  &trans  &trans  &kp PERIOD  &kp LS(SEMICOLON)  &kp N1  &kp N2  &kp N3  &kp SLASH     &none
-&none  &trans        &trans        &trans        &trans         &trans  &trans  &trans      &trans             &none   &none   &kp N0  &kp LS(APOS)  &none
+&kp N1                     &kp N2                     &kp N3                     &kp N4                     &kp N5                         &kp N6                     &kp N7                     &kp N8                     &kp N9                     &kp N0
+&kp RC(LBKT)               &kp LSHIFT                 &kp LEFT_ALT               &kp TAB                    &trans                         &kp MINUS                  &kp N4                     &kp N5                     &kp N6                     &trans
+&trans                     &kp RC(LEFT)               &kp RC(UP)                 &kp RC(RIGHT)              &trans                     &trans                         &kp PERIOD                 &kp LS(SEMICOLON)          &kp N1                     &kp N2                     &kp N3                     &kp SLASH
+&trans                     &trans                     &trans                     &trans                     &trans                     &trans                         &trans                     &trans                                                                           &kp N0                     &kp LS(APOS)
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
 &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
 #elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
@@ -498,11 +491,10 @@
 
         L8_win_left_thumb3 {
             bindings = <
-&none  &none    &none    &none      &none   &none                   &none       &none   &none   &none     &none            &none
-&none  &kp F1   &kp F2   &kp F3     &kp F4  &kp F5                  &kp F6      &kp F7  &kp F8  &kp F9    &kp F10          &none
-&none  &kp F11  &kp F12  &kp LG(E)  &trans  &trans  &none   &none   &none       &trans  &trans  &kp CAPS  &kp PRINTSCREEN  &none
-&none  &trans   &trans   &trans     &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans           &none
-&none  &trans   &trans   &trans     &trans  &trans  &trans  &trans  &trans      &none   &none   &trans    &trans           &none
+&kp F1                     &kp F2                     &kp F3                     &kp F4                     &kp F5                         &kp F6                     &kp F7                     &kp F8                     &kp F9                     &kp F10
+&kp F11                    &kp F12                    &kp LG(E)                  &trans                     &trans                         &none                      &trans                     &trans                     &kp CAPS                   &kp PRINTSCREEN
+&trans                     &trans                     &trans                     &trans                     &trans                     &trans                         &trans                     &trans                     &trans                     &trans                     &trans                     &trans
+&trans                     &trans                     &trans                     &trans                     &trans                     &trans                         &trans                     &trans                                                                           &trans                     &trans
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
 &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
 #elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
@@ -513,11 +505,10 @@
 
         L9_mac_left_thumb3 {
             bindings = <
-&none  &none    &none    &none   &none   &none                   &none      &none   &none   &none     &none           &none
-&none  &kp F1   &kp F2   &kp F3  &kp F4  &kp F5                  &kp F6     &kp F7  &kp F8  &kp F9    &kp F10         &none
-&none  &kp F11  &kp F12  &trans  &trans  &trans  &none   &none   &none      &trans  &trans  &kp CAPS  &kp LG(LS(N4))  &none
-&none  &trans   &trans   &trans  &trans  &trans  &trans  &trans  &trans     &trans  &trans  &trans    &trans          &none
-&none  &trans   &trans   &trans  &trans  &trans  &trans  &trans  &trans     &none   &none   &trans    &trans          &none
+&kp F1                     &kp F2                     &kp F3                     &kp F4                     &kp F5                         &kp F6                     &kp F7                     &kp F8                     &kp F9                     &kp F10
+&kp F11                    &kp F12                    &trans                     &trans                     &trans                         &none                      &trans                     &trans                     &kp CAPS                   &kp LG(LS(N4))
+&trans                     &trans                     &trans                     &trans                     &trans                     &trans                         &trans                     &trans                     &trans                     &trans                     &trans                     &trans
+&trans                     &trans                     &trans                     &trans                     &trans                     &trans                         &trans                     &trans                                                                           &trans                     &trans
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
 &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
 #elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
@@ -528,11 +519,10 @@
 
         L10_win_scroll_media {
             bindings = <
-&none  &none          &none          &none          &none          &none                                    &none     &none         &none       &none         &none     &none
-&none  &none          &none          &none          &none          &none                                    &none     &kp C_BRI_DN  &none       &kp C_BRI_UP  &none     &none
-&none  &trans        &trans        &trans        &trans        &trans        &none   &none             &scroll_mode 0  &scroll_mode 1  &scroll_mode 2  &kp LCTRL     &trans    &none
-&none  &trans         &trans         &trans         &trans         &trans         &trans  &trans            &trans    &kp C_VOL_DN  &kp C_MUTE  &kp C_VOL_UP  &trans    &none
-&none  &trans         &trans         &trans         &trans         &trans         &trans  &kp C_PLAY_PAUSE  &trans    &none         &none       &trans        &trans    &none
+&none                      &none                      &none                      &none                      &none                          &none                      &kp C_BRI_DN               &none                      &kp C_BRI_UP               &none
+&trans                     &trans                     &trans                     &trans                     &trans                         &scroll_mode 0             &scroll_mode 1             &scroll_mode 2             &kp LCTRL                  &trans
+&trans                     &trans                     &trans                     &trans                     &trans                     &trans                         &trans                     &trans                     &kp C_VOL_DN               &kp C_MUTE                 &kp C_VOL_UP               &trans
+&trans                     &trans                     &trans                     &trans                     &trans                     &trans                         &kp C_PLAY_PAUSE           &trans                                                                           &trans                     &trans
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
 &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
 #elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
@@ -543,11 +533,10 @@
 
         L11_mac_scroll_media {
             bindings = <
-&none  &none          &none          &none          &none          &none                                    &none     &none         &none       &none         &none     &none
-&none  &none          &none          &none          &none          &none                                    &none     &kp C_BRI_DN  &none       &kp C_BRI_UP  &none     &none
-&none  &trans        &trans        &trans        &trans        &trans        &none   &none             &scroll_mode 0  &scroll_mode 1  &scroll_mode 2  &kp RCTRL     &trans    &none
-&none  &trans         &trans         &trans         &trans         &trans         &trans  &trans            &trans    &kp C_VOL_DN  &kp C_MUTE  &kp C_VOL_UP  &trans    &none
-&none  &trans         &trans         &trans         &trans         &trans         &trans  &kp C_PLAY_PAUSE  &trans    &none         &none       &trans        &trans    &none
+&none                      &none                      &none                      &none                      &none                          &none                      &kp C_BRI_DN               &none                      &kp C_BRI_UP               &none
+&trans                     &trans                     &trans                     &trans                     &trans                         &scroll_mode 0             &scroll_mode 1             &scroll_mode 2             &kp RCTRL                  &trans
+&trans                     &trans                     &trans                     &trans                     &trans                     &trans                         &trans                     &trans                     &kp C_VOL_DN               &kp C_MUTE                 &kp C_VOL_UP               &trans
+&trans                     &trans                     &trans                     &trans                     &trans                     &trans                         &kp C_PLAY_PAUSE           &trans                                                                           &trans                     &trans
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
 &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
 #elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)

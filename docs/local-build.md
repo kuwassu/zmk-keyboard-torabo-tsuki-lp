@@ -45,6 +45,8 @@ pushとpull requestでは起動しません。GitHubの **Actions → Build ZMK 
 
 ## 確認済みの範囲
 
+42キー化ではmacOSのDocker Desktopでも同じPythonランナーを使い、変更前後の左・右・settings_resetをクリーンビルドしました。[容量差・依存条件・検証結果](compact-layout.md)。
+
 Windows上のDocker Desktop（WSL2バックエンド）で、左・右・settings_resetの全構成と、キャッシュを使った右側単独ビルドの成功を確認しています。3つのUF2のブロック形式と、有効な依存モジュールのコミット記録も確認済みです。ファームウェアの書き込み・実機動作の確認は含みません。
 
 参考：[ZMKのコンテナ環境](https://zmk.dev/docs/development/local-toolchain/setup/container)、[ZMK v0.3のActionsビルド手順](https://github.com/zmkfirmware/zmk/blob/v0.3/.github/workflows/build-user-config.yml)。

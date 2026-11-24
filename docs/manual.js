@@ -1,12 +1,12 @@
-/* Offline manual. Position numbers always refer to the 66-entry source keymap. */
+/* Offline manual. Position numbers refer to the compact 42-entry source keymap. */
 'use strict';
 const $ = selector => document.querySelector(selector);
 const esc = text => String(text).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const rows = [
-  [13,14,15,16,17,18,19,20,21,22],
-  [25,26,27,28,29,32,33,34,35,36],
-  [39,40,41,42,43,44,45,46,47,48,49,50],
-  [53,54,55,56,57,58,59,60,61,62,63,64]
+  [0,1,2,3,4,5,6,7,8,9],
+  [10,11,12,13,14,15,16,17,18,19],
+  [20,21,22,23,24,25,26,27,28,29,30,31],
+  [32,33,34,35,36,37,38,39,null,null,40,41]
 ];
 const names = ['基本配列','接続先','タブ切替','記号・矢印','数字','Fキー','スクロール'];
 const triggers = ['通常入力','J＋K＋L＋Enter','親指Shift 保持','Bspc 長押し','Space 長押し','Space右隣 長押し','Enter 長押し'];
@@ -53,6 +53,7 @@ function board(id, selected = [], mini = false) {
   const base = os === 'mac' ? 1 : 0;
   let keys = '';
   rows.forEach((row,r) => row.forEach((pos,c) => {
+    if (pos === null) return;
     let x;
     if (r < 2) x = c < 5 ? 12+c*70 : 572+(c-5)*70;
     else x = c < 6 ? 12+c*70 : 502+(c-6)*70;
@@ -69,7 +70,8 @@ function board(id, selected = [], mini = false) {
     keys += `<g class="${cls}" data-position="${pos}" transform="translate(${x},${y})"><title>${esc(tip)}</title><rect width="64" height="72" rx="9"/>${showPositions&&!mini?`<text class="key-pos" x="5" y="13">${pos}</text>`:''}${id>1&&!mini?`<text class="key-base" x="59" y="13">${esc(baseLabel)}</text>`:''}<text class="key-label" x="32" y="${sub?32:41}"${label.length>7?' textLength="57" lengthAdjust="spacingAndGlyphs"':''}>${esc(label)}</text>${sub?`<text class="key-sub" x="32" y="55"${sub.length>6?' textLength="57" lengthAdjust="spacingAndGlyphs"':''}>${esc(sub)}</text>`:''}</g>`;
   }));
   const selectedLabel = selected.map(p => describe(KEYMAP.layers[base].bindings[p]).label).join(' と ');
-  return `<svg class="keyboard" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 402" role="img" aria-label="${esc(mini?selectedLabel+' の同時押し位置図':(os==='win'?'Windows':'Mac')+' L'+id+' '+KEYMAP.layers[id].name+' 配列図')}"><text class="hand" x="12" y="16">LEFT</text><text class="hand" x="840" y="16">RIGHT</text>${keys}</svg>`;
+  const ball = '<g class="trackball" aria-label="トラックボール（キーなし）"><circle cx="709" cy="346" r="43" fill="none" stroke="currentColor" opacity="0.35"/><text x="709" y="350" text-anchor="middle" fill="currentColor" font-size="12">TRACKBALL</text></g>';
+  return `<svg class="keyboard" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 402" role="img" aria-label="${esc(mini?selectedLabel+' の同時押し位置図':(os==='win'?'Windows':'Mac')+' L'+id+' '+KEYMAP.layers[id].name+' 配列図')}"><text class="hand" x="12" y="16">LEFT</text><text class="hand" x="840" y="16">RIGHT</text>${keys}${ball}</svg>`;
 }
 const comboInfo = {
   question_mark:['? を入力','symbol'],
