@@ -4,6 +4,8 @@
 * _centralがついているuf2をトラックボールがついている方に、_peripheralを反対側に書き込んでください
 * キーマップはkeymap-editorおよびzmk-studioで編集できます
 
+**通常の書き換えは左右の通常UF2を直接コピーします。`settings_reset` は毎回書き込まないでください。** Bluetooth登録を消さずに更新できます。ローカルビルドの既定では左右だけを生成し、リセット用は明示指定時に `firmware/reset/` へ出力します。[更新・リセットの使い分け](docs/local-build.md#bluetooth登録を残して更新する)。
+
 ローカルビルドはDocker Desktopを起動し、`powershell -ExecutionPolicy Bypass -File .\scripts\build-local.ps1` を実行します。UF2は `.local-build/firmware/` に出力されます。[ローカルビルド手順](docs/local-build.md)に左右の個別ビルド・キャッシュ更新をまとめています。GitHub Actionsは手動実行のみです。
 
 [DYA Studio対応](docs/dya-studio.md)：ZMK v0.3ベースで、配列・Bluetooth接続先・左右のアイドル／スリープ時間・右ボールと左パッドの調整に対応します。右側をUSB接続し、接続管理 `J＋K＋L＋Enter` → 左親指Shift位置でStudioを解除してから接続します。左右とも対応版を書き込んでください。

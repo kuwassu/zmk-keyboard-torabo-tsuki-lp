@@ -164,6 +164,7 @@
       <p>登録削除コンボはL2のみ。現在のスロット削除は位置32・33・34、全登録削除は位置0・1・2・3です。L2は無関係な文字・クリック入力を無効にしています。</p>
       <p>書き込み後の確認：両基本配列からL2を開き、Hで5（Mac）、Jで6（Windows）を選んでペアリングし、0〜4へ戻れることを確認します。Z／Xによる5／6の切断、Enter／Escによる終了、左右のキー入力も確認してください。実機動作は未確認です。</p>
     </details>
+    <details class="technical-notes"><summary>Bluetooth登録を残すファームウェア更新</summary><p>ブートローダー起動 → 左右の通常UF2を直接コピー → 元の接続先へ。毎回の <code>settings_reset</code> は不要です。これを書き込むとBluetooth登録も消えます。Studioの保存配列だけを戻す場合はRestore Stock Settingsを使います。<a href="local-build.md#bluetooth登録を残して更新する">通常更新と全設定リセットの手順</a>。</p></details>
     <details class="technical-notes"><summary>42キー配列・軽量化・旧配列からの移行</summary><p>既定はSサイズの42キー。右最下段のBspcとHomeの間はボール専用で、キーを定義しません。M・Lの選択肢は外し、全12レイヤーとコンボの位置番号を揃えています。Studioに旧66キー配列を保存している場合は、バックアップ後に新しい既定配列へ戻します。<a href="compact-layout.md">測定結果・移行手順・確認方法</a>。</p></details>
     <details class="technical-notes"><summary>設定元・ビルド・資料</summary><p>操作ガイドは <code>config/keymap.keymap</code> を元にしています。配列・コンボ変更時は <code>python docs/generate-keymap.py</code> で <code>docs/keymap-data.js</code> を再生成します。生成データは手編集しません。</p><p>ビルド構成は <code>build.yaml</code> と <code>.github/workflows/build.yml</code>。ファームウェアのビルド・実機検証と、HTMLの表示確認は別の検証です。Studioで実機を変更した場合は図と異なることがあります。</p><p><a href="../config/keymap.keymap">キーマップ</a> ／ <a href="../README.md">README</a> ／ <a href="design-notes.md">ガイドのデザイン方針</a></p></details>
     <details id="print-layers"><summary>印刷用：使用中の全12レイヤー</summary><div id="all-layers"></div></details>

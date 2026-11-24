@@ -52,9 +52,9 @@ Studioは起動時にロックされます。解除キーはL2の位置35（通�
 
 ## 確認方法
 
-ローカルDockerで左右・settings_resetをビルドします。生成された右側の`.config`でDYA RPCと8つの接続／登録枠（ホスト7＋左右間1）、DTSで3つのRuntime Input Processorと既存のOS別速度・ジェスチャー経路を確認します。`tests/test_dya_ble_profiles.c` は実際の生成protobufとnanopbを使い、7枠の一覧をエンコード・デコードするホスト検証です。
+ローカルDockerで左右の通常ファームウェアをビルドします。`settings_reset` は明示的な `-Target reset` だけで生成し、通常更新では書き込みません。生成された右側の`.config`でDYA RPCと8つの接続／登録枠（ホスト7＋左右間1）、DTSで3つのRuntime Input Processorと既存のOS別速度・ジェスチャー経路を確認します。`tests/test_dya_ble_profiles.c` は実際の生成protobufとnanopbを使い、7枠の一覧をエンコード・デコードするホスト検証です。
 
-全構成をビルドしたあと、次のコマンドで生成設定・入力経路・7枠のprotobufをまとめて検証できます。
+左右の通常構成をビルドしたあと、次のコマンドで生成設定・入力経路・7枠のprotobufをまとめて検証できます。
 
 ```powershell
 $image = (Get-Content .\scripts\zmk-build-image.txt -Raw).Trim()

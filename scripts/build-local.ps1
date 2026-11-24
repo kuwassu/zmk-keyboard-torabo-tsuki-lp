@@ -43,4 +43,8 @@ if ($Pristine) { $containerArgs += '--pristine' }
 if ($LASTEXITCODE -ne 0) {
     throw "Local ZMK build failed (exit $LASTEXITCODE). See the build output above."
 }
-Write-Host "Firmware: $outputPath"
+if ($Target -eq 'reset') {
+    Write-Host "Settings reset (erases Bluetooth bonds): $(Join-Path $outputPath 'reset')"
+} else {
+    Write-Host "Normal firmware: $outputPath"
+}

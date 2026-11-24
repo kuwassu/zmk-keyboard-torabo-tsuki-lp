@@ -26,15 +26,30 @@ def run(*args):
 
 def build(args):
     entries = yaml.safe_load((REPO / 'build.yaml').read_text())['include']
-    if args.target != 'all':
+    # Normal updates preserve bonds; a settings-reset build must be explicit.
+    reset_entries = [e for e in entries if e.get('shield') == SHIELDS['reset']]
+    if args.target == 'all':
+        entries = [e for e in entries if e.get('shield') != SHIELDS['reset']]
+    else:
         entries = [e for e in entries if e.get('shield') == SHIELDS[args.target]]
     if not entries:
         raise RuntimeError(f'No build.yaml entry for {args.target}')
 
+    # Relocate files left by the old runner out of the normal update folder.
+    reset_output = OUTPUT / 'reset'
+    for entry in reset_entries:
+        name = entry.get('artifact-name', f"{entry['shield']}-{entry['board']}-zmk")
+        legacy = OUTPUT / f'{name}.uf2'
+        if legacy.exists():
+            reset_output.mkdir(parents=True, exist_ok=True)
+            legacy.replace(reset_output / legacy.name)
+
+    output = reset_output if args.target == 'reset' else OUTPUT
+    output.mkdir(parents=True, exist_ok=True)
     names = [e.get('artifact-name', f"{e['shield']}-{e['board']}-zmk") for e in entries]
     for name in names:
         # A failed setup/build must not leave an old selected UF2 looking current.
-        (OUTPUT / f'{name}.uf2').unlink(missing_ok=True)
+        (output / f'{name}.uf2').unlink(missing_ok=True)
 
     # Match CI: west's manifest lives in a writable, isolated config directory.
     config = WORKSPACE / 'config'
@@ -71,20 +86,21 @@ def build(args):
         firmware = build_dir / 'zephyr/zmk.uf2'
         if not firmware.is_file():
             raise RuntimeError(f'Expected UF2 was not generated: {firmware}')
-        shutil.copy2(firmware, OUTPUT / f'{name}.uf2')
-        print(f'Built: /out/{name}.uf2', flush=True)
+        shutil.copy2(firmware, output / f'{name}.uf2')
+        print(f'Built: {output}/{name}.uf2', flush=True)
 
-    with (OUTPUT / 'west-manifest-frozen.yml').open('w') as stream:
+    with (output / 'west-manifest-frozen.yml').open('w') as stream:
         subprocess.run(
             ['west', 'manifest', '--freeze', '--active-only'],
             cwd=WORKSPACE, stdout=stream, check=True,
         )
-    (OUTPUT / 'build-image.txt').write_text(os.environ.get('ZMK_BUILD_IMAGE', '') + '\n')
+    (output / 'build-image.txt').write_text(os.environ.get('ZMK_BUILD_IMAGE', '') + '\n')
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--target', choices=['all', *SHIELDS], default='all')
+    parser.add_argument('--target', choices=['all', *SHIELDS], default='all',
+                        help='all: normal keyboard firmware only; reset: explicitly erase settings')
     parser.add_argument('--update', action='store_true')
     parser.add_argument('--pristine', action='store_true')
     parser.add_argument('--jobs', type=int, default=4)

@@ -9,13 +9,12 @@ PowerShell → Docker Desktop（WSL2・Linuxコンテナ）→ ZMKビルド → 
 Docker Desktopを起動し、リポジトリのルートで実行します。
 
 ```powershell
-# build.yamlの全構成：左・右・settings_reset
+# 通常更新用：左・右だけ（settings_resetは生成しない）
 powershell -ExecutionPolicy Bypass -File .\scripts\build-local.ps1
 
-# 右側だけ／左側だけ／リセット用だけ
+# 右側だけ／左側だけ
 powershell -ExecutionPolicy Bypass -File .\scripts\build-local.ps1 -Target right
 powershell -ExecutionPolicy Bypass -File .\scripts\build-local.ps1 -Target left
-powershell -ExecutionPolicy Bypass -File .\scripts\build-local.ps1 -Target reset
 
 # 依存ソースを再取得してクリーンビルド
 powershell -ExecutionPolicy Bypass -File .\scripts\build-local.ps1 -Update -Pristine
@@ -25,9 +24,26 @@ powershell -ExecutionPolicy Bypass -File .\scripts\build-local.ps1 -Update -Pris
 | --- | --- |
 | `torabo_tsuki_lp_left_peripheral.uf2` | 左側 |
 | `torabo_tsuki_lp_right_central.uf2` | トラックボールのある右側 |
-| `settings_reset-bmp_boost-zmk.uf2` | 設定リセットが必要な場合のみ |
 
 出力先は `.local-build/firmware/`。選択した構成の古いUF2はビルド開始前に除去し、成功したものだけを出力します。書き込みは自動では行いません。`west-manifest-frozen.yml` に取得した依存コミット、`build-image.txt` に使用したコンテナイメージを記録します。
+
+## Bluetooth登録を残して更新する
+
+ブートローダーを起動 → 左右それぞれの通常UF2をコピー → 再起動 → 元の接続先スロットへ
+
+**通常更新では `settings_reset` を挟みません。** PC側のBluetooth登録も削除しません。通常のZMKファームウェア更新はペアリング情報を保存領域に残します。リセットボタンでブートローダーへ入る操作と、`settings_reset` の書き込みは別です。`-Pristine` はPC上のビルド生成物を作り直す指定で、キーボードの保存領域は消しません。
+
+Studioの保存配列だけを戻すときは、Studioの **Restore Stock Settings** を使います。[42キー版への移行](compact-layout.md)でも、Bluetooth登録を消す全設定リセットは不要です。
+
+### 全設定リセットが必要なときだけ
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\build-local.ps1 -Target reset
+```
+
+出力は **`.local-build/firmware/reset/settings_reset-bmp_boost-zmk.uf2`**。これを書き込むとBluetoothの接続先・左右間のペアリング・Studioの保存配列などを消します。左右間の接続を復旧するため全設定を消す場合は、[ZMK公式のリセット手順](https://zmk.dev/docs/troubleshooting/connection-issues#reset-split-keyboard-procedure)に従って左右をリセットし、通常UF2へ戻してから再ペアリングします。
+
+以前のビルドで通常フォルダーに残っていたリセット用UF2も、次回ビルド時に `reset/` へ移動します。ローカルビルドの既定値と `-Target all` は通常ファームウェアだけを生成します。
 
 ## 初回セットアップとキャッシュ
 
@@ -41,12 +57,14 @@ powershell -ExecutionPolicy Bypass -File .\scripts\build-local.ps1 -Update -Pris
 
 ## GitHub Actions
 
-pushとpull requestでは起動しません。GitHubの **Actions → Build ZMK firmware → Run workflow** から対象ブランチを選んだ場合だけ実行します。ビルド構成の共通定義は `build.yaml`、依存ソースは `config/west.yml` です。
+pushとpull requestでは起動しません。GitHubの **Actions → Build ZMK firmware → Run workflow** から対象ブランチを選んだ場合だけ実行します。ビルド構成の共通定義は `build.yaml`、依存ソースは `config/west.yml` です。Actionsの成果物には `build.yaml` にあるリセット用UF2も含まれるため、通常更新では左右の通常UF2だけを選びます。
 
 ## 確認済みの範囲
+
+今回のDocker検証では、既定実行が左右の通常UF2だけを生成し、以前のリセット用UF2を内容を維持して `reset/` へ移すことを確認しました。明示的な `-Target reset` 相当の実行では、通常UF2を変更せず `reset/` にだけリセット用UF2と依存記録を生成します。左右の通常ビルドではBluetooth保存が有効で、起動時の全設定リセット・ボンド削除が無効であること、42キー構成とDYAの既存検証が通ることを確認しています。実機の更新後接続は未確認です。
 
 42キー化ではmacOSのDocker Desktopでも同じPythonランナーを使い、変更前後の左・右・settings_resetをクリーンビルドしました。[容量差・依存条件・検証結果](compact-layout.md)。
 
 Windows上のDocker Desktop（WSL2バックエンド）で、左・右・settings_resetの全構成と、キャッシュを使った右側単独ビルドの成功を確認しています。3つのUF2のブロック形式と、有効な依存モジュールのコミット記録も確認済みです。ファームウェアの書き込み・実機動作の確認は含みません。
 
-参考：[ZMKのコンテナ環境](https://zmk.dev/docs/development/local-toolchain/setup/container)、[ZMK v0.3のActionsビルド手順](https://github.com/zmkfirmware/zmk/blob/v0.3/.github/workflows/build-user-config.yml)。
+参考：[ZMKの保存設定と通常更新](https://zmk.dev/docs/config/settings)、[ZMKのコンテナ環境](https://zmk.dev/docs/development/local-toolchain/setup/container)、[ZMK v0.3のActionsビルド手順](https://github.com/zmkfirmware/zmk/blob/v0.3/.github/workflows/build-user-config.yml)。
